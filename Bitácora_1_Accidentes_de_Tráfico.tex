@@ -1,13 +1,17 @@
 \documentclass{book}
 
+\usepackage{csquotes}
+\usepackage[backend=biber,style=authoryear]{biblatex}
+
+\addbibresource{referencias.bib}
+
 \usepackage[spanish]{babel}
-
-
 \usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
 
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
 
 \title{Accidentes de Tráfico en Nueva Zelanda}
 \author{Paola Espinoza Hernández, Jeikel Navarro y Gabriel Sanabria Alvarado}
@@ -211,7 +215,7 @@ Se buscaron términos relacionados a accidentes viales, como el uso del cinturó
 
 \begin{figure}
 \centering
-\includegraphics[width=1\linewidth]{V_Gowin_b1.png}
+\includegraphics[width=1\linewidth]{images/V_Gowin_b1.png}
 \caption{\label{fig:Gowin}V de Gowin}
 \end{figure}
 
@@ -219,7 +223,7 @@ Se buscaron términos relacionados a accidentes viales, como el uso del cinturó
 
 Los accidentes de tráfico representan una de las principales causas de muertes y lesiones en todo el mundo. En el caso de Nueva Zelanda, la seguridad vial ha sido una preocupación constante, y se ha buscado implementar diversas estrategias para reducir la siniestralidad en las carreteras. Sin embargo, para mejorar la efectividad de estas estrategias, es fundamental tratar de identificar cuáles son las variables que llegan a tener una mayor influencia o impacto en la severidad de los accidentes. De manera que lo que este trabajo busca es tratar de responder a la pregunta: ¿Cuáles variables tienen mayor impacto en la severidad de los accidentes de tráfico en Nueva Zelanda?
 
-De acuerdo con {BuitragoRamírezFrancisco2019Vpdv}, los diversos factores que podrían llegatr a influir en la severidad de un accidente de tránsito estan los factores humanos, vehiculares, ambientales y de infraestructura. Entres ellos más especificamente se encuentra la atención, concentración y condición psíquico-física del conductor, las características de los vehículos, los objetos y la carga transportada, las condiciones meteorológicas, el ámbito urbano o interurbano en el que ocurre el accidente y el estado de las carreteras.
+De acuerdo con \cite(BuitragoRamírezFrancisco2019Vpdv), los diversos factores que podrían llegatr a influir en la severidad de un accidente de tránsito estan los factores humanos, vehiculares, ambientales y de infraestructura. Entres ellos más especificamente se encuentra la atención, concentración y condición psíquico-física del conductor, las características de los vehículos, los objetos y la carga transportada, las condiciones meteorológicas, el ámbito urbano o interurbano en el que ocurre el accidente y el estado de las carreteras.
 
 Así mismo, en busca de garantizar la calidad y veracidad del análisis, este trabajo utilizará como fuente principal los datos provenientes de la Agencia de Transporte Waka Kotahi de Nueva Zelanda. De esta forma, como el objetivo es tratar de determinar qué variables tienen llegan a tener un mayor impacto o incidencia en la severidad de los accidentes de tráfico mediante el uso de métodos estadísticos rigurosos que permitan establecer si existe una relación significativa entre las variables analizadas y la severidad de los accidentes.
 
@@ -247,12 +251,11 @@ A su vez, para llevar acabado este propósito de determinar cuáles de estas var
     \item \textbf{P-value}: Sirve para determinar la significancia estadística de los resultados obtenidos en los análisis previos, estableciendo si la relación entre variables es lo suficientemente fuerte como para no ser atribuida al azar.
 \end{itemize}
 
-Además, el estudio tomará como referencia trabajos previos, como el de {BuitragoRamírezFrancisco2019Vpdv}, que encontró que ciertos factores aumentan significativamente el riesgo de que una víctima resulte fallecida o termine en un estado crítico tras un accidente. Por ejemplo, determinó que los accidentes interurbanos incrementan en un 74.5\% el riesgo de fatalidad en comparación con los urbanos, y que en ciertas zonas de alta incidencia este riesgo puede duplicarse o cuadruplicarse.
+Además, el estudio tomará como referencia trabajos previos, como el de \cite(BuitragoRamírezFrancisco2019Vpdv), que encontró que ciertos factores aumentan significativamente el riesgo de que una víctima resulte fallecida o termine en un estado crítico tras un accidente. Por ejemplo, determinó que los accidentes interurbanos incrementan en un 74.5\% el riesgo de fatalidad en comparación con los urbanos, y que en ciertas zonas de alta incidencia este riesgo puede duplicarse o cuadruplicarse.
 
 Por lo que, identificar las variables que tienen un mayor impacto en la severidad de los accidentes de tráfico permitirá la implementación de estrategias de prevención más efectivas. Esto contribuirá a optimizar la asignación de recursos para la reducción de accidentes, disminuyendo tanto el número de incidentes como la cantidad de personas heridas o fallecidas como consecuencia de los mismos. Además, los hallazgos de este estudio pueden servir como base para futuras investigaciones en seguridad vial y políticas públicas.
 
-\bibliographystyle{plain}
-\bibliography{referencias}
+\printbibliography
 \nocite{*}
 
 \end{document}
