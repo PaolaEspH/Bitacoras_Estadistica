@@ -1,0 +1,227 @@
+---
+title: "Untitled"
+format: pdf
+editor: visual
+---
+
+## Análisis Estadistico
+
+La base de datos ya se encuentra en formato en tidy, recordemos que el formato tidy fue popularizado por el autor Hadley Wickham, donde indican que cada variable debe tener su propia columna y cada observación su propia fila. Nuestra base de datos cumple con estar en formato tidy.
+
+Vamos a llamar a nuestra base de datos, la cual vamos a utilizar durante el trabajo.
+
+```{r}
+library(readr)
+data <-  read.csv("data/clean_data.csv")
+data <- data %>% select(-X)
+
+```
+
+```{r}
+head(data)
+```
+
+Antes de aplicar cualquier gráfico o análisis de datos a nuestra base de datos, es importante eliminar las variables que no aportan al estudio, por ello, vamos a eliminar los valores NA que vengan en nuestra base de datos y columnas que no sean de nuestro interés.
+
+```{r}
+library(dplyr)
+
+
+data <- data %>%
+  select(-pedestrian) %>%
+  select(-flatHill) %>%
+  select(-tlaId) %>%
+  select(-trafficControl)
+  
+  
+data_limpia <- na.omit(data)
+head(data_limpia)
+```
+
+Ahora hacemos un análisis estadístico de nuestra base de datos, de todas las variables.
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(knitr)
+library(kableExtra)
+
+# Como nuestras variables no son del todo numéricas, hay que hacerlo para las variables que son numéricas y para las variables que son categóricas. 
+
+# Primero hacemos las variables numéricas.
+resumen_numericas <- data_limpia %>%
+  summarise(
+    Velocidad_Recomendada_Medio = mean(advisorySpeed, na.rm = TRUE),
+    Velocidad_Recomendada_Minima = min(advisorySpeed, na.rm = TRUE),
+    Velocidad_Recomendada_Maxima = max(advisorySpeed, na.rm = TRUE),
+    Victimas_Fatales_Medio = mean(fatalCount, na.rm = TRUE),
+    Victimas_fatales_Minimo = min(fatalCount, na.rm = TRUE),
+    Victimas_fatales_Maximo = max(fatalCount, na.rm = TRUE),
+    Víctimas_Lesiones_Menores_Medio = mean(minorInjuryCount, na.rm = TRUE),
+    Víctimas_Lesiones_Menores_Minimo = min(minorInjuryCount, na.rm = TRUE),
+    Víctimas_Lesiones_Menores_Maximo = max(minorInjuryCount, na.rm = TRUE),
+    Víctimas_Lesiones_Graves_Medio = mean(seriousInjuryCount, na.rm = TRUE),
+    Víctimas_Lesiones_Graves_Minimo = min(seriousInjuryCount, na.rm = TRUE),
+    Víctimas_Lesiones_Graves_Maximo = max(seriousInjuryCount, na.rm = TRUE),
+    Límite_Velocidad_Medio = mean(speedLimit, na.rm = TRUE),
+    Límite_Velocidad_Minima = min(speedLimit, na.rm = TRUE),
+    Límite_Velocidad_Maxima = max(speedLimit, na.rm = TRUE)
+  )
+
+# Variables Categóricas
+resumen_categoricas <- tibble(
+  Variable = c("Severidad del accidente", "Período de vacaciones", "Iluminación", "Superficie de la carretera", "Clima"),
+  Frecuencia = c(
+    paste(names(table(data_limpia$crashSeverity)), collapse = ", "),
+    paste(names(table(data_limpia$holiday)), collapse = ", "),
+    paste(names(table(data_limpia$light)), collapse = ", "),
+    paste(names(table(data_limpia$roadSurface)), collapse = ", "),
+    paste(names(table(data_limpia$weather)), collapse = ", ")
+  )
+)
+
+# Tabla combinada de variables numéricas y categóricas
+tabla_resumen <- data.frame(
+  Variable = c(
+    "Velocidad recomendada", "Víctimas fatales", "Víctimas con lesiones menores",
+    "Víctimas con lesiones graves", "Límite de velocidad",
+    resumen_categoricas$Variable
+  ),
+  Media = c(
+    resumen_numericas$Velocidad_Recomendada_Medio,
+    resumen_numericas$Victimas_Fatales_Medio,
+    resumen_numericas$Víctimas_Lesiones_Menores_Medio,
+    resumen_numericas$Víctimas_Lesiones_Graves_Medio,
+    resumen_numericas$Límite_Velocidad_Medio,
+    rep(NA, 5)
+  ),
+  Mínimo = c(
+    resumen_numericas$Velocidad_Recomendada_Minima,
+    resumen_numericas$Victimas_fatales_Minimo,
+    resumen_numericas$Víctimas_Lesiones_Menores_Minimo,
+    resumen_numericas$Víctimas_Lesiones_Graves_Minimo,
+    resumen_numericas$Límite_Velocidad_Minima,
+    rep(NA, 5)
+  ),
+  Máximo = c(
+    resumen_numericas$Velocidad_Recomendada_Maxima,
+    resumen_numericas$Victimas_fatales_Maximo,
+    resumen_numericas$Víctimas_Lesiones_Menores_Maximo,
+    resumen_numericas$Víctimas_Lesiones_Graves_Maximo,
+    resumen_numericas$Límite_Velocidad_Maxima,
+    rep(NA, 5)
+  ),
+  Frecuencia = c(
+    rep(NA, 5),
+    resumen_categoricas$Frecuencia
+  )
+)
+
+# Mostrar la tabla
+tabla_resumen_kable <- kable(tabla_resumen, caption = "Resumen de Variables Numéricas y Categóricas", booktabs = TRUE) %>%
+  kable_styling(full_width = FALSE) %>%
+  add_header_above(c(" " = 1, "Resumen" = 3, "Categorías" = 1)) %>%
+  footnote(general = "Fuente: Elaboración propia utilizando la base de datos de Kaggle")
+
+tabla_resumen_kable
+
+```
+
+Ahora, procederemos a realizar una **matriz de correlación para las variables categóricas** contenidas en la base de datos. El objetivo de este análisis es identificar posibles **relaciones** entre las distintas variables cualitativas, tales como la severidad del accidente, las condiciones climáticas, el tipo de iluminación, la superficie de la carretera, y si el evento ocurrió durante un período de vacaciones.
+
+El resultado se presentará mediante un **mapa de calor (heatmap)** que utiliza una escala de colores donde los tonos más rojizos representan correlaciones positivas más fuertes y los azulados indican correlaciones negativas. Además, se incluirán los valores numéricos directamente en cada celda, facilitando así la interpretación precisa de los niveles de asociación entre las distintas variables cualitativas. Esta representación permite identificar patrones relevantes que podrían ser clave en la comprensión de los factores que influyen en la severidad y características de los accidentes..
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(corrplot)
+library(reshape2)
+
+# Escogemos las variables que nos interesan para la matriz de correlación.
+data_correlacion <- datos_limpios %>%
+  select(crashSeverity, holiday, light, roadSurface, weather)
+
+
+data_correlacion$crashSeverity <- as.numeric(as.factor(data_correlacion$crashSeverity))
+data_correlacion$holiday <- as.numeric(as.factor(data_correlacion$holiday))
+data_correlacion$light <- as.numeric(as.factor(data_correlacion$light))
+data_correlacion$roadSurface <- as.numeric(as.factor(data_correlacion$roadSurface))
+data_correlacion$weather <- as.numeric(as.factor(data_correlacion$weather))
+
+
+colnames(data_correlacion) <- c("Severidad del accidente", "Período de vacaciones", "Iluminación", "Superficie de la carretera", "Clima")
+
+
+# Crear la matriz de correlación
+matriz_correlacion <- cor(data_correlacion, use = "complete.obs")
+
+# Transformar la matriz en formato largo para graficar
+base_matriz <- melt(matriz_correlacion)
+
+# Crear el gráfico de calor con etiquetas
+ggplot(base_matriz, aes(Var1, Var2, fill = value)) +
+  geom_tile(color = "white") +
+  geom_text(aes(label = round(value, 2)), size = 4, color = "black") + 
+  scale_fill_gradient2(
+    low = "blue", mid = "white", high = "red",
+    midpoint = 0, limit = c(-1, 1), space = "Lab", name = "Correlación"
+  ) +
+  theme_minimal() +
+  labs(
+    title = "Matriz de Correlación de Variables Categóricas",
+    x = "", y = "",
+    caption = "Fuente: Elaboración propia utilizando la base de datos de Kaggle"
+  ) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.text.y = element_text(angle = 0)
+  )
+
+
+```
+
+Lo anterior se hizo con el fin de tener una **idea exploratoria general** de cómo se mueven juntas las categorías al ser codificadas, pero **esta correlación no debe interpretarse literalmente**, salvo que las variables tengan un orden real y bien definido, de manera que lo mejor para analizar independecia de variables categoricas son las **tablas de contingencia** junto con **estadísticos como el chi-cuadrado.**
+
+Ahora, procederemos a construir una **matriz de correlación para las variables numéricas** presentes en la base de datos. El propósito de este análisis es evaluar la **relación lineal entre pares de variables cuantitativas**, tales como la velocidad recomendada, el límite de velocidad, el número de víctimas fatales, y las lesiones menores o graves asociadas a los accidentes.
+
+A diferencia de las variables categóricas, las variables numéricas permiten calcular coeficientes de correlación como el **coeficiente de Pearson**, que mide la **intensidad** de la relación lineal entre dos variables. Un valor cercano a 1 indica una fuerte correlación positiva, mientras que valores cercanos a -1 reflejan una correlación negativa fuerte. Valores próximos a 0 sugieren ausencia de relación lineal.
+
+```{r}
+library(ggplot2)
+library(reshape2)
+
+data_correlacion_numerica <- datos_limpios %>%
+  select(advisorySpeed, fatalCount, minorInjuryCount, seriousInjuryCount, speedLimit)
+
+
+colnames(data_correlacion_numerica) <- c(
+  "Velocidad recomendada", "Víctimas fatales", "Víctimas con lesiones menores", "Víctimas con lesiones graves", "Límite de velocidad"
+)
+
+# Calcular la matriz de correlación
+matriz_correlacion_numericas <- cor(data_correlacion_numerica, use = "complete.obs", method = "pearson")
+base_matriz_numericas <- melt(matriz_correlacion_numericas)
+
+# Crear gráfico de calor con etiquetas numéricas
+ggplot(base_matriz_numericas, aes(Var1, Var2, fill = value)) +
+  geom_tile(color = "white") +
+  geom_text(aes(label = round(value, 2)), size = 4, color = "black") +
+  scale_fill_gradient2(
+    low = "blue", mid = "white", high = "red",
+    midpoint = 0, limit = c(-1, 1), space = "Lab", name = "Correlación"
+  ) +
+  theme_minimal() +
+  labs(
+    title = "Matriz de Correlación de Variables Numéricas",
+    x = "", y = "",
+    caption = "Fuente: Elaboración propia utilizando la base de datos de Kaggle"
+  ) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    axis.text.y = element_text(angle = 0)
+  )
+```
+
+Al analizar la matriz de correlación de las variables numéricas, se observa una fuerte correlación positiva entre la velocidad recomendada y el límite de velocidad, lo cual resulta intuitivo, dado que ambas están directamente relacionadas con las condiciones del camino y las normativas de tránsito. Esta relación indica que a medida que el límite de velocidad aumenta en una determinada zona, también tiende a incrementarse la velocidad recomendada para los conductores, lo que podría refleja una adaptación de la infraestructura vial a las condiciones del entorno, como el tipo de carretera y su capacidad de soportar vehículos a mayor velocidad.
+
+Por otro lado, se detecta una débil correlación entre el número de víctimas fatales y las victímas con lesiones graves sugiere que, aunque ambas variables están relacionadas con la severidad de los accidentes, no necesariamente ocurren juntas de forma proporcional. Es decir, un accidente con muchas lesiones graves no implica automáticamente la presencia de víctimas fatales, y viceversa. Esta baja correlación puede deberse a diversos factores, como la rapidez con que se presenta asistencia médica, el tipo de accidente o el uso de medidas de seguridad como cinturones.

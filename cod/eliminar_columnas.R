@@ -16,3 +16,5 @@ data2 <- data1 %>% select(all_of(cols))
 data2 <- data2 %>% mutate(weather = case_when(weatherA != "Null" & weatherB != "Null" & weatherB != "None"~ paste(weatherA, "&", weatherB), weatherA != "Null" ~ weatherA, TRUE ~ "Null")) %>% filter(weather != "Null") %>% select(!all_of(c("weatherA", "weatherB")))
 
 write.csv(data2, "../data/clean_data.csv")
+
+
