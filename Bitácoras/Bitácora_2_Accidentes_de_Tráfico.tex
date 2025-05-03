@@ -341,6 +341,32 @@ Se buscaron términos relacionados a accidentes viales, como el uso del cinturó
 
 \textbf{Resumen en un párrafo:} El artículo analiza los datos del Departamento de Transporte del Reino Unido, y la Highway Agency (HA), con el fin de proporcionar los escenarios más propensos a accidentes vehiculares. Se espera que esta información sea utilizada para afinar el mecanismo de prevención de accidentes de los vehículos automatizados; para los cuales la ADS encontró que las mayores dificultades las presentan en ambientes urbanos complejos, zonas con trabajos temporales y zonas con baja visibilidad. Dada la alta incidencia de accidentes en las intersecciones, el artículo se centra en analizar los accidentes en estos lugares.  Se encuentra que la mayor gravedad de heridas está asociada a ciclistas, motociclistas y límites de velocidad mayores. Además, en las intersecciones, las causas más comunes de accidente son no dar paso, y realizar maniobras incorrectas. 
 
+\subsubsection{Probability and Statistics}
+\textbf{Autor:} Morris H. DeGroot y Mark J. Schervish
+
+\textbf{Año:} 2012
+
+\textbf{Tema:} Fundamentos teóricos y aplicaciones de la probabilidad y la estadística.
+
+
+\textbf{Forma de organizarlo:}
+
+\begin{itemize}
+\setlength{\itemindent}{0.5in}
+    \item \textbf{Cronológico:} 2012
+    \item \textbf{Metodológico:} Probabilidad e inferencia estadística
+    \item \textbf{Temático:} Probabilidad, estadística inferencial, y métodos aplicados.
+    \item \textbf{Teoría:} Teoría de la probabilidad y métodos estadísticos.
+\end{itemize}
+
+\textbf{Resumen en una oración:} Presenta la teoría de la probabilidad, así como la estadística, para luego presentar aplicaciones.
+
+\textbf{Argumento central:} Una comprensión sólida de la estadística debe basarse en fundamentos de probabilidad, desarrollando gradualmente métodos de inferencia desde conceptos probabilísticos hasta aplicaciones reales.
+
+\textbf{Problemas con el argumento o el tema:} La lectura puede resultar complicada si se carece de buenas bases de cálculo. Posee poca información sobre los métodos computacionales aplicables a la estadística.
+
+\textbf{Resumen en un párrafo:} El libro comienza con una exposición detallada de la teoría de probabilidad, incluyendo variables aleatorias, esperanza, varianza y teoremas límite. Posteriormente, aborda la inferencia estadística tanto desde un enfoque frecuentista como bayesiano. Posee ejemplos prácticos, problemas resueltos y aplicaciones en ciencias e ingeniería, que faciltan y prueban la comprensión del lector. A pesar de ser bastante claro, es necesario poseer bastantes habilidades matemáticas. Además, es necesario realizar una búsqueda externa para comprender la manera de aplicar los conceptos expuestos en el libro a métodos computacionales.
+
 
 
 \subsection{Argumentación de teorías, principios, metodologías}
@@ -403,6 +429,13 @@ Por lo tanto, identificar las variables que tienen un mayor impacto en la severi
 \subsection{Análisis Descriptivo}
 
 \subsection{Propuesta Metodológica}
+\subsubsection{T de Student}
+De acuerdo a \cite{degroot2012probability}, la prueba t de student se define como:
+Sea $X_1, \ldots, X_n$ una muestra aleatoria de variables aleatorias de distribución normal con media $\mu$ y varianza $\sigma^2$, ambas desconocida. \\
+Se sabe que $n^{1/2}(\overline{X}_n - \mu)/\sigma'$ tiene la distribución $t$ con $n - 1$ grados de libertad. Sea $T_{n-1}^{-1}$ la función cuantil de la distribución $t$ con $n - 1$ grados de libertad.\\
+Entonces, para probar $H_0: \mu < \mu_0$ versus $H_1: \mu > 0$ a un nivel $\alpha_0$, se rechaza $H_0$ si $n^{1/2}(\overline{X}n - \mu_0)/\sigma' > T_{n-1}^{-1}(1 - \alpha_0)$. \\
+Para probar $H_0: \mu = \mu_0$ versus $H_1: \mu \neq \mu_0$, se rechaza $H_0$ si $|n^{1/2}(\overline{X}n - \mu_0)/\sigma'| \geq T{n-1}^{-1}(1 - \alpha_0/2)$. \\
+Las funciones de potencia de cada una de estas pruebas pueden ser escritas en términos de la función de distribución acumulativa de una distribución $t$ no central con $n - 1$ grados de libertad y parámetro de no centralidad $\psi = n^{1/2}(\mu - \mu_0)/\sigma$.
 
 \subsection{Fichas de Resultados}
 
