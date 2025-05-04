@@ -90,7 +90,7 @@ data <- data %>%
     festivos %in% c("No festivo") ~ "No festivo",
   ))
 
-
+write.csv(data, "../data/data_traducida.csv")
 head(data)
 ```
 
