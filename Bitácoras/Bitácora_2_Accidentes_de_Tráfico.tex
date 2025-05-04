@@ -380,7 +380,7 @@ Se buscaron términos relacionados a accidentes viales, como el uso del cinturó
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=1\linewidth]{V_Gowin_b1.png}
+\includegraphics[width=1\linewidth]{V_Gowin_b2.png}
 \caption{\label{fig:Gowin}V de Gowin}
 \end{figure}
 
@@ -429,13 +429,111 @@ Por lo tanto, identificar las variables que tienen un mayor impacto en la severi
 \subsection{Análisis Descriptivo}
 
 \subsection{Propuesta Metodológica}
+Se pretende identificar qué variables tienen mayor impacto en la severidad de los accidentes de tráfico en Nueva Zelanda. Para ello, se utilizarán métodos estadísticos como la prueba Chi-cuadrado para variables categóricas, la prueba t de Student para comparar medias en variables continuas según la severidad, así como el análisis de significancia mediante el p-value. 
+
+A continuación se definen estas metodologías, de acuerdo con el libro Probability and Statistics \cite{degroot2012probability}.
+
 \subsubsection{T de Student}
-De acuerdo a \cite{degroot2012probability}, la prueba t de student se define como:
 Sea $X_1, \ldots, X_n$ una muestra aleatoria de variables aleatorias de distribución normal con media $\mu$ y varianza $\sigma^2$, ambas desconocida. \\
 Se sabe que $n^{1/2}(\overline{X}_n - \mu)/\sigma'$ tiene la distribución $t$ con $n - 1$ grados de libertad. Sea $T_{n-1}^{-1}$ la función cuantil de la distribución $t$ con $n - 1$ grados de libertad.\\
 Entonces, para probar $H_0: \mu < \mu_0$ versus $H_1: \mu > 0$ a un nivel $\alpha_0$, se rechaza $H_0$ si $n^{1/2}(\overline{X}n - \mu_0)/\sigma' > T_{n-1}^{-1}(1 - \alpha_0)$. \\
 Para probar $H_0: \mu = \mu_0$ versus $H_1: \mu \neq \mu_0$, se rechaza $H_0$ si $|n^{1/2}(\overline{X}n - \mu_0)/\sigma'| \geq T{n-1}^{-1}(1 - \alpha_0/2)$. \\
 Las funciones de potencia de cada una de estas pruebas pueden ser escritas en términos de la función de distribución acumulativa de una distribución $t$ no central con $n - 1$ grados de libertad y parámetro de no centralidad $\psi = n^{1/2}(\mu - \mu_0)/\sigma$.
+
+\subsubsection{Valor p}
+El valor p, o nivel observao de significancia, es el nivel más pequeño $\alpha_0$ tal que rechazaríamos la hipótesis nula al nivel $\alpha_0$ con los datos observados. Es decir, si un experimentador rechaza una hipótesis nula si y solo si el valor $p$ es a lo sumo $\alpha_0$ está utilizando una prueba con nivel de significancia $\alpha_0$. De la misma manera, un experimentador que desea una prueba de nivel $\alpha_0$ rechazará la hipótesis nula si y solo si el valor $p$ es a lo sumo $\alpha_0$.
+
+Para pruebas de la forma "rechazar la hipótesis nula cuando $T \geq c$" para un único estadístico de prueba $T$, hay una manera directa de calcular los valores $p$. 
+Para cada $t$, sea $\delta_t$ la prueba que rechaza $H_0$ si $T \geq t$. Entonces el valor $p$ cuando se observa $T = t$ es el tamaño de la prueba $\delta_t$.
+Es decir,
+\begin{equation}
+p = \sup_{\theta \in \Omega_0} \pi(\theta|\delta_t) = \sup_{\theta \in \Omega_0} \text{Pr}(T \geq t|\theta).
+\end{equation}
+
+Típicamente, $\pi(\theta|\delta_t)$ se maximiza en algún $\theta_0$ en la frontera entre $\Omega_0$ y $\Omega_1$.
+
+
+\subsubsection{Prueba Chi-cuadrado}
+Para llevar a cabo una prueba $\chi^2$ de bondad de ajuste de las hipótesis, el estadístico $Q$ definido por 
+$$Q = \sum_{i=1}^{k} \frac{(N_i - np_i^0)^2}{np_i^0}$$
+debe ser modificado porque el número esperado $np_i^0$ de observaciones de tipo $i$ en una muestra aleatoria de $n$ observaciones ya no está completamente especificado por la hipótesis nula $H_0$. La modificación que se utiliza consiste simplemente en reemplazar $np_i^0$ por el E.M.V. de este número esperado bajo la suposición de que $H_0$ es verdadera.\\
+En otras palabras, si $\hat{\theta}$ denota el E.M.V. del vector de parámetros $\theta$ basado en los números observados $N_1, \ldots, N_k$, entonces el estadístico $Q$ se define como sigue:
+
+\begin{align} \label{Q_chi_test}
+Q = \sum_{i=1}^{k} \frac{[N_i - n\pi_i(\hat{\theta})]^2}{n\pi_i(\hat{\theta})}.
+\end{align}
+
+Nuevamente, es razonable basar una prueba de las hipótesis de la forma
+\begin{align} \label{pruebaH}
+H_0: \quad &\text{Existe un valor de } \theta \in \Omega \text{ tal que}\\
+&p_i = \pi_i(\theta) \text{ para } i = 1, \ldots, k.\\
+H_1: \quad &\text{La hipótesis } H_0 \text{ no es verdadera.}
+\end{align}
+en este estadístico $Q$ rechazando $H_0$ si $Q \geq c$, donde $c$ es una constante apropiada. 
+
+En 1924, R. A. Fisher demostró el siguiente resultado,
+
+\paragraph{Prueba $\chi^2$ para Hipótesis Nula Compuesta}
+
+Supongamos que la hipótesis nula $H_0$ en \ref{pruebaH} es verdadera y que se satisfacen ciertas condiciones de regularidad. Entonces, cuando el tamaño de la muestra $n \to \infty$, la f.d.a. de $Q$ en \ref{Q_chi_test} converge a la f.d.a. de la distribución $\chi^2$ con $k - 1 - s$ grados de libertad.
+
+Cuando el tamaño de la muestra $n$ es grande y la hipótesis nula $H_0$ es verdadera, la distribución de $Q$ será aproximadamente una distribución $\chi^2$. Para determinar el número de grados de libertad, debemos restar $s$ del número $k - 1$, porque ahora estamos estimando los $s$ parámetros $\theta_1, \ldots, \theta_s$ cuando comparamos el número observado $N_i$ con el número esperado $n\pi_i(\hat{\theta})$ para $i = 1, \ldots, k$. \\ 
+Para que este resultado sea válido, es necesario satisfacer las siguientes condiciones de regularidad: Primero, el E.M.V. $\hat{\theta}$ del vector $\theta$ debe ocurrir en un punto donde las derivadas parciales de la función de verosimilitud con respecto a cada uno de los parámetros $\theta_1, \ldots, \theta_s$ sean iguales a 0.
+
+\subsubsection{Tablas de Contingencia}
+Una tabla de contingencia es una tabla en la que cada observación se clasifica de al menos dos maneras.
+Una tabla de contingencias es bidireccional si solo se consideran dos clasificaciones para cada entrada.
+
+En general, se considera una tabla de contingencia bidireccional que contiene $R$ filas y $C$ columnas. Para $i = 1, \ldots, R$ y $j = 1, \ldots, C$, denotaremos $p_{ij}$ como la probabilidad de que un individuo seleccionado al azar de una población dada sea clasificado en la $i$-ésima fila y la $j$-ésima columna de la tabla. Además, denotaremos $p_{i+}$ como la probabilidad marginal de que el individuo será clasificado en la $i$-ésima fila de la tabla y $p_{+j}$ denotará la probabilidad marginal de que el individuo será clasificado en la $j$-ésima columna de la tabla. Así,
+
+\begin{align}
+p_{i+} = \sum_{j=1}^{C} p_{ij} \quad \text{y} \quad p_{+j} = \sum_{i=1}^{R} p_{ij}.
+\end{align}
+
+Además, dado que la suma de las probabilidades para todas las celdas de la tabla debe ser 1, entonces
+
+\begin{align}
+\sum_{i=1}^{R} \sum_{j=1}^{C} p_{ij} = \sum_{i=1}^{R} p_{i+} = \sum_{j=1}^{C} p_{+j} = 1.
+\end{align}
+
+Al tomar una muestra aleatoria de $n$ individuos de la población dada. Para $i = 1, \ldots, R$, y $j = 1, \ldots, C$, denotaremos $N_{ij}$ como el número de individuos que están clasificados en la $i$-ésima fila y la $j$-ésima columna de la tabla. Además, se denotará $N_{i+}$ como el número total de individuos clasificados en la $i$-ésima fila y $N_{+j}$ denotará el número total de individuos clasificados en la $j$-ésima columna.
+
+Así,
+
+\begin{align}
+N_{i+} = \sum_{j=1}^{C} N_{ij} \quad \text{y} \quad N_{+j} = \sum_{i=1}^{R} N_{ij}.
+\end{align}
+
+También,
+
+\begin{align}
+\sum_{i=1}^{R} \sum_{j=1}^{C} N_{ij} = \sum_{i=1}^{R} N_{i+} = \sum_{j=1}^{C} N_{+j} = n.
+\end{align}
+
+Sobre la base de estas observaciones, se deben probar las siguientes hipótesis:
+\begin{align}
+H_0&: \quad p_{ij} = p_{i+}p_{+j} \quad \text{para} \; i = 1, \ldots, R \; \text{y} \; j = 1, \ldots, C, \\
+H_1&: \quad \text{La hipótesis } H_0 \text{ no es verdadera.}
+\end{align}
+
+\paragraph*{La Prueba $\chi^2$ de Independencia}
+Para aplicar la prueba $\chi^2$, cada individuo en la población de la cual se toma la muestra debe pertenecer a una de las $RC$ celdas de la tabla de contingencia. Bajo la hipótesis nula $H_0$, las probabilidades desconocidas $p_{ij}$ de estas celdas se han expresado como funciones de los parámetros desconocidos $p_{i+}$ y $p_{+j}$. Dado que $\sum_{i=1}^{R} p_{i+} = 1$ y $\sum_{j=1}^{C} p_{+j} = 1$, el número real de parámetros desconocidos a estimar cuando $H_0$ es verdadera es $s = (R - 1) + (C - 1)$, o $s = R + C - 2$.
+
+Para $i = 1, \ldots, R$, y $j = 1, \ldots, C$, denote $\hat{E}_{ij}$ el E.M.V., cuando $H_0$ es verdadera, del número esperado de observaciones que serán clasificadas en la $i$-ésima fila y la $j$-ésima columna de la tabla, entonces
+
+\begin{align}
+Q = \sum_{i=1}^{R} \sum_{j=1}^{C} \frac{(N_{ij} - \hat{E}_{ij})^2}{\hat{E}_{ij}}.
+\end{align}
+
+Además, dado que la tabla de contingencia contiene $RC$ celdas, y dado que $s = R + C - 2$ parámetros deben ser estimados cuando $H_0$ es verdadera, se deduce que cuando $H_0$ es verdadera y $n \to \infty$, la función de distribución acumulada (f.d.a.) de $Q$ converge a la f.d.a. de la distribución $\chi^2$ para la cual el número de grados de libertad es $RC - 1 - s = (R - 1)(C - 1)$.
+
+A continuación, consideraremos la forma del estimador $\hat{E}_{ij}$. El número esperado de observaciones en la $i$-ésima fila y la $j$-ésima columna es simplemente $np_{ij}$. Cuando $H_0$ es verdadera, $p_{ij} = p_{i+}p_{+j}$. Por lo tanto, si $\hat{p}_{i+}$ y $\hat{p}_{+j}$ denotan los E.M.V. de $p_{i+}$ y $p_{+j}$, entonces se deduce que $\hat{E}_{ij} = n\hat{p}_{i+}\hat{p}_{+j}$. Además, como $p_{i+}$ es la probabilidad de que una observación sea clasificada en la $i$-ésima fila, $\hat{p}_{i+}$ es simplemente la proporción de observaciones en la muestra que están clasificadas en la $i$-ésima fila; es decir, $\hat{p}_{i+} = N_{i+}/n$. De manera similar, $\hat{p}_{+j} = N_{+j}/n$, y se deduce que
+
+\begin{align}
+\hat{E}_{ij} = n\left(\frac{N_{i+}}{n}\right)\left(\frac{N_{+j}}{n}\right) = \frac{N_{i+}N_{+j}}{n}.
+\end{align}
+
+Al sustituir este valor de $\hat{E}_{ij}$, se puede calcular el valor de $Q$ a partir de los valores observados de $N_{ij}$. La hipótesis nula $H_0$ debe ser rechazada si $Q > c$, donde $c$ es una constante apropiadamente elegida. Cuando $H_0$ es verdadera, y el tamaño de la muestra $n$ es grande, la distribución de $Q$ será aproximadamente la distribución $\chi^2$ con $(R - 1)(C - 1)$ grados de libertad.
 
 \subsection{Fichas de Resultados}
 
