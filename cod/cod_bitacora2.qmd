@@ -1,6 +1,6 @@
 ---
 title: "Untitled"
-format: pdf
+format: html
 editor: visual
 ---
 
@@ -12,6 +12,7 @@ Vamos a llamar a nuestra base de datos, la cual vamos a utilizar durante el trab
 
 ```{r}
 library(readr)
+library(tidyverse)
 
 data_accidentes <-  read.csv("../data/clean_data.csv")
 
