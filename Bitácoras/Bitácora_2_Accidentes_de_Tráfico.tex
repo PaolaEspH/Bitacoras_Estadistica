@@ -367,6 +367,29 @@ Se buscaron términos relacionados a accidentes viales, como el uso del cinturó
 
 \textbf{Resumen en un párrafo:} El libro comienza con una exposición detallada de la teoría de probabilidad, incluyendo variables aleatorias, esperanza, varianza y teoremas límite. Posteriormente, aborda la inferencia estadística tanto desde un enfoque frecuentista como bayesiano. Posee ejemplos prácticos, problemas resueltos y aplicaciones en ciencias e ingeniería, que faciltan y prueban la comprensión del lector. A pesar de ser bastante claro, es necesario poseer bastantes habilidades matemáticas. Además, es necesario realizar una búsqueda externa para comprender la manera de aplicar los conceptos expuestos en el libro a métodos computacionales.
 
+\subsubsection{A model of traffic crashes in New Zealand}
+\textbf{Autor:} Abdus Salam \& T. R. Wilson
+
+\textbf{Año:} 2001
+
+\textbf{Tema:} Modelado estadístico de accidentes de tráfico en Nueva Zelanda
+
+\textbf{Forma de organizarlo:}
+\begin{itemize}
+\setlength{\itemindent}{0.5in}
+    \item \textbf{Cronológico:} datos entre 1970 y 1994
+    \item \textbf{Metodológico:} Modelo estructural de series temporales con intervención
+    \item \textbf{Temático:} Seguridad vial y análisis de patrones estacionales de accidentes
+    \item \textbf{Teoría:} Epidemiología del tráfico y sistemas dinámicos aplicados al transporte
+\end{itemize}
+
+\textbf{Resumen en una oración:} El artículo presenta un modelo estadístico para analizar los patrones temporales de accidentes de tráfico fatales en Nueva Zelanda.
+
+\textbf{Argumento central:} El estudio propone un modelo estructural para explicar y predecir la ocurrencia de accidentes fatales de tráfico, mostrando cómo han cambiado con el tiempo y en respuesta a políticas públicas.
+
+\textbf{Problemas con el argumento o el tema:} La subestimación de variables relevantes como la conducción bajo efectos de alcohol o condiciones climáticas puede limitar la precisión del modelo.
+
+\textbf{Resumen en un párrafo:} Este artículo desarrolla un modelo estructural de series temporales para analizar las tendencias de accidentes fatales en Nueva Zelanda entre 1970 y 1994. El modelo permite identificar patrones estacionales, efectos de eventos especiales (como campañas de seguridad) y cambios estructurales a lo largo del tiempo. Se muestra que hubo una reducción significativa en los accidentes durante ciertas campañas de intervención, lo que sugiere que las políticas públicas pueden tener un impacto medible. Sin embargo, el modelo también revela que los efectos no son uniformes, y que algunos factores de riesgo pueden estar subrepresentados. Los autores destacan la necesidad de considerar tanto los patrones temporales como los efectos de políticas específicas para mejorar la seguridad vial.
 
 
 \subsection{Argumentación de teorías, principios, metodologías}
@@ -456,7 +479,7 @@ Típicamente, $\pi(\theta|\delta_t)$ se maximiza en algún $\theta_0$ en la fron
 \subsubsection{Prueba Chi-cuadrado}
 Para llevar a cabo una prueba $\chi^2$ de bondad de ajuste de las hipótesis, el estadístico $Q$ definido por 
 $$Q = \sum_{i=1}^{k} \frac{(N_i - np_i^0)^2}{np_i^0}$$
-debe ser modificado porque el número esperado $np_i^0$ de observaciones de tipo $i$ en una muestra aleatoria de $n$ observaciones ya no está completamente especificado por la hipótesis nula $H_0$. La modificación que se utiliza consiste simplemente en reemplazar $np_i^0$ por el E.M.V. de este número esperado bajo la suposición de que $H_0$ es verdadera.\\
+debe ser modificado porque el número esperado $np_i^0$ de observaciones de tipo $i$ en una muestra aleatoria de $n$ observaciones ya no está completamente especificado por la hipótesis nula $H_0$. The modification that se uses consiste simplemente in reemplazar $np_i^0$ por el EMV of this nmero esperado bajo la suposición of that $H_0$ es verdadera.\\
 En otras palabras, si $\hat{\theta}$ denota el E.M.V. del vector de parámetros $\theta$ basado en los números observados $N_1, \ldots, N_k$, entonces el estadístico $Q$ se define como sigue:
 
 \begin{align} \label{Q_chi_test}
