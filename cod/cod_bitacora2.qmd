@@ -97,90 +97,51 @@ head(data)
 Ahora hacemos un análisis estadístico de nuestra base de datos, de todas las variables.
 
 ```{r}
-library(dplyr)
-library(tidyr)
-library(knitr)
 library(kableExtra)
+# Seleccionar solo variables numéricas
+variables_numericas <- data[sapply(data, is.numeric)]
 
-# Como nuestras variables no son del todo numéricas, hay que hacerlo para las variables que son numéricas y para las variables que son categóricas. 
+# Aplicar summary a cada variable
+resumen_lista <- lapply(variables_numericas, summary)
 
-# Primero hacemos las variables numéricas.
-resumen_numericas <- data %>%
-  summarise(
-    Velocidad_Recomendada_Medio = mean(velocidad_recomendada, na.rm = TRUE),
-    Velocidad_Recomendada_Minima = min(velocidad_recomendada, na.rm = TRUE),
-    Velocidad_Recomendada_Maxima = max(velocidad_recomendada, na.rm = TRUE),
-    Victimas_Fatales_Medio = mean(fatales, na.rm = TRUE),
-    Victimas_fatales_Minimo = min(fatales, na.rm = TRUE),
-    Victimas_fatales_Maximo = max(fatales, na.rm = TRUE),
-    Víctimas_Lesiones_Menores_Medio = mean(lesiones_menores, na.rm = TRUE),
-    Víctimas_Lesiones_Menores_Minimo = min(lesiones_menores, na.rm = TRUE),
-    Víctimas_Lesiones_Menores_Maximo = max(lesiones_menores, na.rm = TRUE),
-    Víctimas_Lesiones_Graves_Medio = mean(lesiones_graves, na.rm = TRUE),
-    Víctimas_Lesiones_Graves_Minimo = min(lesiones_graves, na.rm = TRUE),
-    Víctimas_Lesiones_Graves_Maximo = max(lesiones_graves, na.rm = TRUE),
-    Límite_Velocidad_Medio = mean(limite_velocidad, na.rm = TRUE),
-    Límite_Velocidad_Minima = min(limite_velocidad, na.rm = TRUE),
-    Límite_Velocidad_Maxima = max(limite_velocidad, na.rm = TRUE)
-  )
+# Convertir en data frame
+resumen_df <- do.call(cbind, resumen_lista)
 
-# Variables Categóricas
-resumen_categoricas <- tibble(
-  Variable = c("Severidad del accidente", "Período de vacaciones", "Iluminación", "Superficie de la carretera", "Clima"),
-  Frecuencia = c(
-    paste(names(table(data$severidad)), collapse = ", "),
-    paste(names(table(data$festivos)), collapse = ", "),
-    paste(names(table(data$iluminación)), collapse = ", "),
-    paste(names(table(data$carretera)), collapse = ", "),
-    paste(names(table(data$clima)), collapse = ", ")
-  )
-)
-
-# Tabla combinada de variables numéricas y categóricas
-tabla_resumen <- data.frame(
-  Variable = c(
-    "Velocidad recomendada", "Víctimas fatales", "Víctimas con lesiones menores",
-    "Víctimas con lesiones graves", "Límite de velocidad",
-    resumen_categoricas$Variable
-  ),
-  Media = c(
-    resumen_numericas$Velocidad_Recomendada_Medio,
-    resumen_numericas$Victimas_Fatales_Medio,
-    resumen_numericas$Víctimas_Lesiones_Menores_Medio,
-    resumen_numericas$Víctimas_Lesiones_Graves_Medio,
-    resumen_numericas$Límite_Velocidad_Medio,
-    rep(NA, 5)
-  ),
-  Mínimo = c(
-    resumen_numericas$Velocidad_Recomendada_Minima,
-    resumen_numericas$Victimas_fatales_Minimo,
-    resumen_numericas$Víctimas_Lesiones_Menores_Minimo,
-    resumen_numericas$Víctimas_Lesiones_Graves_Minimo,
-    resumen_numericas$Límite_Velocidad_Minima,
-    rep(NA, 5)
-  ),
-  Máximo = c(
-    resumen_numericas$Velocidad_Recomendada_Maxima,
-    resumen_numericas$Victimas_fatales_Maximo,
-    resumen_numericas$Víctimas_Lesiones_Menores_Maximo,
-    resumen_numericas$Víctimas_Lesiones_Graves_Maximo,
-    resumen_numericas$Límite_Velocidad_Maxima,
-    rep(NA, 5)
-  ),
-  Frecuencia = c(
-    rep(NA, 5),
-    resumen_categoricas$Frecuencia
-  )
-)
-
-# Mostrar la tabla
-tabla_resumen_kable <- kable(tabla_resumen, caption = "Resumen de Variables Numéricas y Categóricas", booktabs = TRUE) %>%
+# Mostrar como tabla
+kable(as.data.frame(resumen_df), caption = "Resumen estadístico de variables numéricas", booktabs = TRUE) %>%
   kable_styling(full_width = FALSE) %>%
-  add_header_above(c(" " = 1, "Resumen" = 3, "Categorías" = 1)) %>%
   footnote(general = "Fuente: Elaboración propia utilizando la base de datos de Kaggle")
 
-tabla_resumen_kable
+```
 
+```{r}
+library(kableExtra)
+# Seleccionar solo variables categóricas (factor o character)
+variables_categoricas <- data[sapply(data, function(x) is.factor(x) || is.character(x))]
+
+# Resumen para cada una
+library(dplyr)
+library(tidyr)
+
+resumen_todas <- lapply(names(variables_categoricas), function(var) {
+  tabla <- table(variables_categoricas[[var]])
+  prop <- prop.table(tabla)
+  df <- data.frame(
+    Variable = var,
+    Categoria = names(tabla),
+    Frecuencia = as.vector(tabla),
+    Proporcion = round(as.vector(prop), 3)
+  )
+  return(df)
+})
+
+# Unir todos los resúmenes
+resumen_final <- bind_rows(resumen_todas)
+
+# Mostrar con kable
+kable(resumen_final, caption = "Resumen de variables categóricas", booktabs = TRUE) %>%
+  kable_styling(full_width = FALSE) %>%
+  footnote(general = "Fuente: Elaboración propia utilizando la base de datos de Kaggle")
 ```
 
 Ahora, procederemos a realizar una **matriz de correlación para las variables categóricas** contenidas en la base de datos. El objetivo de este análisis es identificar posibles **relaciones** entre las distintas variables cualitativas, tales como la severidad del accidente, las condiciones climáticas, el tipo de iluminación, la superficie de la carretera, y si el evento ocurrió durante un período de vacaciones.
@@ -288,7 +249,7 @@ Ahora daremos inicio al análisis gráfico de nuestra base de datos. Comenzaremo
 library(ggplot2) 
 # Gráfico con las distribuciones de severidad
 
-ggplot(data, aes(x = severidad, fill = severidad)) + geom_bar() + scale_fill_manual(values = c("Accidente fatal" = "purple", "Accidente grave" = "red", "Accidente leve" = "blue", "Accidente sin lesiones" = 'gray')) + labs(title = "Distribución de la Severidad de los Accidentes", x = "Severidad", y = "Frecuencia") + theme_minimal() + labs(caption = "Fuente: Elaboración propia utilizando la base de datos de Kaggle") + theme(plot.caption = element_text(hjust = 0.5))
+ggplot(data, aes(x = severidad, fill = severidad)) + geom_bar(color = "black") + scale_fill_manual(values = c("Accidente fatal" = "purple", "Accidente grave" = "red", "Accidente leve" = "blue", "Accidente sin lesiones" = 'gray')) + labs(title = "Distribución de la Severidad de los Accidentes", x = "Severidad", y = "Frecuencia") + theme_minimal() + labs(caption = "Fuente: Elaboración propia utilizando la base de datos de Kaggle") + theme(plot.caption = element_text(hjust = 0.5))
 
 ```
 
@@ -300,11 +261,13 @@ Además decidimos realizar un facet en esta misma variable con respecto a la var
 library(ggplot2)
 library(dplyr)
 
+# Proporción de la Severidad de los Accidentes según el Clima
+
 
 ggplot(data, aes(x = clima, fill = severidad)) +
-  geom_bar(position = "fill") + 
+  geom_bar(position = "fill", color = "black") + 
   labs(
-    title = "Distribución de la Severidad de los Accidentes según el Clima",
+    title = "Proporción de la Severidad de los Accidentes según el Clima",
     x = "Condiciones Climáticas",
     y = "Proporción",
     fill = "Severidad"
@@ -316,6 +279,8 @@ ggplot(data, aes(x = clima, fill = severidad)) +
     "Accidente leve" = "#e06666",        # rojo más claro
     "Accidente sin lesiones" = "#f4cccc"    # rojo muy claro
   ))
+
+
 ```
 
 El gráfico presentado muestra la **distribución proporcional de la severidad de los accidentes de tráfico** bajo diferentes **condiciones climáticas**, utilizando un gráfico de barras apiladas. Cada barra representa un tipo de clima y se descompone en proporciones de severidad del accidente, que incluyen: *accidente sin lesiones*, *accidente leve*, *accidente grave* y *accidente fatal*.
@@ -332,9 +297,74 @@ El gráfico presentado muestra la **distribución proporcional de la severidad d
 4.  **Limitación del uso de proporciones**\
     Es importante tener en cuenta que el gráfico representa **proporciones relativas**, por lo que no refleja el número absoluto de accidentes. Dos condiciones climáticas pueden mostrar distribuciones similares de severidad, pero diferir sustancialmente en la cantidad total de accidentes ocurridos.
 
+Para obtener una imagen completa del impacto del clima en la severidad de los accidentes, no basta con observar las proporciones relativas. Es fundamental analizar cómo se distribuyen las condiciones climáticas dentro de cada nivel de severidad del accidente. Es decir, se debe evaluar cuántos accidentes totales ocurrieron bajo cada tipo de condición climática, pero desglosado por el nivel de severidad (leve, moderado, grave, etc.). De esta manera, no solo se podrá comparar la gravedad relativa de los accidentes en diferentes condiciones del clima, sino también identificar bajo qué condiciones se presenta una mayor cantidad absoluta de accidentes severos.
+
 ```{r}
 library(ggplot2) 
+# Gráfico con las distribuciones del clima según severidad
+
+ggplot(data, aes(x = clima, fill = severidad)) + geom_bar() + scale_fill_manual(values = c("Accidente fatal" = "purple", "Accidente grave" = "red", "Accidente leve" = "blue", "Accidente sin lesiones" = 'gray')) + labs(title = "Distribución del Clima según la Severidad de los Accidentes", x = "Clima", y = "Frecuencia") + theme_minimal() + labs(caption = "Fuente: Elaboración propia utilizando la base de datos de Kaggle") + theme(plot.caption = element_text(hjust = 0.5))
+```
+
+En el gráfico anterior se puede apreciar con mayor claridad cómo se distribuye la cantidad total de accidentes según las distintas condiciones climáticas. A diferencia de una representación proporcional, este enfoque permite observar directamente qué tipos de clima están asociados con un mayor número absoluto de accidentes. Además, se puede identificar qué condiciones climáticas tienden a concentrar una mayor proporción de accidentes severos. Esto permite detectar patrones relevantes entre el clima y la severidad de los incidentes.
+
+Además, decidimos realizar un facet en la severidad con respecto a la variable "festividad", con el fin de visualizar la distribución en cada categoría, esto porque queremos descartar o validar que de alguna forma si que haya o no un día festivo tiene relación con nuestra variable objetivo.
+
+```{r}
+library(ggplot2)
+library(dplyr)
+
+
+ggplot(data, aes(x = festivos, fill = severidad)) +
+  geom_bar(position = "fill", color = "black") + 
+  labs(
+    title = "Proporción de la Severidad de los Accidentes según la Festividad",
+    x = "Festividad",
+    y = "Proporción",
+    fill = "Severidad"
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = c(
+    "Accidente fatal" = "#990000",        # rojo oscuro
+    "Accidente grave" = "#cc0000",      # rojo intermedio
+    "Accidente leve" = "#e06666",        # rojo más claro
+    "Accidente sin lesiones" = "#f4cccc"    # rojo muy claro
+  ))
+```
+
+El gráfico revela que, durante los días festivos, la proporción de accidentes graves y fatales tiende a ser ligeramente mayor que en los días no festivos. Aunque los accidentes sin lesiones siguen siendo predominantes en ambos casos, se observa una mayor concentración de eventos graves o severos en fechas festivas considerando que los mismos son por unos pocos días, lo cual puede estar asociado a comportamientos de riesgo como el consumo de alcohol o el aumento del tráfico.
+
+1.  **Cumpleaños de la reina y Navidad/Año Nuevo:** presentan una proporción notablemente **mayor de accidentes graves y fatales**, lo que sugiere un comportamiento de mayor riesgo en estas fechas. Esto puede deberse a celebraciones intensas, consumo de alcohol o conducción nocturna.
+2.  **Fin de semana del Trabajo:** muestra una proporción más alta en accidentes severos y graves, disminuyendo significativamente la proporción de accidenetes sin lesiones, lo cual se puede asociar a que las personas aprovechen para alcoholizarse en esos días.
+3.  **Días no festivos** presentan una proporción ligeramente mayor de accidentes sin lesiones, lo que sugiere que en condiciones normales, los accidentes tienden a ser menos severos.
+
+Para complementar el análisis proporcional, es fundamental observar también cómo se distribuye la cantidad total de accidentes en función del tipo de festividad y su severidad. A través del siguiente gráfico de barras apiladas, se puede visualizar el número absoluto de accidentes ocurridos en cada categoría festiva, desagregados por nivel de severidad. Esta representación permite identificar en qué festividades se concentra una mayor cantidad de siniestros y cómo varía su gravedad, proporcionando una perspectiva más completa del riesgo vial asociado a cada fecha especial.
+
+```{r}
+library(ggplot2) 
+# Distribución de los Festivos según la Severidad de los Accidentes
+
+ggplot(data, aes(x = festivos, fill = severidad)) + geom_bar() + scale_fill_manual(values = c("Accidente fatal" = "purple", "Accidente grave" = "red", "Accidente leve" = "blue", "Accidente sin lesiones" = 'gray')) + labs(title = "Distribución de los Festivos según la Severidad de los Accidentes", x = "Festividad", y = "Frecuencia") + theme_minimal() + labs(caption = "Fuente: Elaboración propia utilizando la base de datos de Kaggle") + theme(plot.caption = element_text(hjust = 0.5))
+```
+
+El anterior gráfico muetra como más de 30mil de los treintamil de los accidentes totales mostrados en la base de datos ocurrieron en un día "No festivo", lo cual es lógico debido a que representa la mayor parte del año, no obstante támbien se requiere poder visualizar como se distribuyen las otras categórias, al momento de no considerar los días no festivos.
+
+```{r}
+library(ggplot2) 
+library(dplyr)
+
+datos_filtrados <- data %>%
+  filter(festivos != "No festivo")
+
+
 # Gráfico con las distribuciones de severidad
 
-ggplot(data, aes(x = clima, fill = severidad)) + geom_bar() + scale_fill_manual(values = c("Accidente fatal" = "purple", "Accidente grave" = "red", "Accidente leve" = "blue", "Accidente sin lesiones" = 'gray')) + labs(title = "Distribución del clima según la Severidad de los Accidentes", x = "Clima", y = "Frecuencia") + theme_minimal() + labs(caption = "Fuente: Elaboración propia utilizando la base de datos de Kaggle") + theme(plot.caption = element_text(hjust = 0.5))
+ggplot(datos_filtrados, aes(x = festivos, fill = severidad)) + geom_bar() + scale_fill_manual(values = c("Accidente fatal" = "purple", "Accidente grave" = "red", "Accidente leve" = "blue", "Accidente sin lesiones" = 'gray')) + labs(title = "Distribución de los festivos según la Severidad de los Accidentes con énfasis en los que son festivos", x = "Festividad", y = "Frecuencia") + theme_minimal() + labs(caption = "Fuente: Elaboración propia utilizando la base de datos de Kaggle") + theme(plot.caption = element_text(hjust = 0.5))
 ```
+
+Al remover la categoría "No festivo", el análisis se centra exclusivamente en las fechas especiales, permitiendo una comparación más clara entre festividades sin que los días comunes (los cuales son mucho más frecuentes) dominen visualmente la escala del gráfico. Esta decisión facilita identificar con mayor precisión cuáles festividades presentan una mayor concentración de accidentes y cómo se distribuyen en términos de severidad.
+
+1.  **Navidad y Año Nuevo**: destacan por tener un volumen considerable de accidentes, con una distribución que incluye una cantidad visible de eventos graves y fatales, lo cual es consistente con las celebraciones prolongadas y mayor exposición al riesgo vial.
+2.  Festividades como **Fin de semana del Trabajo** presentan una menor cantidad de accidentes en términos absolutos, pero no por ello irrelevantes, especialmente si una fracción significativa de ellos es grave.
+
+Notese que este enfoque nos permite comparar entre fechas festivas bajo una escala que llega a ser más homogénea, evitando el sesgo que introduce la alta frecuencia de días no festivos. Así, se revela que algunas festividades, aunque menos frecuentes en el calendario, pueden ser desproporcionadamente riesgosas en términos de accidentes viales, especialmente cuando coinciden con desplazamientos masivos, celebraciones o relajación de normas de tránsito.
