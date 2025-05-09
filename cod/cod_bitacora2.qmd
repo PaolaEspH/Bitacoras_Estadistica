@@ -286,15 +286,15 @@ Ahora daremos inicio al análisis gráfico de nuestra base de datos. Comenzaremo
 
 ```{r}
 library(ggplot2) 
-# Gráfico con las distribuciones del género 
+# Gráfico con las distribuciones de severidad
 
-ggplot(data, aes(x = severidad, fill = severidad)) + geom_bar() + scale_fill_manual(values = c("Accidente fatal" = "purple", "Accidente serio" = "red", "Accidente leve" = "blue", "Accidente sin lesiones" = 'gray')) + labs(x = "Distribución de la Severidad de los Accidentes", y = "Frecuencia") + theme_minimal() + labs(caption = "Fuente: Elaboración propia utilizando la base de datos de Kaggle") + theme(plot.caption = element_text(hjust = 0.5))
+ggplot(data, aes(x = severidad, fill = severidad)) + geom_bar() + scale_fill_manual(values = c("Accidente fatal" = "purple", "Accidente grave" = "red", "Accidente leve" = "blue", "Accidente sin lesiones" = 'gray')) + labs(title = "Distribución de la Severidad de los Accidentes", x = "Severidad", y = "Frecuencia") + theme_minimal() + labs(caption = "Fuente: Elaboración propia utilizando la base de datos de Kaggle") + theme(plot.caption = element_text(hjust = 0.5))
 
 ```
 
 El gráfico de barras revela que la mayoría de los accidentes registrados en la base de datos corresponden a incidentes de severidad **leve o sin heridos**, mientras que los casos más graves, como aquellos con víctimas **serias o fatales**, son considerablemente menos frecuentes. Esta distribución sugiere que, aunque los accidentes son relativamente comunes, la mayoría no resultan en consecuencias extremadamente severas. Sin embargo, la presencia, aunque baja, de accidentes fatales resalta la importancia de seguir analizando los factores asociados a estos casos críticos.
 
-Además decidimos realizar un facet en esta misma variable con respecto a la variable "Education Level", con el fin de visualizar la distribución en cada categoría, esto porque queremos descartar o validar que de alguna forma el nivel educativo tiene relación con nuestra variable objetivo, la cual es la calificación de riesgo.
+Además decidimos realizar un facet en esta misma variable con respecto a la variable "clima", con el fin de visualizar la distribución en cada categoría, esto porque queremos descartar o validar que de alguna forma el nivel clima tiene relación con nuestra variable objetivo, la cual es la severidad del accidente.
 
 ```{r}
 library(ggplot2)
@@ -316,4 +316,25 @@ ggplot(data, aes(x = clima, fill = severidad)) +
     "Accidente leve" = "#e06666",        # rojo más claro
     "Accidente sin lesiones" = "#f4cccc"    # rojo muy claro
   ))
+```
+
+El gráfico presentado muestra la **distribución proporcional de la severidad de los accidentes de tráfico** bajo diferentes **condiciones climáticas**, utilizando un gráfico de barras apiladas. Cada barra representa un tipo de clima y se descompone en proporciones de severidad del accidente, que incluyen: *accidente sin lesiones*, *accidente leve*, *accidente grave* y *accidente fatal*.
+
+1.  **Predominio de accidentes sin lesiones**\
+    En todas las condiciones climáticas, los *accidentes sin lesiones* constituyen la categoría más frecuente. donde más del 50% de los accidentes por categoría no resultan en lesiones.
+
+2.  **Buen clima con mayor proporción de accidentes graves y fatales**\
+    Curiosamente, los accidentes en *buen clima* presentan una mayor proporción de casos *graves* y *fatales* en comparación con climas adversos. Este hallazgo puede parecer contraintuitivo, pero podría explicarse por un mayor volumen de tráfico y exceso de confianza de los conductores en condiciones óptimas.
+
+3.  **Climas adversos con menor proporción de severidad alta**\
+    Condiciones como *niebla*, *nieve* y *granizo* no muestran un incremento notable en la proporción de accidentes severos. Esto sugiere que, a pesar del riesgo inherente, los conductores podrían adoptar una conducción más cautelosa o que el tráfico se reduce en estas condiciones, disminuyendo la exposición al riesgo.
+
+4.  **Limitación del uso de proporciones**\
+    Es importante tener en cuenta que el gráfico representa **proporciones relativas**, por lo que no refleja el número absoluto de accidentes. Dos condiciones climáticas pueden mostrar distribuciones similares de severidad, pero diferir sustancialmente en la cantidad total de accidentes ocurridos.
+
+```{r}
+library(ggplot2) 
+# Gráfico con las distribuciones de severidad
+
+ggplot(data, aes(x = clima, fill = severidad)) + geom_bar() + scale_fill_manual(values = c("Accidente fatal" = "purple", "Accidente grave" = "red", "Accidente leve" = "blue", "Accidente sin lesiones" = 'gray')) + labs(title = "Distribución del clima según la Severidad de los Accidentes", x = "Clima", y = "Frecuencia") + theme_minimal() + labs(caption = "Fuente: Elaboración propia utilizando la base de datos de Kaggle") + theme(plot.caption = element_text(hjust = 0.5))
 ```
