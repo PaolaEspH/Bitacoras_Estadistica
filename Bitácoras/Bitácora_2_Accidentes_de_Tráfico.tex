@@ -15,6 +15,7 @@
 \usepackage[most]{tcolorbox}
 \usepackage{array}
 \usepackage{geometry}
+\usepackage{ragged2e}
 
 
 \title{Accidentes de Tráfico en Nueva Zelanda}
@@ -595,7 +596,7 @@ Empírico. & Relación entre fatiga y choques vehiculares. & La fatiga parece te
 \section{Enlaces de literatura}
 
 
-
+\justifying
 Los accidentes de tráfico representan un desafío constante para las sociedades de la actualidad, además de su impacto inmediato en términos de muertes y lesiones, además se debe considerar sus consecuencias a largo plazo sobre la salud, la movilidad y la economía. A pesar de los avances tecnológicos en los sistemas de transporte y las campañas de seguridad vial, la siniestralidad sigue siendo elevada en muchas regiones del mundo. Frente a esta problemática, la investigación científica ha abordado diversos aspectos del fenómeno, centrándose principalmente en identificar los factores que influyen en la severidad de los accidentes y en proponer modelos predictivos que permitan mitigar sus efectos. En este trabajo, se presenta un análisis crítico de distintos estudios sobre accidentes de tráfico, sus metodologías, resultados y limitaciones, con el objetivo de comprender mejor las dinámicas involucradas y señalar posibles direcciones para futuras investigaciones.
 
 Uno de los primeros aspectos que destaca en la literatura es la variedad de enfoques empleados para estudiar la severidad de los accidentes. Por ejemplo, el estudio de Zúñiga (2014) se enfoca en cómo el estado del tráfico afecta la gravedad de los accidentes en autopistas urbanas. Utilizando modelos logit multinomial, encuentra que ciertos estados de transición del tráfico, como el ``final de cola'', se asocian con una mayor probabilidad de colisiones severas, especialmente en zonas con pendientes. Este hallazgo sugiere que el riesgo vial no solo depende del volumen de tráfico, sino también de su variabilidad y evolución en el tiempo. Por otro lado, Ángel y Hickman (2008) emplean un modelo de costos basado en el tipo de accidente (choque frontal, lateral, trasero) y en variables como el uso del cinturón, el alcohol y la presencia de peatones. Su investigación concluye que los choques frontales son los más costosos y mortales, y que factores como la edad y el comportamiento del conductor influyen significativamente en los resultados.
@@ -727,18 +728,9 @@ Al sustituir este valor de $\hat{E}_{ij}$, se puede calcular el valor de $Q$ a p
 
 \bibliographystyle{apalike}
 \bibliography{referencias}
-
-
-\section*{Referencias}
-
-Yang, D. (2007). \textit{Trends in transit bus accidents and promising collision countermeasures}. Federal Transit Administration.
-
-Ameratunga, S. N., Norton, R. N., Bennett, D. A., \& Jackson, R. T. (2004). Risk of disability due to car crashes: A review of the literature and methodological issues. \textit{International Journal of Epidemiology}, \textit{33}(4), 865--877. https://doi.org/10.1093/ije/dyh242
-
-Nitsche, P., Thomas, P., Stuetz, R., \& Welsh, R. (2017). Pre-crash scenarios at road junctions: A clustering method for car crash data. \textit{Accident Analysis \& Prevention}, \textit{99}(Part A), 284--295. 
-
-https://doi.org/10.1016/j.aap.2016.11.027
+\nocite{*}
 
 
 \end{document}
+
 
