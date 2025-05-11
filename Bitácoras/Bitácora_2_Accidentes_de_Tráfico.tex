@@ -621,22 +621,22 @@ En conclusión, la literatura sobre accidentes de tráfico ofrece una base sóli
 
 \subsection{Análisis Descriptivo}
 
-La base de datos ya se encuentra en formato en tidy, recordemos que el formato tidy fue popularizado por el autor Hadley Wickham, donde indican que cada variable debe tener su propia columna y cada observación su propia fila. Nuestra base de datos cumple con estar en formato tidy.
+La base de datos ya se encuentra en formato tidy, recordemos que el formato tidy fue popularizado por el autor Hadley Wickham, donde indican que cada variable debe tener su propia columna y cada observación su propia fila. Nuestra base de datos cumple con estar en formato tidy.
 
-A su vez, antes de aplicar cualquier gráfico o análisis de datos a nuestra base de datos, es importante eliminar las variables que no aportan al estudio, por ello, vamos a eliminar los valores NA que vengan en nuestra base de datos y columnas que no sean de nuestro interés.
+A su vez, antes de aplicar cualquier gráfico o análisis de datos a nuestra base de datos, es importante eliminar las variables que no aportan al estudio; por ello, vamos a eliminar los valores NA que vengan en nuestra base de datos y columnas que no sean de nuestro interés.
 
 Ahora realizamos un análisis estadístico de nuestra base de datos, de todas las variables.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=1\linewidth]{resumen_numerico.png}
-\caption{\label{fig:resumen variables numericas}Resumen variables numericas}
+\caption{\label{fig:resumen variables numericas}Resumen variables numéricas}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=1\linewidth]{resumen_categoricas.png}
-\caption{\label{fig:resumen variables categoricas}Resumen variables categoricas}
+\caption{\label{fig:resumen variables categoricas}Resumen variables categóricas}
 \end{figure}
 
 Ahora, procederemos a realizar una matriz de correlación para las variables categóricas contenidas en la base de datos. El objetivo de este análisis es identificar posibles relaciones entre las distintas variables cualitativas, tales como la severidad del accidente, las condiciones climáticas, el tipo de iluminación, la superficie de la carretera, y si el evento ocurrió durante un período de vacaciones.
@@ -646,10 +646,10 @@ El resultado se presentará mediante un mapa de calor (heatmap) que utiliza una 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=1\linewidth]{matriz_correlacion_categorica.png}
-\caption{\label{fig:matriz correlacion categorica}Matriz correlacion categorica}
+\caption{\label{fig:matriz correlacion categorica}Matriz correlación categórica}
 \end{figure}
 
-Lo anterior se hizo con el fin de tener una idea exploratoria general de cómo se mueven juntas las categorías al ser codificadas, pero esta correlación no debe interpretarse literalmente, salvo que las variables tengan un orden real y bien definido, de manera que lo mejor para analizar independecia de variables categoricas son las tablas de contingencia junto con estadísticos como el chi-cuadrado.
+Lo anterior se hizo con el fin de tener una idea exploratoria general de cómo se mueven juntas las categorías al ser codificadas, pero esta correlación no debe interpretarse literalmente, salvo que las variables tengan un orden real y bien definido, de manera que lo mejor para analizar la independencia de variables categóricas son las tablas de contingencia junto con estadísticos como el chi-cuadrado.
 
 Ahora, procederemos a construir una matriz de correlación para las variables numéricas presentes en la base de datos. El propósito de este análisis es evaluar la relación lineal entre pares de variables cuantitativas, tales como la velocidad recomendada, el límite de velocidad, el número de víctimas fatales, y las lesiones menores o graves asociadas a los accidentes.
 
@@ -658,24 +658,24 @@ A diferencia de las variables categóricas, las variables numéricas permiten ca
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=1\linewidth]{matriz_correlacion_numerica.png}
-\caption{\label{fig:matriz correlacion numerica}Matriz correlacion numerica}
+\caption{\label{fig:matriz correlacion numerica}Matriz correlación numérica}
 \end{figure}
 
-Al analizar la matriz de correlación de las variables numéricas, se observa una fuerte correlación positiva entre la velocidad recomendada y el límite de velocidad, lo cual resulta intuitivo, dado que ambas están directamente relacionadas con las condiciones del camino y las normativas de tránsito. Esta relación indica que a medida que el límite de velocidad aumenta en una determinada zona, también tiende a incrementarse la velocidad recomendada para los conductores, lo que podría refleja una adaptación de la infraestructura vial a las condiciones del entorno, como el tipo de carretera y su capacidad de soportar vehículos a mayor velocidad.
+Al analizar la matriz de correlación de las variables numéricas, se observa una fuerte correlación positiva entre la velocidad recomendada y el límite de velocidad, lo cual resulta intuitivo, dado que ambas están directamente relacionadas con las condiciones del camino y las normativas de tránsito. Esta relación indica que a medida que el límite de velocidad aumenta en una determinada zona, también tiende a incrementarse la velocidad recomendada para los conductores, lo que podría reflejar una adaptación de la infraestructura vial a las condiciones del entorno, como el tipo de carretera y su capacidad de soportar vehículos a mayor velocidad.
 
-Por otro lado, se detecta una débil correlación entre el número de víctimas fatales y las victímas con lesiones graves sugiere que, aunque ambas variables están relacionadas con la severidad de los accidentes, no necesariamente ocurren juntas de forma proporcional. Es decir, un accidente con muchas lesiones graves no implica automáticamente la presencia de víctimas fatales, y viceversa. Esta baja correlación puede deberse a diversos factores, como la rapidez con que se presenta asistencia médica, el tipo de accidente o el uso de medidas de seguridad como cinturones.
+Por otro lado, se detecta una débil correlación entre el número de víctimas fatales y las víctimas con lesiones graves. Esto sugiere que, aunque ambas variables están relacionadas con la severidad de los accidentes, no necesariamente ocurren juntas de forma proporcional. Es decir, un accidente con muchas lesiones graves no implica automáticamente la presencia de víctimas fatales, y viceversa. Esta baja correlación puede deberse a diversos factores, como la rapidez con que se presenta asistencia médica, el tipo de accidente o el uso de medidas de seguridad como cinturones.
 
 Ahora daremos inicio al análisis gráfico de nuestra base de datos. Comenzaremos explorando la distribución de la severidad de los accidentes, una variable categórica fundamental en nuestro estudio. Dado su carácter cualitativo, la forma más adecuada de visualizar esta información es mediante un gráfico de barras, el cual nos permitirá observar claramente la frecuencia de cada categoría de severidad presente en el conjunto de datos. Esta representación facilitará la identificación de patrones o posibles desequilibrios en la ocurrencia de accidentes según su gravedad.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=1\linewidth]{distribucion_severidad.png}
-\caption{\label{fig:distribución severidad}distribución severidad}
+\caption{\label{fig:distribución severidad}Distribución severidad}
 \end{figure}
 
 El gráfico de barras revela que la mayoría de los accidentes registrados en la base de datos corresponden a incidentes de severidad leve o sin heridos, mientras que los casos más graves, como aquellos con víctimas serias o fatales, son considerablemente menos frecuentes. Esta distribución sugiere que, aunque los accidentes son relativamente comunes, la mayoría no resultan en consecuencias extremadamente severas. Sin embargo, la presencia, aunque baja, de accidentes fatales resalta la importancia de seguir analizando los factores asociados a estos casos críticos.
 
-Además, se decidió realizar un facet en esta misma variable con respecto a la variable "clima", con el fin de visualizar la distribución en cada categoría; esto para descartar o validar que el nivel clima tiene relación con nuestra variable objetivo, la severidad del accidente.
+Además, se decidió realizar un facet en esta misma variable con respecto a la variable "clima", con el fin de visualizar la distribución en cada categoría; esto para descartar o validar que el nivel de clima tiene relación con nuestra variable objetivo, la severidad del accidente.
 
 \begin{figure}[htbp]
 \centering
@@ -687,13 +687,13 @@ El gráfico presentado muestra la distribución proporcional de la severidad de 
 
 \begin{enumerate}[align=left, leftmargin=*, labelwidth=0pt, labelsep=0pt, font=\bfseries]
 
-\item[Predominio de accidentes sin lesiones: ] En todas las condiciones climáticas, los accidentes sin lesiones constituyen la categoría más frecuente. donde más del 50\% de los accidentes por categoría no resultan en lesiones.
+\item[Predominio de accidentes sin lesiones:] En todas las condiciones climáticas, los accidentes sin lesiones constituyen la categoría más frecuente, donde más del 50\% de los accidentes por categoría no resultan en lesiones.
 
-\item[Buen clima con mayor proporción de accidentes graves y fatales: ] Curiosamente, los accidentes en buen clima presentan una mayor proporción de casos graves y fatales en comparación con climas adversos. Este hallazgo puede parecer contraintuitivo, pero podría explicarse por un mayor volumen de tráfico y exceso de confianza de los conductores en condiciones óptimas.
+\item[Buen clima con mayor proporción de accidentes graves y fatales:] Curiosamente, los accidentes en buen clima presentan una mayor proporción de casos graves y fatales en comparación con climas adversos. Este hallazgo puede parecer contraintuitivo, pero podría explicarse por un mayor volumen de tráfico y exceso de confianza de los conductores en condiciones óptimas.
 
-\item[Climas adversos con menor proporción de severidad alta: ]Condiciones como niebla, nieve y granizo no muestran un incremento notable en la proporción de accidentes severos. Esto sugiere que, a pesar del riesgo inherente, los conductores podrían adoptar una conducción más cautelosa o que el tráfico se reduce en estas condiciones, disminuyendo la exposición al riesgo.
+\item[Climas adversos con menor proporción de severidad alta:] Condiciones como niebla, nieve y granizo no muestran un incremento notable en la proporción de accidentes severos. Esto sugiere que, a pesar del riesgo inherente, los conductores podrían adoptar una conducción más cautelosa o que el tráfico se reduce en estas condiciones, disminuyendo la exposición al riesgo.
 
-\item[Limitación del uso de proporciones: ]Es importante tener en cuenta que el gráfico representa proporciones relativas, por lo que no refleja el número absoluto de accidentes. Dos condiciones climáticas pueden mostrar distribuciones similares de severidad, pero diferir sustancialmente en la cantidad total de accidentes ocurridos.
+\item[Limitación del uso de proporciones:] Es importante tener en cuenta que el gráfico representa proporciones relativas, por lo que no refleja el número absoluto de accidentes. Dos condiciones climáticas pueden mostrar distribuciones similares de severidad, pero diferir sustancialmente en la cantidad total de accidentes ocurridos.
 
 \end{enumerate}
 
@@ -702,17 +702,17 @@ Para obtener una imagen completa del impacto del clima en la severidad de los ac
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=1\linewidth]{distribucion_clima.png}
-\caption{\label{fig:distribución clima}distribución clima}
+\caption{\label{fig:distribución clima}Distribución clima}
 \end{figure}
 
 En el gráfico anterior se puede apreciar con mayor claridad cómo se distribuye la cantidad total de accidentes según las distintas condiciones climáticas. A diferencia de una representación proporcional, este enfoque permite observar directamente qué tipos de clima están asociados con un mayor número absoluto de accidentes. Además, se puede identificar qué condiciones climáticas tienden a concentrar una mayor proporción de accidentes severos. Esto permite detectar patrones relevantes entre el clima y la severidad de los incidentes.
 
-Además, decidimos realizar un facet en la severidad con respecto a la variable "festividad", con el fin de visualizar la distribución en cada categoría, esto porque queremos descartar o validar que de alguna forma si que haya o no un día festivo tiene relación con nuestra variable objetivo.
+Además, decidimos realizar un facet en la severidad con respecto a la variable "festividad", con el fin de visualizar la distribución en cada categoría, esto porque queremos descartar o validar que de alguna forma un día festivo tiene relación con nuestra variable objetivo.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=1\linewidth]{proporcion_festividad.png}
-\caption{\label{fig:proporción festividad}proporción festividad}
+\caption{\label{fig:proporción festividad}Proporción festividad}
 \end{figure}
 
 El gráfico revela que, durante los días festivos, la proporción de accidentes graves y fatales tiende a ser ligeramente mayor que en los días no festivos. Aunque los accidentes sin lesiones siguen siendo predominantes en ambos casos, se observa una mayor concentración de eventos graves o severos en fechas festivas considerando que los mismos son por unos pocos días, lo cual puede estar asociado a comportamientos de riesgo como el consumo de alcohol o el aumento del tráfico.
@@ -721,7 +721,7 @@ El gráfico revela que, durante los días festivos, la proporción de accidentes
 
 \item Cumpleaños de la reina y Navidad/Año Nuevo: presentan una proporción notablemente mayor de accidentes graves y fatales, lo que sugiere un comportamiento de mayor riesgo en estas fechas. Esto puede deberse a celebraciones intensas, consumo de alcohol o conducción nocturna.
 
-\item Fin de semana del Trabajo: muestra una proporción más alta en accidentes severos y graves, disminuyendo significativamente la proporción de accidenetes sin lesiones, lo cual se puede asociar a que las personas aprovechen para alcoholizarse en esos días.
+\item Fin de semana del Trabajo: muestra una proporción más alta en accidentes severos y graves, disminuyendo significativamente la proporción de accidentes sin lesiones, lo cual se puede asociar a que las personas aprovechen para alcoholizarse en esos días.
 
 \item Días no festivos presentan una proporción ligeramente mayor de accidentes sin lesiones, lo que sugiere que en condiciones normales, los accidentes tienden a ser menos severos.
 
@@ -732,15 +732,15 @@ Para complementar el análisis proporcional, es fundamental observar también c�
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=1\linewidth]{distribucion1_festividad.png}
-\caption{\label{fig:distribucion festividad 1}distribucion festividad 1}
+\caption{\label{fig:distribucion festividad 1}Distribución festividad 1}
 \end{figure}
 
-El anterior gráfico muetra como más de 30mil de los treintamil de los accidentes totales mostrados en la base de datos ocurrieron en un día "No festivo", lo cual es lógico debido a que representa la mayor parte del año, no obstante támbien se requiere poder visualizar como se distribuyen las otras categórias, al momento de no considerar los días no festivos.
+El gráfico anterior muestra cómo más de 30 mil de los 30 mil accidentes totales mostrados en la base de datos ocurrieron en un día "No festivo", lo cual es lógico debido a que representa la mayor parte del año; no obstante, también se requiere poder visualizar cómo se distribuyen las otras categorías, al momento de no considerar los días no festivos.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=1\linewidth]{distribucion2_festividad.png}
-\caption{\label{fig:distribucion festividad 2}distribucion festividad 2}
+\caption{\label{fig:distribucion festividad 2}Distribución festividad 2}
 \end{figure}
 
 Al remover la categoría "No festivo", el análisis se centra exclusivamente en las fechas especiales, permitiendo una comparación más clara entre festividades sin que los días comunes (los cuales son mucho más frecuentes) dominen visualmente la escala del gráfico. Esta decisión facilita identificar con mayor precisión cuáles festividades presentan una mayor concentración de accidentes y cómo se distribuyen en términos de severidad.
@@ -753,7 +753,7 @@ Al remover la categoría "No festivo", el análisis se centra exclusivamente en 
 
 \end{enumerate}
 
-Notese que este enfoque nos permite comparar entre fechas festivas bajo una escala que llega a ser más homogénea, evitando el sesgo que introduce la alta frecuencia de días no festivos. Así, se revela que algunas festividades, aunque menos frecuentes en el calendario, pueden ser desproporcionadamente riesgosas en términos de accidentes viales, especialmente cuando coinciden con desplazamientos masivos, celebraciones o relajación de normas de tránsito.
+Note que este enfoque nos permite comparar entre fechas festivas bajo una escala que llega a ser más homogénea, evitando el sesgo que introduce la alta frecuencia de días no festivos. Así, se revela que algunas festividades, aunque menos frecuentes en el calendario, pueden ser desproporcionadamente riesgosas en términos de accidentes viales, especialmente cuando coinciden con desplazamientos masivos, celebraciones o relajación de normas de tránsito.
 
 \newpage
 
@@ -866,6 +866,7 @@ Al sustituir este valor de $\hat{E}_{ij}$, se puede calcular el valor de $Q$ a p
 
 \subsubsection{Resultados}
 Al realizar tablas de contingencia para visualizar las observaciones por categoría, se encontró que existían algunas categorías que no poseían suficientes observaciones para realizar la prueba chi-cuadrado; sin embargo, las observaciones de carretera 'Final del asfalto' (\ref{fig:occarretera} a \ref{fig:ccarretera}) y las de iluminación 'Desconocida' (\ref{fig:ociluminación} a \ref{fig:ciluminación}) no aportan información relevante al análisis, por lo que fueron fácilmente descartadas. Por otro lado, se debieron descartar los climas 'Nieve' y 'Granizo' (\ref{fig:occlima} a \ref{fig:cclima}).
+
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=1\linewidth]{original_contingency_table_carretera.jpg}
@@ -908,6 +909,7 @@ Al realizar tablas de contingencia para visualizar las observaciones por categor
 \end{figure}
 
 Con estos datos, se aplicó la prueba chi-cuadrado,
+
 \begin{table}[H]
 \centering
 \input{chi-cuadrado}
@@ -924,10 +926,10 @@ Para carretera, el valor \( p \) es 0.0272, lo que nuevamente es menor que 0.05,
 
 Finalmente, para clima, el valor \( p \) es tan pequeño que es casi insignificable (\( 8.25 \cdot 10^{-38} \)), lo que refuerza aún más la idea de que el clima tiene un efecto extremadamente significativo en la severidad de los accidentes.
 
+Así, de acuerdo a la prueba, se concluye que las cuatro variables categóricas poseen relación estadísticamente significativa, pues el valor \( p \) es menor a 0.05. (La prueba de hipótesis se presentará en la siguiente bitácora). Este resultado sugiere que estos elementos deben ser considerados a la hora de analizar y prevenir accidentes de tránsito.
 
-Así, de acuerdo a la prueba, se concluye que las cuatro variables categóricas poseen relación estadísticamente significativa, pues el valor p es mayor a 0.05. (La prueba de hipótesis se presentará en la siguiente bitácora). Este resultado sugiere que estos elementos deben ser considerados a la hora de analizar y prevenir accidentes de tránsito.
+Luego, para realizar la prueba t de Student, se juntaron los accidentes sin heridos y con heridas leves en "Baja" y los accidentes graves y fatales en "Alta". Al aplicar la prueba t de Student, se obtuvo:
 
-Luego, para realizar la prueba t de Student, se juntaron los accidentes sin heridos y con herides leves en "Baja" y los accidentes graves y fatales en "Alta". Al aplicar la prueba t de Student, se obtuvo:
 \begin{table}[H]
 \centering
 \input{t-test}
@@ -936,15 +938,16 @@ Luego, para realizar la prueba t de Student, se juntaron los accidentes sin heri
 
 Los resultados de la prueba t de Student revelan diferencias estadísticamente significativas entre los accidentes con alta severidad y baja severidad en las variables. Esto indica que las características de los accidentes son muy distintas según el nivel de severidad, sugiriendo que los factores asociados con la gravedad del accidente son importantes para su clasificación.
 
-Para la variable fatales, el valor $p$ es extremadamente bajo ($9.98 \cdot 10^{-158}$), para las lesiones menores, el valor $p$ es $4.16 \cdot 10^{-11}$, mientras que la variable de lesiones graves muestra un valor $p$ de $1.14 \cdot 10^{-111}$.
+Para la variable fatales, el valor \( p \) es extremadamente bajo (\( 9.98 \cdot 10^{-158} \)), para las lesiones menores, el valor \( p \) es \( 4.16 \cdot 10^{-11} \), mientras que la variable de lesiones graves muestra un valor \( p \) de \( 1.14 \cdot 10^{-111} \).
 
-Aunque estos tres p valores sean muy bajos, esta relación es clara, pues la severidad de los accidentes se define por poseer heridas de esa severidad. Por tanto, los p valores no brindan información nueva.
+Aunque estos tres valores de \( p \) sean muy bajos, esta relación es clara, pues la severidad de los accidentes se define por poseer heridas de esa severidad. Por tanto, los valores de \( p \) no brindan información nueva.
 
-Por otro lado, la velocidad recomendada también muestra una diferencia significativa, con un valor $p$ de $4.77 \cdot 10^{-67}$, lo que sugiere que los accidentes de alta severidad están asociados con mayores velocidades recomendadas en comparación con los de baja severidad. Este hallazgo podría estar relacionado con la mayor magnitud de los accidentes graves, donde la velocidad juega un rol crucial en la severidad de las consecuencias.
+Por otro lado, la velocidad recomendada también muestra una diferencia significativa, con un valor \( p \) de \( 4.77 \cdot 10^{-67} \), lo que sugiere que los accidentes de alta severidad están asociados con mayores velocidades recomendadas en comparación con los de baja severidad. Este hallazgo podría estar relacionado con la mayor magnitud de los accidentes graves, donde la velocidad juega un rol crucial en la severidad de las consecuencias.
 
-Finalmente, en la variable de límite de velocidad, el valor $p$ de $1.14 \cdot 10^{-111}$ indica que existe una diferencia significativa en los límites de velocidad entre los accidentes graves y los menos graves. Este patrón podría sugerir que los accidentes de alta severidad ocurren con mayor frecuencia en zonas con límites de velocidad más altos, lo que podría estar relacionado con la intensidad del impacto en estos accidentes.
+Finalmente, en la variable de límite de velocidad, el valor \( p \) de \( 1.14 \cdot 10^{-111} \) indica que existe una diferencia significativa en los límites de velocidad entre los accidentes graves y los menos graves. Este patrón podría sugerir que los accidentes de alta severidad ocurren con mayor frecuencia en zonas con límites de velocidad más altos, lo que podría estar relacionado con la intensidad del impacto en estos accidentes.
 
 En resumen, los resultados de la prueba t de Student muestran que las variables velocidad recomendada y límite de velocidad están asociadas positivamente con la severidad de los accidentes. Estos hallazgos pueden ser útiles para diseñar medidas de prevención y mejora en la seguridad vial, al identificar los factores que más influyen en la severidad de los accidentes.
+
 
 
 
@@ -972,38 +975,38 @@ En resumen, los resultados de la prueba t de Student muestran que las variables 
 
 \textbf{Problemas o posibles desafíos:} La diferencia en la duración y frecuencia de los días festivos frente a los días normales puede distorsionar la interpretación si no se considera el volumen absoluto y proporcional de accidentes conjuntamente.
 
-\textbf{Resumen en un párrafo:} El análisis gráfico (\ref{fig:proporción festividad}, \ref{fig:distribucion festividad 1} y \ref{fig:distribucion festividad 2}) de la variable "festividad" revela que durante los días festivos la proporción de accidentes graves y fatales tiende a aumentar, especialmente en fechas como Navidad, Año Nuevo y el fin de semana del Trabajo. Aunque la mayoría de los accidentes ocurren en días no festivos, que es esperable dada la mayor cantidad en el calendario; al aislar las festividades del resto del año se evidencia que algunas concentran una proporción desproporcionadamente alta de siniestros severos. Esta observación sugiere que los días festivos representan días de mayor riesgo vial, posiblemente asociado a un aumento del tráfico, consumo de alcohol o comportamientos imprudentes. El enfoque combinado de proporciones y números absolutos permite una mejor interpretación, evitando el sesgo generado por la alta frecuencia de los días no festivos.
+\textbf{Resumen en un párrafo:} El análisis gráfico (\ref{fig:proporción festividad}, \ref{fig:distribucion festividad 1} y \ref{fig:distribucion festividad 2}) de la variable "festividad" revela que durante los días festivos la proporción de accidentes graves y fatales tiende a aumentar, especialmente en fechas como Navidad, Año Nuevo y el fin de semana del Trabajo. Aunque la mayoría de los accidentes ocurren en días no festivos, lo que es esperable dada la mayor cantidad en el calendario, al aislar las festividades del resto del año se evidencia que algunas concentran una proporción desproporcionadamente alta de siniestros severos. Esta observación sugiere que los días festivos representan días de mayor riesgo vial, posiblemente asociado a un aumento del tráfico, consumo de alcohol o comportamientos imprudentes. El enfoque combinado de proporciones y números absolutos permite una mejor interpretación, evitando el sesgo generado por la alta frecuencia de los días no festivos.
 
 
 
 \subsubsection{Limitaciones de la base de datos}
 \textbf{Resumen en una oración:} Hay algunas categorías que no poseen suficientes observaciones.
 
-\textbf{Principal característica:} Los climas nieve y granizo no poseen suficientes observaciones para aplicar la prueba chi-cuadrado
+\textbf{Principal característica:} Los climas nieve y granizo no poseen suficientes observaciones para aplicar la prueba chi-cuadrado.
 
-\textbf{Problemas o posibles desafíos:} Estas posibles causas deben analizarse, ya sea por separado, utilizando otra metodología, o bien, con otra base de datos que provea suficientes observaciones. Esta otra base de datos puede ser difícil de encontrar, puesto que las condiciones climáticas extremas como la nieve y el granizo, no son muy comunes.
+\textbf{Problemas o posibles desafíos:} Estas posibles causas deben analizarse, ya sea por separado, utilizando otra metodología, o bien, con otra base de datos que provea suficientes observaciones. Esta otra base de datos puede ser difícil de encontrar, puesto que las condiciones climáticas extremas como la nieve y el granizo no son muy comunes.
 
-\textbf{Resumen en un párrafo:} Se encontró que algunas categorías por variable no poseían observaciones suficientes para aplicar la prueba chi-cuadrado. Sin embargo, para la columna "carretera", la categoría "Final del asfalto" no la consideramos relevante, comparada a las otra dos categorías "Asfalto" y "Sin asfalto", por lo que se decide descartarla. Similarmente, para la iluminación, la categoría "Desconocido" no aporta al análisis, por lo que también se descartó. Por último, se debieron descartar la categoría "Nieve" y "Granizo" de la variable clima, aunque puedan aportar información relavante al análisis.
+\textbf{Resumen en un párrafo:} Se encontró que algunas categorías por variable no poseían observaciones suficientes para aplicar la prueba chi-cuadrado. Sin embargo, para la columna "carretera", la categoría "Final del asfalto" no la consideramos relevante, comparada a las otras dos categorías "Asfalto" y "Sin asfalto", por lo que se decide descartarla. Similarmente, para la iluminación, la categoría "Desconocido" no aporta al análisis, por lo que también se descartó. Por último, se debieron descartar las categorías "Nieve" y "Granizo" de la variable clima, aunque puedan aportar información relevante al análisis.
 
 
 \subsubsection{Relación estadísticamente significativa}
-\textbf{Resumen en una oración:} Todas las variables categóricas poseen relación estadísticamente significativa
+\textbf{Resumen en una oración:} Todas las variables categóricas poseen relación estadísticamente significativa.
 
-\textbf{Principal característica:} Los valores p de cada variable son menores a 0.05
+\textbf{Principal característica:} Los valores p de cada variable son menores a 0.05.
 
 \textbf{Problemas o posibles desafíos:} A pesar de la significancia estadística, la prueba chi-cuadrado puede verse afectada por recuentos esperados bajos en algunas celdas de la tabla de contingencia, lo cual puede violar sus supuestos y comprometer la validez de los resultados. Además, una alta significancia estadística no implica necesariamente un fuerte efecto práctico, por lo que sería recomendable complementar estos análisis con medidas de asociación y análisis multivariados que controlen por posibles variables confusoras.
 
 \textbf{Resumen en un párrafo:} Al realizar la prueba chi-cuadrado, se obtuvo que todos los valores p son menores que 0.05, lo que significa que en todos estos casos (festivos, iluminación, carretera y clima) se puede concluir que existe una relación estadísticamente significativa entre la severidad de los accidentes y estas variables. Concluimos que el tipo de día, las condiciones de iluminación, el tipo de carretera y el clima tienen un impacto significativo sobre la severidad de los accidentes.
 
 
-\subsubsection{Limitaciones Metodológicas}
+\subsubsection{Limitaciones metodológicas}
 \textbf{Resumen en una oración:} Se debió agrupar la severidad en dos categorías para aplicar la prueba t de Student.
 
-\textbf{Principal característica:} Agrupación de severidades
+\textbf{Principal característica:} Agrupación de severidades.
 
 \textbf{Problemas o posibles desafíos:} La prueba t de Student funciona únicamente para dos variables; por lo que se agruparon las severidades en severidad 'alta' y 'baja', en vez de 'accidente grave', 'accidente leve', 'accidente fatal' y 'accidente sin heridas'. Esta agrupación podría no dar una buena idea de las diferencias entre la misma categoría.
 
-\textbf{Resumen en un párrafo:} Para aplicar la prueba t de Student, fue necesario agrupar las variables correspondientes a la severidad. Para ello, se juntaron los accidentes sin heridos con los de heridas leves, y las heridas graves con las fatales. Por tanto, el análisis realizado con pruebas t solo incluye dos categorías: severidad baja y severidad alta, organizadas en una nueva columna llamada 'severidad binaria'
+\textbf{Resumen en un párrafo:} Para aplicar la prueba t de Student, fue necesario agrupar las variables correspondientes a la severidad. Para ello, se juntaron los accidentes sin heridos con los de heridas leves, y las heridas graves con las fatales. Por tanto, el análisis realizado con pruebas t solo incluye dos categorías: severidad baja y severidad alta, organizadas en una nueva columna llamada 'severidad binaria'.
 
 
 \subsubsection{Resultados descartados: Variables fatales, lesiones graves y lesiones menores}
@@ -1013,7 +1016,7 @@ En resumen, los resultados de la prueba t de Student muestran que las variables 
 \textbf{Principal característica:} 
 Las variables fatales, lesiones graves y lesiones menores tienen valores $p$ extremadamente bajos ($9.98 \cdot 10^{-158}$, $1.14 \cdot 10^{-111}$ y $4.16 \cdot 10^{-11}$ respectivamente).
 
-\textbf{Problemas o posibles desafíos:} La utilización de esta prueba ciegamente, podría llevar a la conclusión de que existe una íntima relación entre ellas, y que debería utilizarse para el análisis. Sin embargo, esta información proviene del accidente, es decir, es consencuencia del accidente, y por tanto, se conoce únicamente tras haber ocurrido el accidente. Por tanto, estas no se deben utilizar para predecir la severidad, sino como herramientas para determinar qué tan fatal o grave fue un accidente, es decir, si el accidente tuvo más de un herido o muerte, y relacionar esto con las demás variables.
+\textbf{Problemas o posibles desafíos:} La utilización de esta prueba ciegamente podría llevar a la conclusión de que existe una íntima relación entre ellas, y que debería utilizarse para el análisis. Sin embargo, esta información proviene del accidente, es decir, es consecuencia del accidente, y por tanto, se conoce únicamente tras haber ocurrido el accidente. Por tanto, estas no se deben utilizar para predecir la severidad, sino como herramientas para determinar qué tan fatal o grave fue un accidente, es decir, si el accidente tuvo más de un herido o muerte, y relacionar esto con las demás variables.
 
 \textbf{Resumen en un párrafo:} Los resultados de la prueba t de Student para las variables fatales, lesiones graves y lesiones menores muestran valores $p$ extremadamente bajos. Sin embargo, estos valores no ofrecen nueva información significativa, ya que la severidad de los accidentes se define principalmente por la existencia de heridas de esta magnitud. Esto implica que, aunque estas variables estén muy relacionadas, no aportan detalles adicionales en cuanto a las características diferenciadoras, en cuanto a predicción, entre los accidentes graves y los de baja severidad.
 
@@ -1025,7 +1028,10 @@ Las variables fatales, lesiones graves y lesiones menores tienen valores $p$ ext
 \textbf{Problemas o posibles desafíos:} Aunque los resultados sugieren que la velocidad es un factor importante en la severidad de los accidentes, es necesario investigar más sobre cómo las condiciones de velocidad pueden contribuir al riesgo de accidentes graves.
 
 \textbf{Resumen en un párrafo:} 
-Los resultados de la prueba t de Student muestran que las variables velocidad recomendada y límite de velocidad están fuertemente asociadas con la severidad de los accidentes. El tan bajo valor $p$ para ambas variables indica que los accidentes más graves tienden a ocurrir en zonas con mayores velocidades recomendadas y límites de velocidad (la media de la severidad alta son mayores que la media de severidad baja). Este hallazgo sugiere que la velocidad es un factor clave en la gravedad de los accidentes, y que la implementación de políticas para reducir la velocidad en áreas de alto riesgo podría ser una medida efectiva para prevenir accidentes graves.
+Los resultados de la prueba t de Student muestran que las variables velocidad recomendada y límite de velocidad están fuertemente asociadas con la severidad de los accidentes. El tan bajo valor $p$ para ambas variables indica que los accidentes más graves tienden a ocurrir en zonas con mayores velocidades recomendadas y límites de velocidad (la media de la severidad alta es mayor que la media de severidad baja). Este hallazgo sugiere que la velocidad es un factor clave en la gravedad de los accidentes, y que la implementación de políticas para reducir la velocidad en áreas de alto riesgo podría ser una medida efectiva para prevenir accidentes graves.
+
+\section{Cambios a bitácoras anteriores}
+Se agregaron algunas conclusiones preliminares basadas en nuestro análisis y los resultados proporcionados por los estudios referenciados en este documento. Además, se completaron las referencias y citas incluidas en la bitácora anterior, y se agregaron nuevas referencias, principalmente metodológicas.
 
 
 \bibliographystyle{apalike}
