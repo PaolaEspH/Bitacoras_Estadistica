@@ -614,6 +614,147 @@ En mi opinión, uno de los principales desafíos que enfrenta la investigación 
 En conclusión, la literatura sobre accidentes de tráfico ofrece una base sólida para comprender los factores que inciden en la severidad de los siniestros y para diseñar estrategias de prevención más efectivas. No obstante, aún queda camino por recorrer en términos de diversidad geográfica, interdisciplinariedad y profundidad de análisis. La incorporación de nuevas tecnologías, la mejora en la recolección de datos y la apertura a enfoques más integrales serán claves para avanzar hacia sistemas de transporte más seguros y resilientes. Solo mediante una mirada amplia y crítica será posible reducir de forma sostenible la siniestralidad vial y sus devastadoras consecuencias para las personas y las comunidades.
 
 \section{Análisis Estadísticos}
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{V_Gowin_b1.png}
+\caption{\label{fig:Gowin}V de Gowin}
+\end{figure}
+
+La base de datos ya se encuentra en formato en tidy, recordemos que el formato tidy fue popularizado por el autor Hadley Wickham, donde indican que cada variable debe tener su propia columna y cada observación su propia fila. Nuestra base de datos cumple con estar en formato tidy.
+
+A su vez, antes de aplicar cualquier gráfico o análisis de datos a nuestra base de datos, es importante eliminar las variables que no aportan al estudio, por ello, vamos a eliminar los valores NA que vengan en nuestra base de datos y columnas que no sean de nuestro interés.
+
+Ahora realizamos un análisis estadístico de nuestra base de datos, de todas las variables.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{resumen_numerico.png}
+\caption{\label{fig:resumen variables numericas}resumen variables numericas}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{resumen_categorico.png}
+\caption{\label{fig:resumen variables categoricas}resumen variables categoricas}
+\end{figure}
+
+Ahora, procederemos a realizar una matriz de correlación para las variables categóricas contenidas en la base de datos. El objetivo de este análisis es identificar posibles relaciones entre las distintas variables cualitativas, tales como la severidad del accidente, las condiciones climáticas, el tipo de iluminación, la superficie de la carretera, y si el evento ocurrió durante un período de vacaciones.
+
+El resultado se presentará mediante un mapa de calor (heatmap) que utiliza una escala de colores donde los tonos más rojizos representan correlaciones positivas más fuertes y los azulados indican correlaciones negativas. Además, se incluirán los valores numéricos directamente en cada celda, facilitando así la interpretación precisa de los niveles de asociación entre las distintas variables cualitativas. Esta representación permite identificar patrones relevantes que podrían ser clave en la comprensión de los factores que influyen en la severidad y características de los accidentes.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{matriz_correlacion_categorica.png}
+\caption{\label{fig:matriz correlacion categorica}matriz correlacion categorica}
+\end{figure}
+
+Lo anterior se hizo con el fin de tener una idea exploratoria general de cómo se mueven juntas las categorías al ser codificadas, pero esta correlación no debe interpretarse literalmente, salvo que las variables tengan un orden real y bien definido, de manera que lo mejor para analizar independecia de variables categoricas son las tablas de contingencia junto con estadísticos como el chi-cuadrado.
+
+Ahora, procederemos a construir una matriz de correlación para las variables numéricas presentes en la base de datos. El propósito de este análisis es evaluar la relación lineal entre pares de variables cuantitativas, tales como la velocidad recomendada, el límite de velocidad, el número de víctimas fatales, y las lesiones menores o graves asociadas a los accidentes.
+
+A diferencia de las variables categóricas, las variables numéricas permiten calcular coeficientes de correlación como el coeficiente de Pearson, que mide la intensidad de la relación lineal entre dos variables. Un valor cercano a 1 indica una fuerte correlación positiva, mientras que valores cercanos a -1 reflejan una correlación negativa fuerte. Valores próximos a 0 sugieren ausencia de relación lineal.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{matriz_correlacion_numerica.png}
+\caption{\label{fig:matriz correlacion numerica}matriz correlacion numerica}
+\end{figure}
+
+Al analizar la matriz de correlación de las variables numéricas, se observa una fuerte correlación positiva entre la velocidad recomendada y el límite de velocidad, lo cual resulta intuitivo, dado que ambas están directamente relacionadas con las condiciones del camino y las normativas de tránsito. Esta relación indica que a medida que el límite de velocidad aumenta en una determinada zona, también tiende a incrementarse la velocidad recomendada para los conductores, lo que podría refleja una adaptación de la infraestructura vial a las condiciones del entorno, como el tipo de carretera y su capacidad de soportar vehículos a mayor velocidad.
+
+Por otro lado, se detecta una débil correlación entre el número de víctimas fatales y las victímas con lesiones graves sugiere que, aunque ambas variables están relacionadas con la severidad de los accidentes, no necesariamente ocurren juntas de forma proporcional. Es decir, un accidente con muchas lesiones graves no implica automáticamente la presencia de víctimas fatales, y viceversa. Esta baja correlación puede deberse a diversos factores, como la rapidez con que se presenta asistencia médica, el tipo de accidente o el uso de medidas de seguridad como cinturones.
+
+Ahora daremos inicio al análisis gráfico de nuestra base de datos. Comenzaremos explorando la distribución de la severidad de los accidentes, una variable categórica fundamental en nuestro estudio. Dado su carácter cualitativo, la forma más adecuada de visualizar esta información es mediante un gráfico de barras, el cual nos permitirá observar claramente la frecuencia de cada categoría de severidad presente en el conjunto de datos. Esta representación facilitará la identificación de patrones o posibles desequilibrios en la ocurrencia de accidentes según su gravedad.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{distribucion_severidad.png}
+\caption{\label{fig:distribución severidad}distribución severidad}
+\end{figure}
+
+El gráfico de barras revela que la mayoría de los accidentes registrados en la base de datos corresponden a incidentes de severidad leve o sin heridos, mientras que los casos más graves, como aquellos con víctimas serias o fatales, son considerablemente menos frecuentes. Esta distribución sugiere que, aunque los accidentes son relativamente comunes, la mayoría no resultan en consecuencias extremadamente severas. Sin embargo, la presencia, aunque baja, de accidentes fatales resalta la importancia de seguir analizando los factores asociados a estos casos críticos.
+
+Además decidimos realizar un facet en esta misma variable con respecto a la variable "clima", con el fin de visualizar la distribución en cada categoría, esto porque queremos descartar o validar que de alguna forma el nivel clima tiene relación con nuestra variable objetivo, la cual es la severidad del accidente.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{proporcion_clima.png}
+\caption{\label{fig:proporción clima}proporción clima}
+\end{figure}
+
+El gráfico presentado muestra la distribución proporcional de la severidad de los accidentes de tráfico bajo diferentes condiciones climáticas, utilizando un gráfico de barras apiladas. Cada barra representa un tipo de clima y se descompone en proporciones de severidad del accidente, que incluyen: accidente sin lesiones, accidente leve, accidente grave y accidente fatal.
+
+\begin{enumerate}
+
+\item Predominio de accidentes sin lesionesEn todas las condiciones climáticas, los accidentes sin lesiones constituyen la categoría más frecuente. donde más del 50% de los accidentes por categoría no resultan en lesiones.
+
+\item Buen clima con mayor proporción de accidentes graves y fatalesCuriosamente, los accidentes en buen clima presentan una mayor proporción de casos graves y fatales en comparación con climas adversos. Este hallazgo puede parecer contraintuitivo, pero podría explicarse por un mayor volumen de tráfico y exceso de confianza de los conductores en condiciones óptimas.
+
+\item Climas adversos con menor proporción de severidad altaCondiciones como niebla, nieve y granizo no muestran un incremento notable en la proporción de accidentes severos. Esto sugiere que, a pesar del riesgo inherente, los conductores podrían adoptar una conducción más cautelosa o que el tráfico se reduce en estas condiciones, disminuyendo la exposición al riesgo.
+
+\item Limitación del uso de proporcionesEs importante tener en cuenta que el gráfico representa proporciones relativas, por lo que no refleja el número absoluto de accidentes. Dos condiciones climáticas pueden mostrar distribuciones similares de severidad, pero diferir sustancialmente en la cantidad total de accidentes ocurridos.
+
+\end{enumerate}
+
+Para obtener una imagen completa del impacto del clima en la severidad de los accidentes, no basta con observar las proporciones relativas. Es fundamental analizar cómo se distribuyen las condiciones climáticas dentro de cada nivel de severidad del accidente. Es decir, se debe evaluar cuántos accidentes totales ocurrieron bajo cada tipo de condición climática, pero desglosado por el nivel de severidad (leve, moderado, grave, etc.). De esta manera, no solo se podrá comparar la gravedad relativa de los accidentes en diferentes condiciones del clima, sino también identificar bajo qué condiciones se presenta una mayor cantidad absoluta de accidentes severos.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{distribucion_clima.png}
+\caption{\label{fig:distribución clima}distribución clima}
+\end{figure}
+
+En el gráfico anterior se puede apreciar con mayor claridad cómo se distribuye la cantidad total de accidentes según las distintas condiciones climáticas. A diferencia de una representación proporcional, este enfoque permite observar directamente qué tipos de clima están asociados con un mayor número absoluto de accidentes. Además, se puede identificar qué condiciones climáticas tienden a concentrar una mayor proporción de accidentes severos. Esto permite detectar patrones relevantes entre el clima y la severidad de los incidentes.
+
+Además, decidimos realizar un facet en la severidad con respecto a la variable "festividad", con el fin de visualizar la distribución en cada categoría, esto porque queremos descartar o validar que de alguna forma si que haya o no un día festivo tiene relación con nuestra variable objetivo.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{proporcion_festividad.png}
+\caption{\label{fig:proporción festividad}proporción festividad}
+\end{figure}
+
+El gráfico revela que, durante los días festivos, la proporción de accidentes graves y fatales tiende a ser ligeramente mayor que en los días no festivos. Aunque los accidentes sin lesiones siguen siendo predominantes en ambos casos, se observa una mayor concentración de eventos graves o severos en fechas festivas considerando que los mismos son por unos pocos días, lo cual puede estar asociado a comportamientos de riesgo como el consumo de alcohol o el aumento del tráfico.
+
+\begin{enumerate}
+
+\item Cumpleaños de la reina y Navidad/Año Nuevo: presentan una proporción notablemente mayor de accidentes graves y fatales, lo que sugiere un comportamiento de mayor riesgo en estas fechas. Esto puede deberse a celebraciones intensas, consumo de alcohol o conducción nocturna.
+
+\item Fin de semana del Trabajo: muestra una proporción más alta en accidentes severos y graves, disminuyendo significativamente la proporción de accidenetes sin lesiones, lo cual se puede asociar a que las personas aprovechen para alcoholizarse en esos días.
+
+\item Días no festivos presentan una proporción ligeramente mayor de accidentes sin lesiones, lo que sugiere que en condiciones normales, los accidentes tienden a ser menos severos.
+
+\end{enumerate}
+
+Para complementar el análisis proporcional, es fundamental observar también cómo se distribuye la cantidad total de accidentes en función del tipo de festividad y su severidad. A través del siguiente gráfico de barras apiladas, se puede visualizar el número absoluto de accidentes ocurridos en cada categoría festiva, desagregados por nivel de severidad. Esta representación permite identificar en qué festividades se concentra una mayor cantidad de siniestros y cómo varía su gravedad, proporcionando una perspectiva más completa del riesgo vial asociado a cada fecha especial.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{distribucion1_festividad.png}
+\caption{\label{fig:distribucion festividad 1}distribucion festividad 1}
+\end{figure}
+
+El anterior gráfico muetra como más de 30mil de los treintamil de los accidentes totales mostrados en la base de datos ocurrieron en un día "No festivo", lo cual es lógico debido a que representa la mayor parte del año, no obstante támbien se requiere poder visualizar como se distribuyen las otras categórias, al momento de no considerar los días no festivos.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{distribucion2_festividad.png}
+\caption{\label{fig:distribucion festividad 2}distribucion festividad 2}
+\end{figure}
+
+Al remover la categoría "No festivo", el análisis se centra exclusivamente en las fechas especiales, permitiendo una comparación más clara entre festividades sin que los días comunes (los cuales son mucho más frecuentes) dominen visualmente la escala del gráfico. Esta decisión facilita identificar con mayor precisión cuáles festividades presentan una mayor concentración de accidentes y cómo se distribuyen en términos de severidad.
+
+\begin{enumerate}
+
+\item Navidad y Año Nuevo: destacan por tener un volumen considerable de accidentes, con una distribución que incluye una cantidad visible de eventos graves y fatales, lo cual es consistente con las celebraciones prolongadas y mayor exposición al riesgo vial.
+
+\item Festividades como Fin de semana del Trabajo presentan una menor cantidad de accidentes en términos absolutos, pero no por ello irrelevantes, especialmente si una fracción significativa de ellos es grave.
+
+\end{enumerate}
+
+Notese que este enfoque nos permite comparar entre fechas festivas bajo una escala que llega a ser más homogénea, evitando el sesgo que introduce la alta frecuencia de días no festivos. Así, se revela que algunas festividades, aunque menos frecuentes en el calendario, pueden ser desproporcionadamente riesgosas en términos de accidentes viales, especialmente cuando coinciden con desplazamientos masivos, celebraciones o relajación de normas de tránsito.
+
+
 \subsection{Análisis Descriptivo}
 
 \subsection{Propuesta Metodológica}
