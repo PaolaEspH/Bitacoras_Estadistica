@@ -97,6 +97,23 @@ head(data)
 Ahora hacemos un análisis estadístico de nuestra base de datos, de todas las variables.
 
 ```{r}
+# Crear una tabla con los nombres y tipos de las variables
+variable_info <- data.frame(
+  Nombre = names(data),
+  Tipo = unname(sapply(data, class)),  # Usamos unname para eliminar los nombres de las columnas
+  stringsAsFactors = FALSE
+)
+
+# Mostrar la tabla con knitr y styling
+library(knitr)
+library(kableExtra)
+
+kable(variable_info, caption = "Nombres y tipos de las variables", booktabs = TRUE) %>%
+  kable_styling(full_width = FALSE) %>%
+  footnote(general = "Fuente: Elaboración propia utilizando la base de datos de Kaggle")
+```
+
+```{r}
 library(kableExtra)
 # Seleccionar solo variables numéricas
 variables_numericas <- data[sapply(data, is.numeric)]
@@ -146,7 +163,7 @@ kable(resumen_final, caption = "Resumen de variables categóricas", booktabs = T
 
 Ahora, procederemos a realizar una **matriz de correlación para las variables categóricas** contenidas en la base de datos. El objetivo de este análisis es identificar posibles **relaciones** entre las distintas variables cualitativas, tales como la severidad del accidente, las condiciones climáticas, el tipo de iluminación, la superficie de la carretera, y si el evento ocurrió durante un período de vacaciones.
 
-El resultado se presentará mediante un **mapa de calor (heatmap)** que utiliza una escala de colores donde los tonos más rojizos representan correlaciones positivas más fuertes y los azulados indican correlaciones negativas. Además, se incluirán los valores numéricos directamente en cada celda, facilitando así la interpretación precisa de los niveles de asociación entre las distintas variables cualitativas. Esta representación permite identificar patrones relevantes que podrían ser clave en la comprensión de los factores que influyen en la severidad y características de los accidentes..
+El resultado se presentará mediante un **mapa de calor (heatmap)** que utiliza una escala de colores donde los tonos más rojizos representan correlaciones positivas más fuertes y los azulados indican correlaciones negativas. Además, se incluirán los valores numéricos directamente en cada celda, facilitando así la interpretación precisa de los niveles de asociación entre las distintas variables cualitativas. Esta representación permite identificar patrones relevantes que podrían ser clave en la comprensión de los factores que influyen en la severidad y características de los accidentes.
 
 ```{r}
 library(dplyr)
