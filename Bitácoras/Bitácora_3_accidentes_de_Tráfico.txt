@@ -1,0 +1,956 @@
+\documentclass{book}
+
+\usepackage[spanish]{babel}
+
+
+
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[most]{tcolorbox}
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{ragged2e}
+
+
+\title{Accidentes de Tráfico en Nueva Zelanda}
+\author{Paola Espinoza Hernández, C32715 \and Jeikel Navarro Solís, C25518 \and Gabriel Sanabria Alvarado, C27184}
+
+\begin{document}
+\maketitle
+
+\chapter{Bitácora 1}
+
+\section{Planificación}
+
+\subsection{Pregunta de investigación}
+¿Cuáles variables tienen mayor impacto en la severidad de los accidentes de tráfico en Nueva Zelanda?
+
+\subsubsection{Definición de la idea}
+
+La idea principal se centra en la identificación y análisis de los factores que influyen en la gravedad de los accidentes de tráfico en Nueva Zelanda. 
+
+\subsubsection{Conceptualización de la idea}
+
+Los accidentes de tráfico se refieren a aquellos accidentes ocurridos sobre la vía, determinados por condiciones y actos irresponsables potencialmente previsibles, atribuidos a factores humanos, vehículos preponderantemente automotores, condiciones climatológicas, señalización y caminos, los cuales ocasionan pérdidas prematuras de vidas humanas y/o lesiones, así como secuelas físicas o psicológicas, perjuicios materiales y daños a terceros.
+
+La severidad de los accidentes de tráfico se refiere al grado de daño o consecuencias que resultan de un siniestro vial, pudiendo clasificarse en leves, graves o fatales. Diversos factores pueden influir en esta severidad, entre los que se incluyen elementos ambientales, vehiculares, humanos y de infraestructura.
+
+Si bien esta investigación se centra en identificar las variables con mayor impacto en la severidad de los accidentes de tráfico de Nueva Zelanda, el enfoque puede extenderse para incluir análisis comparativos con otros países, evaluar la efectividad de políticas de seguridad vial o desarrollar modelos predictivos de riesgo. Esto permite abordar distintos métodos y perspectivas dentro del tema, volviendo el estudio mucho más profundo para futuras investigaciones.
+
+Este estudio busca proporcionar cierta evidencia empírica para una correcta elaboración de las estrategias de seguridad vial en Nueva Zelanda. Al identificar los factores que impactan principalmente en la severidad de los accidentes, se pueden diseñar políticas públicas más efectivas y medidas preventivas que reduzcan la mortalidad y el impacto socioeconómico de estos incidentes.
+
+\subsubsection{Identificación de tensiones}
+
+Las tensiones que afectan la severidad de los accidentes surgen de la interacción compleja de diferentes variables, lo que complica la predicción y análisis de los accidentes. Por ejemplo, las condiciones meteorológicas adversas, como la lluvia o la niebla, pueden disminuir la visibilidad y así provocar un aumento en la probabilidad de accidentes graves, pero esto se ve intensificado por la falta de señales de tráfico adecuadas o un control de tráfico deficiente, lo que genera que ocurran accidentes más severos. A su vez, las zonas con límites de velocidad más altos o una velocidad recomendada no respetada en ciertas áreas, como zonas cercanas a peatones o zonas con pendientes pronunciadas, también contribuyen a un aumento en la severidad de los accidentes.
+
+Las condiciones de las calles como superficies mojadas, resbaladizas o mal mantenidas pueden influir significativamente en la severidad del accidente, aumentando la cantidad de lesiones graves o incluso de muertes. Por otro lado, los días festivos pueden llegar a ser un problema a considerar, pues estos suelen incrementar el tráfico en las carreteras, que aumenta a su vez el riesgo de fuertes accidentes. 
+
+Por otro lado, la presencia de peatones en las zonas de tráfico aumenta el riesgo de accidentes graves, ya que, incluso a velocidades moderadas, el impacto con un peatón puede ser fatal. Este conflicto se intensifica si las zonas peatonales no están bien señalizadas o si los conductores no prestan suficiente atención.
+
+Un punto importante a considerar es el caso de las vías que se encuentran en zonas montañosas, donde las pendientes y la mala calidad del asfalto pueden hacer que los vehículos pierdan el control, y como consecuencia, ocurran accidentes graves. Las condiciones climáticas como la lluvia pueden agravar este riesgo, lo que genera una mayor severidad en los accidentes en estas zonas. Por último, los accidentes en áreas rurales suelen ser más graves no por la naturaleza del accidente en sí, sino por la falta de accesibilidad rápida a los servicios de emergencia, por lo que la respuesta a los accidente es más lenta, de modo que aumenta la probabilidad de lesiones graves o muertes.
+
+\subsubsection{Reformulación de la idea en modo de pregunta}
+
+\begin{enumerate}
+    \item ¿Qué variables tienen la mayor influencia en la severidad de los accidentes de tráfico en Nueva Zelanda?
+    \item ¿Cómo afectan factores como el clima, el límite de velocidad y las condiciones de la carretera a la gravedad de los accidentes de tráfico en Nueva Zelanda?
+    \item ¿Existen patrones entre la presencia de peatones, el tipo de control de tráfico y la gravedad de los accidentes en Nueva Zelanda?
+    \item ¿Por qué es importante identificar las variables que influyen en la severidad de los accidentes de tráfico en Nueva Zelanda?
+\end{enumerate}
+
+\subsubsection{Argumentación de la pregunta}
+
+\subsubsection{Pregunta 1: ¿Qué variables tienen la mayor influencia en la severidad de los accidentes de tráfico en Nueva Zelanda?}
+
+\textbf{Contraargumentos}
+\begin{itemize}
+    \item \textbf{Lógica:} ALgunas de las variables puede que estén interconectadas, haciendo más díficil clasificar el impacto directo de cada una de ellas.
+    \item \textbf{Ética:} La recopilación de datos puede estar incompleta o incluso sesgada, llegando a afectar los resultados y su validez.
+    \item \textbf{Emocional:} Algunas variables podrían llegar a considerarse para la población en general, disminuyendo el interés en la investigación.
+\end{itemize}
+
+\textbf{Argumentos}
+\begin{itemize}
+    \item \textbf{Lógica:} Utilizando modelos estadísticos y aprendizaje automático, se pueden identificar correlaciones significativas entre las variables y la severidad del accidente.
+    \item \textbf{Ética:} Se dará uso de fuentes oficiales y métodos rigurosos para garantizar la veracidad de los datos.
+    \item \textbf{Emocional:} Comprender los factores más influyentes permitirá implementar medidas preventivas, reduciendo lesiones y muertes.
+\end{itemize}
+
+\textbf{Conclusión:} La identificación de variables clave ayudará a diseñar mejores estrategias de seguridad vial. ¿Cómo se pueden optimizar los recursos para maximizar la reducción de accidentes?
+
+\subsubsection{Pregunta 2: ¿Cómo afectan factores como el clima, el límite de velocidad y las condiciones de la carretera a la gravedad de los accidentes de tráfico en Nueva Zelanda?}
+
+\textbf{Contraargumentos}
+\begin{itemize}
+    \item \textbf{Lógica:} La relación entre estas variables y la severidad del accidente no siempre es directa, ya que otros factores pueden influir.
+    \item \textbf{Ética:} La recopilación de datos sobre condiciones climáticas y su correlación con accidentes puede verse afectada por la falta de registros precisos.
+    \item \textbf{Emocional:} Algunas personas pueden minimizar el impacto del clima o del estado de las carreteras en los accidentes, atribuyéndolos exclusivamente a la imprudencia.
+\end{itemize}
+
+\textbf{Argumentos}
+\begin{itemize}
+    \item \textbf{Lógica:} Las condiciones climáticas adversas pueden llegar a aumentar el riesgo de accidentes.
+    \item \textbf{Ética:} El uso de datos meteorológicos y registros viales confiables permitirá una evaluación objetiva.
+    \item \textbf{Emocional:} Crear conciencia sobre estos factores puede incentivar a la creación de políticas enfocadas en la mejora de la infraestructura vial y alertar a los conductores.
+\end{itemize}
+
+\textbf{Conclusión:} Analizar estos factores dar inicio a la implementación de políticas de seguridad más adecuadas. ¿Cómo se pueden mejorar las alertas para conductores en condiciones peligrosas?
+
+\subsubsection{Pregunta 3: ¿Existen patrones entre la presencia de peatones, el tipo de control de tráfico y la gravedad de los accidentes en Nueva Zelanda?}
+
+\textbf{Contraargumentos}
+\begin{itemize}
+    \item \textbf{Lógica:} La relación entre peatones y accidentes puede depender de factores aleatorios como el comportamiento humano.
+    \item \textbf{Ética:} Determinar la responsabilidad en los accidentes que involucran peatones puede ser subjetivo.
+    \item \textbf{Emocional:} La percepción de seguridad vial varía entre peatones y conductores puede generar conflictos de intereses.
+\end{itemize}
+
+\textbf{Argumentos}
+\begin{itemize}
+    \item \textbf{Lógica:} Los datos pueden revelar patrones en zonas con alta incidencia de atropellos, permitiendo estrategias de mitigación, esto acompañado de estimaciones generadas mediante argumentos estadísticos.
+    \item \textbf{Ética:} La transparencia en el análisis de datos garantizará recomendaciones imparciales.
+    \item \textbf{Emocional:} Mejorar la seguridad de peatones puede reducir muertes y fomentar un transporte urbano más seguro.
+\end{itemize}
+
+\textbf{Conclusión:} Analizar estos patrones contribuirá a aminorar los choques hacia peatones y mejorar la convivencia vial. ¿Qué medidas pueden tomarse para garantizar la seguridad de peatones en zonas de alto tráfico?
+
+\subsubsection{Pregunta 4: ¿Por qué es importante identificar las variables que influyen en la severidad de los accidentes de tráfico en Nueva Zelanda?}
+
+\textbf{Contraargumentos}
+\begin{itemize}
+    \item \textbf{Lógica:} Se podría pensar que, en lugar de investigar las variables, se deberían tomar medidas generales de seguridad vial sin tomar en cuenta un análisis tan detallado.
+    \item \textbf{Ética:} Algunos pueden cuestionar la priorización de ciertos factores sobre otros en la investigación.
+    \item \textbf{Emocional:} Las personas pueden no percibir el impacto de estos estudios hasta que enfrentan una situación de riesgo.
+\end{itemize}
+
+\textbf{Argumentos}
+\begin{itemize}
+    \item \textbf{Lógica:} Conocer las variables más influyentes permitirá diseñar estrategias de prevención más efectivas y basadas en datos.
+    \item \textbf{Ética:} Una investigación rigurosa asegurará que las recomendaciones sean imparciales y basadas en evidencia.
+    \item \textbf{Emocional:} Una considerable disminución de la severidad de los accidentes impactará positivamente en la calidad de vida de las personas.
+\end{itemize}
+
+\textbf{Conclusión:} Identificar estas variables permitirá tomar decisiones informadas para reducir los accidentes. ¿Cómo se pueden comunicar estos hallazgos para generar conciencia y cambios en la sociedad?
+
+\subsubsection{Argumentación a través de datos}
+
+\textbf{Fuente de información:} \href{https://www.kaggle.com/datasets/maryamrahmani/crash-analysis-system-cas-data-new-zealand}{Datos de Análisis de Accidentes de Tráfico en Nueva Zelanda}
+
+\textbf{Contexto temporal y espacial de los datos:} La base de datos abarca accidentes de tráfico reportados desde el 1 de enero de 2000 hasta enero del 2025. Estos datos fueron recopilados por el sistema de análisis de choques de Waka Kotahi (CAS).
+
+\textbf{Facilidad de obtener la información:} Los datos de CAS se actualizan mensualmente y están disponibles en varios formatos, incluyendo CSV, a través del portal de datos abiertos de Waka Kotahi. Sin embargo, es importante tener en cuenta que puede haber un retraso entre la fecha del accidente y su disponibilidad en el sistema, especialmente para accidentes sin lesiones.
+
+\textbf{Población de estudio:} La población de estudio incluye todos los accidentes de tráfico reportados a la policía de Nueva Zelanda.
+
+\textbf{Muestra observada:} La muestra observada comprende los accidentes de tráfico registrados en CAS desde el 1 de enero de 2000 hasta lenero del 2025.
+
+\textbf{Unidad estadística:} Cada accidente de tráfico registrado.
+
+\textbf{Descripción de variables de la tabla:} La base de datos incluye variables relacionadas con las características de los accidentes, como la ubicación, severidad, factores contribuyentes y movimientos de los vehículos involucrados. La variable principal a analizar es la severidad, pues se planea encontrar la relación de las demás variables con respecto a esta.
+
+\begin{itemize}
+    \item \textbf{Velocidad recomendada:}  indica el límite sugerido para transitar de manera segura por un tramo de carretera. Si los conductores la exceden significativamente, aumenta la probabilidad de perder el control del vehículo o de no poder reaccionar a tiempo ante imprevistos. Además, una velocidad inadecuada en curvas, pendientes o zonas urbanas puede incrementar la gravedad de los accidentes, resultando en lesiones más severas o incluso muertes.
+    \item \textbf{Recuento de víctimas fatales:} El número de víctimas fatales es una métrica clave para evaluar la severidad de los accidentes. Un alto número de fallecidos indica un siniestro de gran impacto, lo que permite a las autoridades identificar patrones y factores de riesgo. Analizar esta variable junto con otras como la velocidad, la iluminación o la superficie de la carretera ayuda a entender qué condiciones aumentan la letalidad de los accidentes y a desarrollar estrategias de prevención.
+    \item \textbf{Periodo de vacaciones:} Durante los períodos de vacaciones, las carreteras suelen registrar un aumento en la cantidad de vehículos, lo que incrementa la probabilidad de accidentes. Además, es común que haya más conductores inexpertos en rutas desconocidas, lo que puede contribuir a errores de conducción. La fatiga, el consumo de alcohol y el exceso de velocidad también suelen ser más frecuentes en estas épocas, lo que aumenta el riesgo de siniestros graves.
+    \item \textbf{Iluminación:} Las condiciones de iluminación en el momento de un accidente pueden influir en la visibilidad de conductores y peatones. La falta de luz natural o artificial reduce la capacidad de detectar obstáculos, señales de tránsito o movimientos imprevistos. Los accidentes ocurridos de noche o en zonas con iluminación deficiente suelen ser más graves, ya que los tiempos de reacción se ven afectados y la posibilidad de colisiones a alta velocidad es mayor.
+    \item \textbf{Recuento de víctimas con lesiones menores:} aunque estas lesiones no pongan en riesgo la vida, son indicativas de la violencia del choque y pueden generar costos médicos y legales. Su análisis permite evaluar la frecuencia de accidentes menos severos y entender qué factores contribuyen a su ocurrencia.
+    \item \textbf{Peatón:} los peatones son los usuarios más vulnerables de la vía, puesto que ellos no cuentan con protección contra el impacto, de modo que los accidentes en los que están involucrados tienen una alta probabilidad de resultar en lesiones graves o fatales. Analizar esta variable permite diseñar medidas de seguridad en zonas urbanas, como pasos de cebra, semáforos y señalización adecuada.
+    \item \textbf{Superficie de la carretera:} El estado de la carretera influye directamente en la capacidad de los vehículos para frenar y maniobrar con seguridad. Superficies mojadas, con hielo, en mal estado o con grava pueden reducir la adherencia de los neumáticos, aumentando el riesgo de derrapes o colisiones. Analizar esta variable ayuda a identificar puntos críticos en la infraestructura vial y a implementar soluciones como mejoras en el pavimento o el drenaje.
+    \item \textbf{Recuento de víctimas con lesiones graves:} El número de personas con lesiones graves en un accidente es un indicador importante de la severidad del impacto. Lesiones como fracturas, traumatismos o daños internos pueden requerir hospitalización prolongada y generar discapacidades permanentes. Estudiar esta variable en conjunto con factores como la velocidad o el clima permite desarrollar estrategias para reducir la gravedad de los accidentes.
+    \item \textbf{Límite de velocidad:} El límite de velocidad es el máximo permitido en una vía y está diseñado para garantizar la seguridad de los usuarios. Exceder este límite aumenta la energía del impacto en caso de colisión, lo que incrementa la probabilidad de lesiones graves o fatales. Además, velocidades inadecuadas reducen el tiempo de reacción ante imprevistos y pueden hacer que los accidentes sean más difíciles de evitar.
+    \item \textbf{Clima:} Las condiciones climáticas en el momento de un accidente afectan la visibilidad, el estado de la carretera y el comportamiento de los conductores. Lluvia, niebla, nieve o vientos fuertes pueden hacer que la conducción sea más peligrosa, pues pueden reducir la adherencia de los neumáticos o dificultar la percepción del entorno. Con esta, se pueden evaluar los riesgos en diferentes estaciones del año y promover medidas de seguridad, como alertas meteorológicas o límites de velocidad reducidos en condiciones adversas.
+
+\end{itemize}
+
+\section{Revisión bibliográfica}
+
+Se buscaron términos relacionados a accidentes viales, como el uso del cinturón, las causas y consecuencias de estos accidentes, y la manera en que estos afectan a los involucrados.
+\subsection{Fichas de literatura}
+\subsubsection{Estimación de probabilidades de accidentes basada en estados de tráfico en autopistas urbanas}
+\textbf{Autor:} Cristian Nicolás Zúñiga González
+
+\textbf{Año:} 2014
+
+\textbf{Tema:} Impacto de los estados de tráfico en la ocurrencia y severidad de accidentes
+
+\textbf{Forma de organizarlo:}
+
+\begin{itemize}
+\setlength{\itemindent}{0.5in}
+    \item \textbf{Cronológico:} datos del 2012 y primera semana del 2013
+    \item \textbf{Metodológico:} Calibración de modelos de elección discreta
+    \item \textbf{Temático:} Modelos de elección discreta
+    \item \textbf{Teoría:} Modelos para estimar el impacto de diversas variables en la ocurrencia y severidad de accidentes
+\end{itemize}
+
+\textbf{Resumen en una oración:} La siniestralidad y severidad de un accidente se ve afectada por el estado del tráfico.
+
+\textbf{Argumento central:} Los estados de transición generan más riesgo de ocurrencia para todos los accidentes.
+
+\textbf{Problemas con el argumento o el tema:} Aunque todos los indicadores mejoran cuando la muestra crece, presentan problemas ante una especificación más desagregada. La vía de estudio, Autopista Central de Santiago en Chile, no posee características desafiantes relacionadas a las condiciones climáticas o la geometría.
+
+\textbf{Resumen en un párrafo:} Entre 2006 y 2012, la siniestralidad en la Autopista Central de Santiago tuvo una  tasa de aumento mayor a la tasa de crecimiento de vehículos, con accidentes recurrentes en lugares o condiciones similares. Se ha detectado anteriormente una relación entre el estado de tráfico y condiciones climáticas y la ocurrencia de accidentes, pero sin discriminar la severidad. Este estudio no solo clasifica los accidentes según su gravedad, sino que también amplía la evaluación del costo social al incluir los efectos de la congestión por bloqueos viales. Se concluye que factores como pendientes descendentes, cambios bruscos de velocidad, alta desviación estándar de velocidad y tramos largos incrementan la probabilidad de accidentes. Además, los estados de tráfico más riesgosos son "cuello de botella", "congestión" y, especialmente, "final de cola", este último asociado a una mayor probabilidad de heridos en pendientes descendentes. Por último, la variabilidad en la velocidad y ajustes frecuentes en ella también elevan el riesgo, evidenciando que la combinación de dinámicas de flujo y diseño vial influye en la siniestralidad.
+
+\subsubsection{Analysis of the factors affecting the severity of two-vehicle crashes}
+\textbf{Autor:} Alejandro Ángel, Mark Hickman
+
+\textbf{Año:} 2008
+
+\textbf{Tema:} Factores que afectan la severidad de accidentes vehiculares
+
+\textbf{Forma de organizarlo:}
+
+\begin{itemize}
+\setlength{\itemindent}{0.5in}
+    \item \textbf{Cronológico:} 2008, con datos de 1995 a 2004
+    \item \textbf{Metodológico:} Modelo logit multinomial (para severidad de heridas), regresión lineal (costos)
+    \item \textbf{Temático:} Modelación
+    \item \textbf{Teoría:} Modelación de impacto en severidad de accidentes
+\end{itemize}
+
+\textbf{Resumen en una oración:} El tipo de choque tiene un impacto muy significativo en la severidad del accidente.
+
+\textbf{Argumento central:} Existen muchos factores, tanto de comportamiento personal, características vehículares y de tipo de choque, que afectan la severidad de los accidentes de tráfico.
+
+\textbf{Problemas con el argumento o el tema:} Se considera únicamente el costo de las heridas, no el costo social de la obstrucción vial causada por el choque. El modelo lineal de costos podría ser una hipersimplificación, y no reflejar el verdadero costo.
+
+\textbf{Resumen en un párrafo:} Los accidentes vehículares poseen muchos factores que pueden afectar el resultado de este. Entre estos, destacan el tipo de choque, como el choque de cabeza, que puede incrementar más de 56 veces la fatalidad comparada al choque por la parte trasera del vehículo. Además, el uso de cinturón de seguridad disminuye la severidad del choque, mientras que el estar alcoholizado la aumenta. Adicionalmente, es importante diferenciar las consecuencias para cada participante, pues en los choques de vehículos grandes, estos reducen la severidad para quien los ocupa, pero aumenta la de los demás participantes. 
+
+\subsubsection{Variables predictoras de víctimas graves, críticas o fallecidas en los accidentes de tráfico en Extremadura}
+\textbf{Autores:} José Antonio Morales Gabardino, Laura Redondo-Lobato, Francisco Buitrago-Ramírez
+
+\textbf{Año:} 2019
+
+\textbf{Tema:} Variables predictoras de la severidad de accidentes de tráfico
+
+\textbf{Forma de organizarlo:}
+
+\begin{itemize}
+\setlength{\itemindent}{0.5in}
+    \item \textbf{Cronológico:} datos del 2012 al 1015
+    \item \textbf{Metodológico:} Regresión logística binaria
+    \item \textbf{Temático:} Predicción de severidad de accidentes vehiculares
+    \item \textbf{Teoría:} Factores de riesgo en accidentes viales
+\end{itemize}
+
+\textbf{Resumen en una oración:} Los accidentes interurbanos, la edad y la zona aumentan la gravedad y mortalidad vial.
+
+\textbf{Argumento central:} Los accidentes de tránsito interurbanos tienen mayor gravedad y mortalidad que los urbanos, siendo el tipo de accidente, la edad y la ubicación importantes factores predictivos de su severidad.
+
+\textbf{Problemas con el argumento o el tema:} La base de datos utilizada no posee registro del sexo de los accidentados, variabe que parece estar ausente en varios otros estudios. Estos datos tampoco incluyen la evolución final de los pacientes, de modo que no se puede evaluar la repercusión socioeconómica de estos accidentes, y la posible subestimación de fallecidos, pues solo se registran los fallecidos al momento de la atención inicial.
+
+\textbf{Resumen en un párrafo:} En el artículo se analiza si el tipo de accidente (urbano o interurbano), la edad o la atención médica influyen en el resultado del mismo. Se concluye que la mayoría de los accidentes son de tipo interurbano y que estos presentan un mayor porcentaje de gravedad en comparación con los ocurridos en zonas urbanas.El tipo de accidente destaca como una variable predictora relevante, ya que puede incrementar el riesgo de fallecimiento en un $74,5\%$.Asimismo, tanto la edad como las zonas de influencia aumentan la probabilidad de accidentes graves o críticos, por lo que estos factores también deberían considerarse para predecir la severidad de los siniestros viales.
+
+\subsubsection{Injury Pattern among non-fatal road traffic accident cases: a cross-sectional study in central India}
+\textbf{Autores:} Gunjan B. Ganveer, Rajnarayan R. Tiwari
+
+\textbf{Año:} 2005
+
+\textbf{Tema:} Patrones de víctimas no fatales de accidentes de tráfico
+
+\textbf{Forma de organizarlo:}
+
+\begin{itemize}
+\setlength{\itemindent}{0.5in}
+    \item \textbf{Cronológico:} datos del 1999-2000
+    \item \textbf{Metodológico:} Prueba Chi-cuadrado
+    \item \textbf{Temático:} Analizar la significancia estadística
+    \item \textbf{Teoría:} Significancia estadística
+\end{itemize}
+
+\textbf{Resumen en una oración:} Se utilizan métodos estadísticos para encontrar patrones en los accidentes de tráfico no fatales.
+
+\textbf{Argumento central:} Existen algunos patrones en las consecuencias de los accidentes de tráfico no fatales.
+
+\textbf{Problemas con el argumento o el tema:} Aunque se incluye el sexo de los involucrados, se analizan únicamente 6 variables, de modo que el análisis podría ampliarse mucho más, y relacionar otros factores.
+
+\textbf{Resumen en un párrafo:} El artículo analiza 423 casos de accidentes no fatales en búsqueda de algún patrón. El análisis estadístico utilizado incluye el cálculo de porcentajes y proporciones, así como la aplicación de la prueba chi-cuadrado y la prueba t de Student. El artículo concluye que la mayoría (0.858) de los incolucrados son hombres, y la mayoría de accidentes corresponden a colisiones de lado. En cuanto a las condiciones, los vehículos de dos ruedas son los más comunmente involucrados, y la mayoría de accidentes suceden durante las horas diurnas. Finalmente, las fracturas son la consecuencia más común, seguido de otras varias heridas, como traumatismos, abrasiones y laceraciones.
+
+
+\subsubsection{Trends in Transit Bus Accidents and Promising Collision Countermeasures}
+\textbf{Autor:} David Yang
+
+\textbf{Año:} 2007
+
+\textbf{Tema:} Accidentes vehiculares que involucran autobuses
+
+\textbf{Forma de organizarlo:}
+
+\begin{itemize}
+\setlength{\itemindent}{0.5in}
+    \item \textbf{Cronológico:} datos del 2002 y 2003
+    \item \textbf{Metodológico:} Análisis descriptivo e interpretativo
+    \item \textbf{Temático:} Descripción e interpretación de datos
+    \item \textbf{Teoría:} Descripción e interpretación de datos
+\end{itemize}
+
+\textbf{Resumen en una oración:} La mayoría de accidentes con autobuses suceden en condiciones normales.
+
+\textbf{Argumento central:} Los sistemas de alerta de colisiones para autobuses deben monitorear los alrededores de los buses en todo momento, especialmente en condiciones normales.
+
+\textbf{Problemas con el argumento o el tema:} La mayoría de accidentes sucede en condiciones climáticas normales, pero también las condiciones normales suceden más que las atípicas, por lo que sería interesante considerar el impacto que tienen las condiciones atípicas en las colisiones.
+
+\textbf{Resumen en un párrafo:} El artículo analiza los datos de la National Transit Database, sobre las colisiones con autobuses, para los años 2002 y 2003. A partir de ellos, determinan que la mayoría de los accidentes ocurren en condiciones usuales, a saber: con carreteras secas, en caminos derechos (no curveados), con buena iluminación, y condiciones climáticas normales; estos resultados se atribuyen a la mayor exposición a estas condiciones que a condiciones atípicas, y a que, ante condiciones atípicas, los conductores son más precavidos. Además, el 80\% de accidentes ocurren en intersecciones con alguna señal de tráfico. Por otro lado, la mayoría de colisiones ocurren de frente, y son este tipo de colisiones, las que poseen mayor fatalidad. Dado que la mayoría de los accidentes ocurren en situaciones normales, se concluye que los sistemas de alerta de colisiones deben ser capaces de monitorear los alrededores de los buses en todo momento.
+
+
+\subsubsection{Risk of disability due to car crashes: a review of the literature and methodological issues}
+\textbf{Autor:} Shanthi N. Ameratunga, Robyn N. Norton, Derrick A. Bennett y Rod T. Jackson
+
+\textbf{Año:} 2004
+
+\textbf{Tema:} Discapacidad tras accidentes de tráfico
+
+\textbf{Forma de organizarlo:}
+
+\begin{itemize}
+\setlength{\itemindent}{0.5in}
+    \item \textbf{Cronológico:} estudios de 1980 a 2002
+    \item \textbf{Metodológico:} análisis de otros estudios sobre el riesgo de discapacidad tras un accidente de tráfico.
+    \item \textbf{Temático:} análisis de resultados anteriores
+    \item \textbf{Teoría:} Estudios anteriores
+\end{itemize}
+
+\textbf{Resumen en una oración:} Hay poca información acerca de la relación entre los accidentes vehiculares y la discapacidad de los involucrados.
+
+\textbf{Argumento central:} Se sabe que los accidentes de tráfico incrementan el riesgo de discapacidad para los involucrados, pero las diferentes metodologías de los estudios que lo analizan, no permiten llegar a un consenso acerca de la proporción de involucrados que sufren alguna discapacidad.
+
+\textbf{Problemas con el argumento o el tema:} A pesar de haber excluido los artículos anteriores a 1980 debido a los cambios en las consecuencias de los accidentes (cinturón de seguridad), es posible que hubieran también otros cambios entre 1980 y el 2020. Además, algunos de los estudios no contaban con suficientes participantes, o participantes suficientemente variados, para conformar una buena muestra.
+
+\textbf{Resumen en un párrafo:} El artículo analiza estudios anteriores relacionados a la discapacidad tras accidentes vehiculares. Sin embargo, se encuentra que la información disponible deja mucho que desear, tanto en cuanto a las metodologías utilizadas en los estudios, como en cuanto a la variedad de muestras. Esto último debido a que los participantes de algunos estudios no representaban una buena muestra, y a que, no se encontraron estudios sobre esta relación en países de bajos y medianos ingresos.
+
+\subsubsection{Pre-crash scenarios at road junctions: A clustering method for car crash data}
+\textbf{Autor:} Phillipe Nitsche, Pete Thomas, Rainer Stuetz, Ruth Welsh
+
+\textbf{Año:} 2017
+
+\textbf{Tema:} Escenarios propensos a accidentes vehiculares
+
+\textbf{Forma de organizarlo:}
+
+\begin{itemize}
+\setlength{\itemindent}{0.5in}
+    \item \textbf{Cronológico:} datos de 1999 a 2010
+    \item \textbf{Metodológico:} k-medioids
+    \item \textbf{Temático:} Clustering
+    \item \textbf{Teoría:} Clustering con k-mediods para agrupar los datos, y poder analizar cada uno por separado
+\end{itemize}
+
+\textbf{Resumen en una oración:} Los vehículos automatizados deben ser capaces de enfrentar exitosamente situaciones inesperadas.
+
+\textbf{Argumento central:} No se conoce el impacto que los vehículos automatizados tendrán en la seguridad vial, pues a pesar de reconocer su ambiente, pueden presentar problemas al enfrentar comportamientos inesperados de otros conductores.
+
+\textbf{Problemas con el argumento o el tema:} Algunos datos, como los choques que involucran peatones, debieron ser excluidos debido a que su muestra era muy pequeña para generar clusters.
+
+\textbf{Resumen en un párrafo:} El artículo analiza los datos del Departamento de Transporte del Reino Unido, y la Highway Agency (HA), con el fin de proporcionar los escenarios más propensos a accidentes vehiculares. Se espera que esta información sea utilizada para afinar el mecanismo de prevención de accidentes de los vehículos automatizados; para los cuales la ADS encontró que las mayores dificultades las presentan en ambientes urbanos complejos, zonas con trabajos temporales y zonas con baja visibilidad. Dada la alta incidencia de accidentes en las intersecciones, el artículo se centra en analizar los accidentes en estos lugares.  Se encuentra que la mayor gravedad de heridas está asociada a ciclistas, motociclistas y límites de velocidad mayores. Además, en las intersecciones, las causas más comunes de accidente son no dar paso, y realizar maniobras incorrectas. 
+
+\subsubsection{Probability and Statistics}
+\textbf{Autor:} Morris H. DeGroot y Mark J. Schervish
+
+\textbf{Año:} 2012
+
+\textbf{Tema:} Fundamentos teóricos y aplicaciones de la probabilidad y la estadística.
+
+
+\textbf{Forma de organizarlo:}
+
+\begin{itemize}
+\setlength{\itemindent}{0.5in}
+    \item \textbf{Cronológico:} 2012
+    \item \textbf{Metodológico:} Probabilidad e inferencia estadística
+    \item \textbf{Temático:} Probabilidad, estadística inferencial, y métodos aplicados.
+    \item \textbf{Teoría:} Teoría de la probabilidad y métodos estadísticos.
+\end{itemize}
+
+\textbf{Resumen en una oración:} Presenta la teoría de la probabilidad, así como la estadística, para luego presentar aplicaciones.
+
+\textbf{Argumento central:} Una comprensión sólida de la estadística debe basarse en fundamentos de probabilidad, desarrollando gradualmente métodos de inferencia desde conceptos probabilísticos hasta aplicaciones reales.
+
+\textbf{Problemas con el argumento o el tema:} La lectura puede resultar complicada si se carece de buenas bases de cálculo. Posee poca información sobre los métodos computacionales aplicables a la estadística.
+
+\textbf{Resumen en un párrafo:} El libro comienza con una exposición detallada de la teoría de probabilidad, incluyendo variables aleatorias, esperanza, varianza y teoremas límite. Posteriormente, aborda la inferencia estadística tanto desde un enfoque frecuentista como bayesiano. Posee ejemplos prácticos, problemas resueltos y aplicaciones en ciencias e ingeniería, que faciltan y prueban la comprensión del lector. A pesar de ser bastante claro, es necesario poseer bastantes habilidades matemáticas. Además, es necesario realizar una búsqueda externa para comprender la manera de aplicar los conceptos expuestos en el libro a métodos computacionales.
+
+
+\subsubsection{A model of traffic crashes in New Zealand}
+\textbf{Autor:} Abdus Salam \& T. R. Wilson
+
+\textbf{Año:} 2001
+
+\textbf{Tema:} Modelado estadístico de accidentes de tráfico en Nueva Zelanda
+
+\textbf{Forma de organizarlo:}
+\begin{itemize}
+\setlength{\itemindent}{0.5in}
+    \item \textbf{Cronológico:} datos entre 1970 y 1994.
+    \item \textbf{Metodológico:} Modelo estructural de series temporales con intervención.
+    \item \textbf{Temático:} Seguridad vial y análisis de patrones estacionales de accidentes.
+    \item \textbf{Teoría:} Epidemiología del tráfico y sistemas dinámicos aplicados al transporte.
+\end{itemize}
+
+\textbf{Resumen en una oración:} El artículo presenta un modelo estadístico para analizar los patrones temporales de accidentes de tráfico fatales en Nueva Zelanda.
+
+\textbf{Argumento central:} El estudio propone un modelo estructural para explicar y predecir la ocurrencia de accidentes fatales de tráfico, mostrando cómo han cambiado con el tiempo y en respuesta a políticas públicas.
+
+\textbf{Problemas con el argumento o el tema:} La subestimación de variables relevantes como la conducción bajo efectos de alcohol o condiciones climáticas puede limitar la precisión del modelo.
+
+\textbf{Resumen en un párrafo:} El artículo muestra un modelo estructural de series temporales para generar un análisis de las tendencias de accidentes fatales en Nueva Zelanda entre 1970 y 1994. El modelo permite mostrar patrones estacionarios, efectos de eventos especiales (como campañas de seguridad) y cambios en la estructura a lo largo del tiempo. El estudio indica una disminución considerable en los accidentes durante ciertas campañas de intervención, lo que sugiere que las políticas públicas pueden tener un impacto medible. Sin embargo, el modelo también revela que los efectos no son uniformes, y que algunos factores de riesgo pueden estar subrepresentados. Los autores destacan la necesidad de considerar tanto los patrones temporales como los efectos de políticas específicas para mejorar la seguridad vial.
+
+\subsubsection{Temporal trends of transport-related injuries on New Zealand roads}
+\textbf{Autor:} Siobhan Isles, Michael Keane, Joanna F. Dipnall, Ben Beck
+
+\textbf{Año:} 2024
+
+\textbf{Tema:} Tendencias temporales de lesiones relacionadas con el transporte en Nueva Zelanda
+
+\textbf{Forma de organizarlo:}
+\begin{itemize}
+\setlength{\itemindent}{0.5in}
+    \item \textbf{Cronológico:} Datos recopilados entre julio de 2017 y junio de 2021
+    \item \textbf{Metodológico:} Estudio observacional retrospectivo utilizando análisis de series temporales interrumpidas
+    \item \textbf{Temático:} Lesiones por modo de transporte, etnicidad y ruralidad
+    \item \textbf{Teoría:} Epidemiología del trauma y análisis de tendencias en salud pública
+\end{itemize}
+
+\textbf{Resumen en una oración:} El estudio analiza las tendencias temporales de lesiones relacionadas con el transporte en Nueva Zelanda, destacando un aumento en las lesiones de motociclistas y disparidades según etnicidad y ubicación geográfica.
+
+\textbf{Argumento central:} A pesar de las iniciativas de seguridad vial, las lesiones por accidentes de tráfico no han disminuido significativamente, con un aumento notable en las lesiones de motociclistas y mayores tasas de lesiones graves entre poblaciones rurales y grupos étnicos específicos.
+
+\textbf{Problemas con el argumento o el tema:} La falta de reducción en las lesiones de ciertos modos de transporte y las disparidades demográficas sugieren que las estrategias actuales de seguridad vial pueden no estar abordando eficazmente las necesidades de todos los grupos poblacionales.
+
+\textbf{Resumen en un párrafo:} Esta investigación se encargó de examinar las tendencias temporales de lesiones relacionadas con el transporte en Nueva Zelanda entre julio de 2017 y junio de 2021, utilizando datos del National Minimum Dataset y el New Zealand Trauma Registry. 
+Las tendencias temporales no muestran una reducción en las lesiones de automóviles, ciclistas y peatones, pero sí un aumento en las lesiones de motociclistas.
+Además, se observaron tasas de incidencia estandarizadas por edad casi 3.5 veces más altas en la población maorí en comparación con la población asiática, y tasas más altas en áreas rurales que en urbanas. Estos hallazgos resaltan la necesidad de enfoques más específicos y efectivos en las estrategias de seguridad vial para abordar las disparidades existentes.
+
+
+\subsubsection{Under-reporting of motor vehicle traffic crash victims in New Zealand}
+\textbf{Autor:} Shanthi Ameratunga, Robyn Norton, John Connor, Rod Jackson
+
+\textbf{Año:} 2001
+
+\textbf{Tema:} Subregistro de víctimas de accidentes de tráfico en Nueva Zelanda
+
+\textbf{Forma de organizarlo:}
+\begin{itemize}
+\setlength{\itemindent}{0.5in}
+    \item \textbf{Cronológico:} Datos del año 1995
+    \item \textbf{Metodológico:} Enlace probabilístico de registros hospitalarios y policiales
+    \item \textbf{Temático:} Subregistro de víctimas de accidentes de tráfico
+    \item \textbf{Teoría:} Epidemiología del trauma y análisis de datos administrativos
+\end{itemize}
+
+\textbf{Resumen en una oración:} El estudio revela que menos de dos tercios de las víctimas hospitalizadas por accidentes de tráfico fueron registradas por la policía en Nueva Zelanda en 1995.
+
+\textbf{Argumento central:} Existe un subregistro significativo de víctimas de accidentes de tráfico en los registros policiales, lo que tiene implicaciones importantes para la planificación de la seguridad vial y la asignación de recursos.
+
+\textbf{Problemas con el argumento o el tema:} La dependencia exclusiva de los datos policiales puede conducir a una subestimación de la carga real de lesiones por accidentes de tráfico, afectando la eficacia de las políticas de prevención.
+
+\textbf{Resumen en un párrafo:} El artículo muestra el grado de registro de víctimas de accidentes de tráfico en Nueva Zelanda por el enlace probabilístico de registros hospitalarios y policiales correspondientes al año 1995. 
+Los resultados muestran que menos de dos tercios de las personas hospitalizadas por accidentes de tráfico fueron registradas por la policía. Además, se notó una cantidad de sesgos considerables en la cobertura según factores como la gravedad de la lesión, la edad y la ubicación geográfica. 
+Estos hallazgos indican la necesidad de mejora en los sistemas de recopilación de datos y de considerar múltiples fuentes para obtener una visión precisa de la carga de lesiones por accidentes de tráfico, lo cual es esencial para el desarrollo de políticas de seguridad vial efectivas.
+
+
+\subsubsection{The role of driver sleepiness in car crashes: a systematic review of epidemiological studies}
+\textbf{Autor:} Jennie Connor, Gary Whitlock, Robyn Norton, y Rod Jackson
+
+\textbf{Año:} 2001
+
+\textbf{Tema:} Relación entre fatiga y choques vehiculares
+
+\textbf{Forma de organizarlo:}
+\begin{itemize}
+\setlength{\itemindent}{0.5in}
+    \item \textbf{Cronológico:} estudios de 1987 a 1999
+    \item \textbf{Metodológico:} Revisión de estudios epidemiológicos que asocien la fatiga con la ocurrencia de accidentes de tráfico
+    \item \textbf{Temático:} Revisión de estudios pasados
+
+    \item \textbf{Teoría:} Asociación de fatiga y ocurrencia de accidentes de tráfico
+\end{itemize}
+
+\textbf{Resumen en una oración:} La fatiga parece tener una relación positiva con la ocurrencia accidentes de tráfico.
+
+\textbf{Argumento central:} La mayoría de choques son multifactoriales, de modo que deben considerarse el efecto de otras posibles causas en la estimación del efecto de una variable determinada.
+
+\textbf{Problemas con el argumento o el tema:} Los estudios analizados no incluyen información sobre los criterios de selección utilizados. Además, las medidas de exposición en los grupos comparativos no siempre coinciden con las de los casos, y estos grupos podrían no representar adecuadamente a la población de origen de los casos. Algunos estudios no consideraron variables relevantes como la edad, el género, la frecuencia de conducción y el consumo de drogas, factores que pueden influir en la relación entre fatiga y riesgo de accidente. Varios de los estudios revisados tienen un tamaño muestral reducido, lo que limita su capacidad para detectar efectos significativos. Asimismo, la mayoría se enfoca en los trastornos del sueño, dejando de lado la fatiga provocada por causas no médicas.
+
+\textbf{Resumen en un párrafo:} El artículo analiza 19 estudios previos que relacionan la fatiga con la probabilidad de sufrir accidentes de tráfico. Sin embargo, estos estudios presentan limitaciones importantes, como la falta de información sobre los criterios de selección y la omisión de otras posibles causas de los accidentes. El artículo subraya la importancia de analizar los accidentes viales, ya que constituyen una de las principales causas de muerte y discapacidad a nivel mundial. Se destaca que, para estimar con precisión el impacto de la fatiga, es necesario conocer tanto la proporción de la población afectada por esta condición como el incremento en el riesgo que conlleva. Finalmente, se concluye que calcular el efecto de la fatiga requiere considerar también el efecto de otras causas de un accidente concreto.
+
+
+
+
+\subsection{Argumentación de teorías, principios, metodologías}
+\begin{itemize}
+    \item Se utilizará la prueba chi-cuadrado y la prueba t de Student, puesto que ambas ya han sido utilizadas en otros trabajos relacionados a los accidentes de tráfico, y en particular \cite{GUNJAN2005} la utiliza para el estudio de una severidad específica de choques.
+    \item Las variables seleccionadas para el análisis coinciden con aquellas identificadas en estudios previos como factores relacionados con la severidad de los choques.
+\end{itemize}
+
+
+\section{UVE de Gowin}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{V_Gowin_b2.png}
+\caption{\label{fig:Gowin}V de Gowin}
+\end{figure}
+
+\section{Parte de escritura}
+
+Los accidentes de tráfico representan una de las principales causas de muertes y lesiones en todo el mundo. En el caso de Nueva Zelanda, la seguridad vial ha sido una preocupación constante, y se ha buscado implementar diversas estrategias para reducir la siniestralidad en las carreteras. Sin embargo, para mejorar la efectividad de estas estrategias, es fundamental tratar de identificar cuáles son las variables que poseen una mayor influencia o impacto en la severidad de los accidentes. Por ello, este trabajo busca responder a la pregunta: ¿Cuáles variables tienen mayor impacto en la severidad de los accidentes de tráfico en Nueva Zelanda?
+
+De acuerdo con \cite{BuitragoRamírezFrancisco2019Vpdv}, entre los diversos factores que podrían influir en la severidad de un accidente de tránsito están los factores humanos, vehiculares, ambientales y de infraestructura. Entre ellos, más específicamente, se encuentran la atención, concentración y condición psíquico-física del conductor, las características de los vehículos, los objetos y la carga transportada, las condiciones meteorológicas, el ámbito urbano o interurbano en el que ocurre el accidente y el estado de las carreteras.
+
+Asimismo, en busca de garantizar la calidad y veracidad del análisis, este trabajo utilizará como fuente principal los datos provenientes de la Agencia de Transporte Waka Kotahi de Nueva Zelanda. De esta forma, como el objetivo es determinar las variables con mayor impacto o incidencia en la severidad de los accidentes de tráfico mediante el uso de métodos estadísticos rigurosos, se pretende establecer si existe una relación significativa entre las variables analizadas y la severidad de los accidentes.
+
+Para ello, se plantean las variables de interés, es decir, las que podrían tener un impacto significativo en la severidad de los accidentes, tomando en cuenta que la base de datos cuenta con 72 variables distintas:
+
+\begin{itemize}
+\item Velocidad recomendada
+\item Recuento de víctimas fatales
+\item Período de vacaciones
+\item Iluminación
+\item Recuento de víctimas con lesiones menores
+\item Peatón
+\item Superficie de la carretera
+\item Recuento de víctimas con lesiones graves
+\item Límite de velocidad
+\item Clima
+\end{itemize}
+
+A su vez, para determinar cuáles de estas variables tienen una relación estadísticamente significativa con la severidad del accidente, se emplearán los siguientes métodos de análisis de datos:
+
+\begin{itemize}
+\item \textbf{Prueba Chi-cuadrado}: Se utiliza para evaluar la independencia entre variables categóricas.
+\item \textbf{Tablas de contingencia}: Permiten observar distribuciones conjuntas de variables y detectar patrones de asociación.
+\item \textbf{Prueba t de Student}: Se usa cuando no conocemos ni la media ni la desviación estándar de nuestra población.
+\item \textbf{P-value}: Sirve para determinar la significancia estadística de los resultados obtenidos en los análisis previos, estableciendo si la relación entre variables es lo suficientemente fuerte como para no ser atribuida al azar.
+\end{itemize}
+
+Además, el estudio tomará como referencia trabajos previos, como el de \cite{BuitragoRamírezFrancisco2019Vpdv}, que encontró que ciertos factores aumentan significativamente el riesgo de que una víctima resulte fallecida o termine en un estado crítico tras un accidente. Por ejemplo, determinó que los accidentes interurbanos incrementan en un 74.5\% el riesgo de fatalidad en comparación con los urbanos y que, en ciertas zonas de alta incidencia, este riesgo puede duplicarse o cuadruplicarse.
+
+Por lo tanto, identificar las variables que tienen un mayor impacto en la severidad de los accidentes de tráfico permitirá la implementación de estrategias de prevención más efectivas. Esto contribuirá a optimizar la asignación de recursos para la reducción de accidentes, disminuyendo tanto el número de incidentes como la cantidad de personas heridas o fallecidas como consecuencia de los mismos. Además, los hallazgos de este estudio pueden servir como base para futuras investigaciones en seguridad vial y políticas públicas.
+
+\chapter{Bitácora 2}
+\newpage
+\section{Ordenamiento de literatura}
+
+
+
+\centering
+\makebox[\textwidth]{
+\begin{tabular}{|>{\centering\arraybackslash}m{3cm}|
+                >{\centering\arraybackslash}m{3cm}|
+                >{\centering\arraybackslash}m{3cm}|
+                >{\centering\arraybackslash}m{3cm}|
+                >{\centering\arraybackslash}m{1.5cm}|
+                >{\centering\arraybackslash}m{3cm}|}
+\hline
+\multicolumn{3}{|c|}{\textbf{Organización}} & \multicolumn{3}{c|}{\textbf{Literatura}} \\
+\hline
+\textbf{Tipo} & \textbf{Tema general} & \textbf{Tema específico} & \textbf{Título} & \textbf{Año} & \textbf{Autor(es)} \\
+\hline
+Calibración de modelos de elección discreta. & Modelos de elección discreta. & Los estados de transición generan más riesgo de ocurrencia para todos los accidentes. & Estimación de probabilidades de accidentes basada en estados de tráfico en autopistas urbanas. & 2014 & Cristian Nicolás Zúñiga González \\
+Modelo logit multinomial (para severidad de heridas). & Estimación de severidad de heridas. & Existen muchos factores, tanto de comportamiento personal, características vehículares y de tipo de choque, que afectan la severidad de los accidentes de tráfico. & Analysis of the factors affecting the severity of two-vehicle crashes. & 2008 & Alejandro Ángel, Mark Hickman \\
+Regresión logística binaria. & Accidentes interurbanos. & Los accidentes interurbanos, la edad y la zona aumentan la gravedad y mortalidad vial. & Variables predictoras de víctimas graves, críticas o fallecidas en los accidentes de tráfico en Extremadura & 2019 & José Antonio Morales Gabardino, Laura Redondo-Lobato, Francisco Buitrago-Ramírez. \\
+Prueba Chi-Cuadrado. & Patrones de víctimas no fatales de accidentes de tráfico. & Se utilizan métodos estadísticos para encontrar patrones en los accidentes de tráfico no fatales. & Injury Pattern among non-fatal road traffic accident cases: a cross-sectional study in central India. & 2005 & Gunjan B. Ganveer, Rajnarayan R. Tiwari \\
+Descriptivo y metodológico. & Accidentes vehiculares que involucran autobuses. & Los sistemas de alerta de colisiones para autobuses deben monitorear los alrededores de los buses en todo momento, especialmente en condiciones normales. & Trends in Transit Bus Accidents and Promising Collision Countermeasures. & 2007 & David Yang. \\
+Descriptivo. & Discapacidad tras accidentes de tráfico. & los accidentes de tráfico incrementan el riesgo de discapacidad para los involucrados. & Risk of disability due to car crashes: a review of the literature and methodological issues. & 2004 & Shanthi N. Ameratunga, Robyn N. Norton, Derrick A. Bennett y Rod T. Jackson. \\
+Metodológico. &  Escenarios propensos a accidentes vehiculares. & Los vehículos automatizados deben ser capaces de enfrentar exitosamente situaciones inesperadas. & Pre-crash scenarios at road junctions: A clustering method for car crash data. & 2017 & Phillipe Nitsche, Pete Thomas, Rainer Stuetz, Ruth Welsh. \\
+
+\hline
+\end{tabular}
+}
+
+
+
+
+\centering
+\makebox[\textwidth]{
+\begin{tabular}{|>{\centering\arraybackslash}m{3cm}|
+                >{\centering\arraybackslash}m{3cm}|
+                >{\centering\arraybackslash}m{3cm}|
+                >{\centering\arraybackslash}m{3cm}|
+                >{\centering\arraybackslash}m{1.5cm}|
+                >{\centering\arraybackslash}m{3cm}|}
+\hline
+\multicolumn{3}{|c|}{\textbf{Organización}} & \multicolumn{3}{c|}{\textbf{Literatura}} \\
+\hline
+\textbf{Tipo} & \textbf{Tema general} & \textbf{Tema específico} & \textbf{Título} & \textbf{Año} & \textbf{Autor(es)} \\
+\hline
+Probabilidad, estadística inferencial, y métodos aplicados. & Fundamentos teóricos y aplicaciones de la probabilidad y la estadística. & Presenta la teoría de la probabilidad, así como la estadística, para luego presentar aplicaciones. & Probability and Statistics. & 2012 & Morris H. DeGroot y Mark J. Schervish. \\
+Modelo estructural de series temporales con intervención. &  Modelado estadístico de accidentes de tráfico en Nueva Zelanda. & Un modelo estadístico para analizar los patrones temporales de accidentes de tráfico fatales en Nueva Zelanda. & A model of traffic crashes in New Zealand. & 2001 & Abdus Salam y T. R. Wilson. \\
+Metodológico. & Tendencias temporales de lesiones relacionadas con el transporte en Nueva Zelanda. & Tendencias temporales de lesiones relacionadas con el transporte en Nueva Zelanda, destacando un aumento en las lesiones de motociclistas y disparidades según etnicidad y ubicación geográfica. & Temporal trends of transport-related injuries on New Zealand roads. & 2024 & Siobhan Isles, Michael Keane, Joanna F. Dipnall, Ben Beck. \\
+Empírico. &  Subregistro de víctimas de accidentes de tráfico en Nueva Zelanda. & menos de dos tercios de las víctimas hospitalizadas por accidentes de tráfico fueron registradas por la policía en Nueva Zelanda en 1995. & Under-reporting of motor vehicle traffic crash victims in New Zealand. & 2001 &  Shanthi Ameratunga, Robyn Norton, John Connor, Rod Jackson. \\
+Empírico. & Relación entre fatiga y choques vehiculares. & La fatiga parece tener una relación positiva con la ocurrencia accidentes de tráfico. & The role of driver sleepiness in car crashes: a systematic review of epidemiological studies. & 2001 & Jennie Connor, Gary Whitlock, Robyn Norton, y Rod Jackson. \\
+\hline
+\end{tabular}
+}
+
+
+
+
+\newpage
+\section{Enlaces de literatura}
+
+
+\justifying
+Los accidentes de tráfico representan un desafío constante para las sociedades de la actualidad, además de su impacto inmediato en términos de muertes y lesiones, además se debe considerar sus consecuencias a largo plazo sobre la salud, la movilidad y la economía. A pesar de los avances tecnológicos en los sistemas de transporte y las campañas de seguridad vial, la siniestralidad sigue siendo elevada en muchas regiones del mundo. Frente a esta problemática, la investigación científica ha abordado diversos aspectos del fenómeno, centrándose principalmente en identificar los factores que influyen en la severidad de los accidentes y en proponer modelos predictivos que permitan mitigar sus efectos. En este trabajo, se presenta un análisis crítico de distintos estudios sobre accidentes de tráfico, sus metodologías, resultados y limitaciones, con el objetivo de comprender mejor las dinámicas involucradas y señalar posibles direcciones para futuras investigaciones.
+
+Uno de los primeros aspectos que destaca en la literatura es la variedad de enfoques empleados para estudiar la severidad de los accidentes. Por ejemplo, el estudio de Zúñiga (2014) se enfoca en cómo el estado del tráfico afecta la gravedad de los accidentes en autopistas urbanas. Utilizando modelos logit multinomial, encuentra que ciertos estados de transición del tráfico, como el ``final de cola'', se asocian con una mayor probabilidad de colisiones severas, especialmente en zonas con pendientes. Este hallazgo sugiere que el riesgo vial no solo depende del volumen de tráfico, sino también de su variabilidad y evolución en el tiempo. Por otro lado, Ángel y Hickman (2008) emplean un modelo de costos basado en el tipo de accidente (choque frontal, lateral, trasero) y en variables como el uso del cinturón, el alcohol y la presencia de peatones. Su investigación concluye que los choques frontales son los más costosos y mortales, y que factores como la edad y el comportamiento del conductor influyen significativamente en los resultados.
+
+En una línea similar, Morales Gabardino et al. (2019) analizan la severidad de los accidentes en la región de Extremadura, España, utilizando un modelo logit binario. Sus resultados señalan que los accidentes interurbanos, el sexo del conductor, la edad y la zona del siniestro son predictores importantes de gravedad. Sin embargo, el estudio también revela limitaciones en la información disponible, como la falta de variables clínicas o psicológicas, lo que restringe el alcance del análisis. En contraste, Ganveer y Tiwari (2005) realizan un estudio observacional en Nagpur, India, centrado en accidentes no fatales. Encuentran que la mayoría ocurre en horario diurno, involucra vehículos de dos ruedas y produce lesiones múltiples, sobre todo en extremidades. Aunque su enfoque es más descriptivo que inferencial, proporciona datos valiosos sobre las condiciones concretas de los accidentes en contextos urbanos.
+
+El estudio de Yang (2007), centrado en accidentes de autobuses, ofrece una perspectiva complementaria. Analiza 152 accidentes en Tainan, Taiwán, y descubre que la mayoría ocurre bajo condiciones normales de tráfico y clima, lo que sugiere que los accidentes no son necesariamente consecuencia de situaciones extremas, sino de comportamientos cotidianos potencialmente peligrosos. Esta conclusión refuerza la necesidad de mantener estrategias de prevención constantes, independientemente de las condiciones externas. Por su parte, Ameratunga et al. (2004) abordan un tema menos explorado: las discapacidades derivadas de los accidentes de tráfico. A través de una revisión de estudios epidemiológicos, identifican una falta de consenso en las estimaciones y advierten sobre la escasa representación de países de ingresos bajos y medios, lo que limita la comprensión global del problema.
+
+Además de estos estudios centrados en el análisis empírico, la literatura también incluye trabajos que abordan la problemática desde una perspectiva metodológica. Nitsche et al. (2017), por ejemplo, aplican técnicas de \textit{clustering} no supervisado para identificar escenarios de alto riesgo en intersecciones, con el objetivo de mejorar los sistemas de asistencia en vehículos automatizados. Este enfoque innovador busca anticipar situaciones complejas en las que las decisiones humanas pueden ser impredecibles. Finalmente, DeGroot y Schervish (2012) ofrecen una base teórica sobre estadística inferencial, clave para entender los métodos empleados en muchos de los estudios mencionados. Su obra enfatiza la importancia de aplicar correctamente herramientas como la regresión logística y el análisis de máxima verosimilitud, garantizando así la validez de las conclusiones.
+
+El contraste entre estos trabajos permite identificar tanto avances como carencias en el campo. Mientras algunos estudios incorporan modelos estadísticos sofisticados, otros optan por descripciones más directas de los accidentes y sus consecuencias. Sin embargo, en ambos casos, es frecuente que se omitan variables relevantes, como la salud mental del conductor, su nivel de estrés o la infraestructura del entorno. Además, existe una tendencia a centrarse en contextos urbanos de países desarrollados, dejando de lado realidades igualmente críticas en zonas rurales o en países con menos recursos. Esta falta de diversidad limita la aplicabilidad de los resultados y puede llevar a políticas públicas poco efectivas en contextos distintos.
+
+En mi opinión, uno de los principales desafíos que enfrenta la investigación sobre siniestralidad vial es lograr una mayor integración entre disciplinas. Si bien los modelos matemáticos son útiles para identificar patrones y realizar predicciones, no pueden captar por sí solos la complejidad del comportamiento humano o de las dinámicas sociales que subyacen a muchos accidentes. Es necesario incorporar enfoques desde la psicología, la sociología y el urbanismo, que permitan entender mejor por qué ciertos comportamientos se repiten, cómo influye el diseño de la ciudad en la ocurrencia de siniestros, o qué barreras enfrentan los conductores para adoptar prácticas seguras. Asimismo, creo que el desarrollo de nuevas tecnologías ---como sensores vehiculares, inteligencia artificial y sistemas de monitoreo urbano--- abre la puerta a una nueva generación de estudios más precisos y dinámicos, capaces de adaptarse a las condiciones cambiantes del tráfico en tiempo real.
+
+En conclusión, la literatura sobre accidentes de tráfico ofrece una base sólida para comprender los factores que inciden en la severidad de los siniestros y para diseñar estrategias de prevención más efectivas. No obstante, aún queda camino por recorrer en términos de diversidad geográfica, interdisciplinariedad y profundidad de análisis. La incorporación de nuevas tecnologías, la mejora en la recolección de datos y la apertura a enfoques más integrales serán claves para avanzar hacia sistemas de transporte más seguros y resilientes. Solo mediante una mirada amplia y crítica será posible reducir de forma sostenible la siniestralidad vial y sus devastadoras consecuencias para las personas y las comunidades.
+
+\section{Análisis Estadísticos}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{V_Gowin_b1.png}
+\caption{\label{fig:Gowin}V de Gowin}
+\end{figure}
+
+La base de datos ya se encuentra en formato en tidy, recordemos que el formato tidy fue popularizado por el autor Hadley Wickham, donde indican que cada variable debe tener su propia columna y cada observación su propia fila. Nuestra base de datos cumple con estar en formato tidy.
+
+A su vez, antes de aplicar cualquier gráfico o análisis de datos a nuestra base de datos, es importante eliminar las variables que no aportan al estudio, por ello, vamos a eliminar los valores NA que vengan en nuestra base de datos y columnas que no sean de nuestro interés.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{resumen_base.png}
+\caption{\label{fig:resumen de la base de datos}resumen de la base de datos}
+\end{figure}
+
+De manera que, al hacer el proceso anterior, tenemos que la base de datos contiene un total de 33,708 observaciones y 10 variables. Las variables incluyen tanto características numéricas como categóricas relacionadas con accidentes de tráfico. Entre las variables numéricas se encuentran (velocidad\_recomendada), "fatales", "lesiones\_menores", "lesiones\_graves" y "limite\_velocidad", que representan las condiciones de los accidentes, tales como la velocidad recomendada, el número de víctimas fatales y heridas, y los límites de velocidad en las zonas de los accidentes. Por otro lado, las variables categóricas incluyen "severidad" (que clasifica los accidentes según su gravedad), "festivos" (que indica si el accidente ocurrió en un día festivo o no), "iluminación" (que describe las condiciones de luz al momento del accidente), "carretera" (que indica el tipo de carretera involucrada en el accidente), y "clima" (que especifica las condiciones climáticas en el momento del accidente). Esta información permite realizar un análisis detallado de las condiciones y características de los accidentes en la base de datos, lo que facilita identificar patrones y factores que influyen en la severidad de los accidentes.
+
+Ahora realizamos un análisis estadístico de nuestra base de datos, de todas las variables.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{resumen_numerico.png}
+\caption{\label{fig:resumen variables numericas}resumen variables numericas}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{resumen_categorico.png}
+\caption{\label{fig:resumen variables categoricas}resumen variables categoricas}
+\end{figure}
+
+Ahora, procederemos a realizar una matriz de correlación para las variables categóricas contenidas en la base de datos. El objetivo de este análisis es identificar posibles relaciones entre las distintas variables cualitativas, tales como la severidad del accidente, las condiciones climáticas, el tipo de iluminación, la superficie de la carretera, y si el evento ocurrió durante un período de vacaciones.
+
+El resultado se presentará mediante un mapa de calor (heatmap) que utiliza una escala de colores donde los tonos más rojizos representan correlaciones positivas más fuertes y los azulados indican correlaciones negativas. Además, se incluirán los valores numéricos directamente en cada celda, facilitando así la interpretación precisa de los niveles de asociación entre las distintas variables cualitativas. Esta representación permite identificar patrones relevantes que podrían ser clave en la comprensión de los factores que influyen en la severidad y características de los accidentes.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{matriz_correlacion_categorica.png}
+\caption{\label{fig:matriz correlacion categorica}matriz correlacion categorica}
+\end{figure}
+
+Lo anterior se hizo con el fin de tener una idea exploratoria general de cómo se mueven juntas las categorías al ser codificadas, pero esta correlación no debe interpretarse literalmente, salvo que las variables tengan un orden real y bien definido, de manera que lo mejor para analizar independecia de variables categoricas son las tablas de contingencia junto con estadísticos como el chi-cuadrado.
+
+Ahora, procederemos a construir una matriz de correlación para las variables numéricas presentes en la base de datos. El propósito de este análisis es evaluar la relación lineal entre pares de variables cuantitativas, tales como la velocidad recomendada, el límite de velocidad, el número de víctimas fatales, y las lesiones menores o graves asociadas a los accidentes.
+
+A diferencia de las variables categóricas, las variables numéricas permiten calcular coeficientes de correlación como el coeficiente de Pearson, que mide la intensidad de la relación lineal entre dos variables. Un valor cercano a 1 indica una fuerte correlación positiva, mientras que valores cercanos a -1 reflejan una correlación negativa fuerte. Valores próximos a 0 sugieren ausencia de relación lineal.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{matriz_correlacion_numerica.png}
+\caption{\label{fig:matriz correlacion numerica}matriz correlacion numerica}
+\end{figure}
+
+Al analizar la matriz de correlación de las variables numéricas, se observa una fuerte correlación positiva entre la velocidad recomendada y el límite de velocidad, lo cual resulta intuitivo, dado que ambas están directamente relacionadas con las condiciones del camino y las normativas de tránsito. Esta relación indica que a medida que el límite de velocidad aumenta en una determinada zona, también tiende a incrementarse la velocidad recomendada para los conductores, lo que podría refleja una adaptación de la infraestructura vial a las condiciones del entorno, como el tipo de carretera y su capacidad de soportar vehículos a mayor velocidad.
+
+Por otro lado, se detecta una débil correlación entre el número de víctimas fatales y las victímas con lesiones graves sugiere que, aunque ambas variables están relacionadas con la severidad de los accidentes, no necesariamente ocurren juntas de forma proporcional. Es decir, un accidente con muchas lesiones graves no implica automáticamente la presencia de víctimas fatales, y viceversa. Esta baja correlación puede deberse a diversos factores, como la rapidez con que se presenta asistencia médica, el tipo de accidente o el uso de medidas de seguridad como cinturones.
+
+Ahora daremos inicio al análisis gráfico de nuestra base de datos. Comenzaremos explorando la distribución de la severidad de los accidentes, una variable categórica fundamental en nuestro estudio. Dado su carácter cualitativo, la forma más adecuada de visualizar esta información es mediante un gráfico de barras, el cual nos permitirá observar claramente la frecuencia de cada categoría de severidad presente en el conjunto de datos. Esta representación facilitará la identificación de patrones o posibles desequilibrios en la ocurrencia de accidentes según su gravedad.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{distribucion_severidad.png}
+\caption{\label{fig:distribución severidad}distribución severidad}
+\end{figure}
+
+El gráfico de barras revela que la mayoría de los accidentes registrados en la base de datos corresponden a incidentes de severidad leve o sin heridos, mientras que los casos más graves, como aquellos con víctimas serias o fatales, son considerablemente menos frecuentes. Esta distribución sugiere que, aunque los accidentes son relativamente comunes, la mayoría no resultan en consecuencias extremadamente severas. Sin embargo, la presencia, aunque baja, de accidentes fatales resalta la importancia de seguir analizando los factores asociados a estos casos críticos.
+
+Además decidimos realizar un facet en esta misma variable con respecto a la variable "clima", con el fin de visualizar la distribución en cada categoría, esto porque queremos descartar o validar que de alguna forma el nivel clima tiene relación con nuestra variable objetivo, la cual es la severidad del accidente.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{proporcion_clima.png}
+\caption{\label{fig:proporción clima}proporción clima}
+\end{figure}
+
+El gráfico presentado muestra la distribución proporcional de la severidad de los accidentes de tráfico bajo diferentes condiciones climáticas, utilizando un gráfico de barras apiladas. Cada barra representa un tipo de clima y se descompone en proporciones de severidad del accidente, que incluyen: accidente sin lesiones, accidente leve, accidente grave y accidente fatal.
+
+\begin{enumerate}
+
+\item Predominio de accidentes sin lesionesEn todas las condiciones climáticas, los accidentes sin lesiones constituyen la categoría más frecuente. donde más del 50% de los accidentes por categoría no resultan en lesiones.
+
+\item Buen clima con mayor proporción de accidentes graves y fatalesCuriosamente, los accidentes en buen clima presentan una mayor proporción de casos graves y fatales en comparación con climas adversos. Este hallazgo puede parecer contraintuitivo, pero podría explicarse por un mayor volumen de tráfico y exceso de confianza de los conductores en condiciones óptimas.
+
+\item Climas adversos con menor proporción de severidad altaCondiciones como niebla, nieve y granizo no muestran un incremento notable en la proporción de accidentes severos. Esto sugiere que, a pesar del riesgo inherente, los conductores podrían adoptar una conducción más cautelosa o que el tráfico se reduce en estas condiciones, disminuyendo la exposición al riesgo.
+
+\item Limitación del uso de proporcionesEs importante tener en cuenta que el gráfico representa proporciones relativas, por lo que no refleja el número absoluto de accidentes. Dos condiciones climáticas pueden mostrar distribuciones similares de severidad, pero diferir sustancialmente en la cantidad total de accidentes ocurridos.
+
+\end{enumerate}
+
+Para obtener una imagen completa del impacto del clima en la severidad de los accidentes, no basta con observar las proporciones relativas. Es fundamental analizar cómo se distribuyen las condiciones climáticas dentro de cada nivel de severidad del accidente. Es decir, se debe evaluar cuántos accidentes totales ocurrieron bajo cada tipo de condición climática, pero desglosado por el nivel de severidad (leve, moderado, grave, etc.). De esta manera, no solo se podrá comparar la gravedad relativa de los accidentes en diferentes condiciones del clima, sino también identificar bajo qué condiciones se presenta una mayor cantidad absoluta de accidentes severos.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{distribucion_clima.png}
+\caption{\label{fig:distribución clima}distribución clima}
+\end{figure}
+
+En el gráfico anterior se puede apreciar con mayor claridad cómo se distribuye la cantidad total de accidentes según las distintas condiciones climáticas. A diferencia de una representación proporcional, este enfoque permite observar directamente qué tipos de clima están asociados con un mayor número absoluto de accidentes. Además, se puede identificar qué condiciones climáticas tienden a concentrar una mayor proporción de accidentes severos. Esto permite detectar patrones relevantes entre el clima y la severidad de los incidentes.
+
+Además, decidimos realizar un facet en la severidad con respecto a la variable "festividad", con el fin de visualizar la distribución en cada categoría, esto porque queremos descartar o validar que de alguna forma si que haya o no un día festivo tiene relación con nuestra variable objetivo.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{proporcion_festividad.png}
+\caption{\label{fig:proporción festividad}proporción festividad}
+\end{figure}
+
+El gráfico revela que, durante los días festivos, la proporción de accidentes graves y fatales tiende a ser ligeramente mayor que en los días no festivos. Aunque los accidentes sin lesiones siguen siendo predominantes en ambos casos, se observa una mayor concentración de eventos graves o severos en fechas festivas considerando que los mismos son por unos pocos días, lo cual puede estar asociado a comportamientos de riesgo como el consumo de alcohol o el aumento del tráfico.
+
+\begin{enumerate}
+
+\item Cumpleaños de la reina y Navidad/Año Nuevo: presentan una proporción notablemente mayor de accidentes graves y fatales, lo que sugiere un comportamiento de mayor riesgo en estas fechas. Esto puede deberse a celebraciones intensas, consumo de alcohol o conducción nocturna.
+
+\item Fin de semana del Trabajo: muestra una proporción más alta en accidentes severos y graves, disminuyendo significativamente la proporción de accidenetes sin lesiones, lo cual se puede asociar a que las personas aprovechen para alcoholizarse en esos días.
+
+\item Días no festivos presentan una proporción ligeramente mayor de accidentes sin lesiones, lo que sugiere que en condiciones normales, los accidentes tienden a ser menos severos.
+
+\end{enumerate}
+
+Para complementar el análisis proporcional, es fundamental observar también cómo se distribuye la cantidad total de accidentes en función del tipo de festividad y su severidad. A través del siguiente gráfico de barras apiladas, se puede visualizar el número absoluto de accidentes ocurridos en cada categoría festiva, desagregados por nivel de severidad. Esta representación permite identificar en qué festividades se concentra una mayor cantidad de siniestros y cómo varía su gravedad, proporcionando una perspectiva más completa del riesgo vial asociado a cada fecha especial.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{distribucion1_festividad.png}
+\caption{\label{fig:distribucion festividad 1}distribucion festividad 1}
+\end{figure}
+
+El anterior gráfico muetra como más de 30mil de los treintamil de los accidentes totales mostrados en la base de datos ocurrieron en un día "No festivo", lo cual es lógico debido a que representa la mayor parte del año, no obstante támbien se requiere poder visualizar como se distribuyen las otras categórias, al momento de no considerar los días no festivos.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1\linewidth]{distribucion2_festividad.png}
+\caption{\label{fig:distribucion festividad 2}distribucion festividad 2}
+\end{figure}
+
+Al remover la categoría "No festivo", el análisis se centra exclusivamente en las fechas especiales, permitiendo una comparación más clara entre festividades sin que los días comunes (los cuales son mucho más frecuentes) dominen visualmente la escala del gráfico. Esta decisión facilita identificar con mayor precisión cuáles festividades presentan una mayor concentración de accidentes y cómo se distribuyen en términos de severidad.
+
+\begin{enumerate}
+
+\item Navidad y Año Nuevo: destacan por tener un volumen considerable de accidentes, con una distribución que incluye una cantidad visible de eventos graves y fatales, lo cual es consistente con las celebraciones prolongadas y mayor exposición al riesgo vial.
+
+\item Festividades como Fin de semana del Trabajo presentan una menor cantidad de accidentes en términos absolutos, pero no por ello irrelevantes, especialmente si una fracción significativa de ellos es grave.
+
+\end{enumerate}
+
+Notese que este enfoque nos permite comparar entre fechas festivas bajo una escala que llega a ser más homogénea, evitando el sesgo que introduce la alta frecuencia de días no festivos. Así, se revela que algunas festividades, aunque menos frecuentes en el calendario, pueden ser desproporcionadamente riesgosas en términos de accidentes viales, especialmente cuando coinciden con desplazamientos masivos, celebraciones o relajación de normas de tránsito.
+
+
+\subsection{Análisis Descriptivo}
+
+\subsection{Propuesta Metodológica}
+Se pretende identificar qué variables tienen mayor impacto en la severidad de los accidentes de tráfico en Nueva Zelanda. Para ello, se utilizarán métodos estadísticos como la prueba Chi-cuadrado para variables categóricas, la prueba t de Student para comparar medias en variables continuas según la severidad, así como el análisis de significancia mediante el p-value. 
+
+A continuación se definen estas metodologías, de acuerdo con el libro Probability and Statistics \cite{degroot2012probability}.
+
+\subsubsection{T de Student}
+Sea $X_1, \ldots, X_n$ una muestra aleatoria de variables aleatorias de distribución normal con media $\mu$ y varianza $\sigma^2$, ambas desconocida. \\
+Se sabe que $n^{1/2}(\overline{X}_n - \mu)/\sigma'$ tiene la distribución $t$ con $n - 1$ grados de libertad. Sea $T_{n-1}^{-1}$ la función cuantil de la distribución $t$ con $n - 1$ grados de libertad.\\
+Entonces, para probar $H_0: \mu < \mu_0$ versus $H_1: \mu > 0$ a un nivel $\alpha_0$, se rechaza $H_0$ si $n^{1/2}(\overline{X}n - \mu_0)/\sigma' > T_{n-1}^{-1}(1 - \alpha_0)$. \\
+Para probar $H_0: \mu = \mu_0$ versus $H_1: \mu \neq \mu_0$, se rechaza $H_0$ si $|n^{1/2}(\overline{X}n - \mu_0)/\sigma'| \geq T{n-1}^{-1}(1 - \alpha_0/2)$. \\
+Las funciones de potencia de cada una de estas pruebas pueden ser escritas en términos de la función de distribución acumulativa de una distribución $t$ no central con $n - 1$ grados de libertad y parámetro de no centralidad $\psi = n^{1/2}(\mu - \mu_0)/\sigma$.
+
+\subsubsection{Valor p}
+El valor p, o nivel observao de significancia, es el nivel más pequeño $\alpha_0$ tal que rechazaríamos la hipótesis nula al nivel $\alpha_0$ con los datos observados. Es decir, si un experimentador rechaza una hipótesis nula si y solo si el valor $p$ es a lo sumo $\alpha_0$ está utilizando una prueba con nivel de significancia $\alpha_0$. De la misma manera, un experimentador que desea una prueba de nivel $\alpha_0$ rechazará la hipótesis nula si y solo si el valor $p$ es a lo sumo $\alpha_0$.
+
+Para pruebas de la forma "rechazar la hipótesis nula cuando $T \geq c$" para un único estadístico de prueba $T$, hay una manera directa de calcular los valores $p$. 
+Para cada $t$, sea $\delta_t$ la prueba que rechaza $H_0$ si $T \geq t$. Entonces el valor $p$ cuando se observa $T = t$ es el tamaño de la prueba $\delta_t$.
+Es decir,
+\begin{equation}
+p = \sup_{\theta \in \Omega_0} \pi(\theta|\delta_t) = \sup_{\theta \in \Omega_0} \text{Pr}(T \geq t|\theta).
+\end{equation}
+
+Típicamente, $\pi(\theta|\delta_t)$ se maximiza en algún $\theta_0$ en la frontera entre $\Omega_0$ y $\Omega_1$.
+
+
+\subsubsection{Prueba Chi-cuadrado}
+Para llevar a cabo una prueba $\chi^2$ de bondad de ajuste de las hipótesis, el estadístico $Q$ definido por 
+$$Q = \sum_{i=1}^{k} \frac{(N_i - np_i^0)^2}{np_i^0}$$
+debe ser modificado porque el número esperado $np_i^0$ de observaciones de tipo $i$ en una muestra aleatoria de $n$ observaciones ya no está completamente especificado por la hipótesis nula $H_0$. The modification that se uses consiste simplemente in reemplazar $np_i^0$ por el EMV of this nmero esperado bajo la suposición of that $H_0$ es verdadera.\\
+En otras palabras, si $\hat{\theta}$ denota el E.M.V. del vector de parámetros $\theta$ basado en los números observados $N_1, \ldots, N_k$, entonces el estadístico $Q$ se define como sigue:
+
+\begin{align} \label{Q_chi_test}
+Q = \sum_{i=1}^{k} \frac{[N_i - n\pi_i(\hat{\theta})]^2}{n\pi_i(\hat{\theta})}.
+\end{align}
+
+Nuevamente, es razonable basar una prueba de las hipótesis de la forma
+\begin{align} \label{pruebaH}
+H_0: \quad &\text{Existe un valor de } \theta \in \Omega \text{ tal que}\\
+&p_i = \pi_i(\theta) \text{ para } i = 1, \ldots, k.\\
+H_1: \quad &\text{La hipótesis } H_0 \text{ no es verdadera.}
+\end{align}
+en este estadístico $Q$ rechazando $H_0$ si $Q \geq c$, donde $c$ es una constante apropiada. 
+
+En 1924, R. A. Fisher demostró el siguiente resultado,
+
+\paragraph{Prueba $\chi^2$ para Hipótesis Nula Compuesta}
+
+Supongamos que la hipótesis nula $H_0$ en \ref{pruebaH} es verdadera y que se satisfacen ciertas condiciones de regularidad. Entonces, cuando el tamaño de la muestra $n \to \infty$, la f.d.a. de $Q$ en \ref{Q_chi_test} converge a la f.d.a. de la distribución $\chi^2$ con $k - 1 - s$ grados de libertad.
+
+Cuando el tamaño de la muestra $n$ es grande y la hipótesis nula $H_0$ es verdadera, la distribución de $Q$ será aproximadamente una distribución $\chi^2$. Para determinar el número de grados de libertad, debemos restar $s$ del número $k - 1$, porque ahora estamos estimando los $s$ parámetros $\theta_1, \ldots, \theta_s$ cuando comparamos el número observado $N_i$ con el número esperado $n\pi_i(\hat{\theta})$ para $i = 1, \ldots, k$. \\ 
+Para que este resultado sea válido, es necesario satisfacer las siguientes condiciones de regularidad: Primero, el E.M.V. $\hat{\theta}$ del vector $\theta$ debe ocurrir en un punto donde las derivadas parciales de la función de verosimilitud con respecto a cada uno de los parámetros $\theta_1, \ldots, \theta_s$ sean iguales a 0.
+
+\subsubsection{Tablas de Contingencia}
+Una tabla de contingencia es una tabla en la que cada observación se clasifica de al menos dos maneras.
+Una tabla de contingencias es bidireccional si solo se consideran dos clasificaciones para cada entrada.
+
+En general, se considera una tabla de contingencia bidireccional que contiene $R$ filas y $C$ columnas. Para $i = 1, \ldots, R$ y $j = 1, \ldots, C$, denotaremos $p_{ij}$ como la probabilidad de que un individuo seleccionado al azar de una población dada sea clasificado en la $i$-ésima fila y la $j$-ésima columna de la tabla. Además, denotaremos $p_{i+}$ como la probabilidad marginal de que el individuo será clasificado en la $i$-ésima fila de la tabla y $p_{+j}$ denotará la probabilidad marginal de que el individuo será clasificado en la $j$-ésima columna de la tabla. Así,
+
+\begin{align}
+p_{i+} = \sum_{j=1}^{C} p_{ij} \quad \text{y} \quad p_{+j} = \sum_{i=1}^{R} p_{ij}.
+\end{align}
+
+Además, dado que la suma de las probabilidades para todas las celdas de la tabla debe ser 1, entonces
+
+\begin{align}
+\sum_{i=1}^{R} \sum_{j=1}^{C} p_{ij} = \sum_{i=1}^{R} p_{i+} = \sum_{j=1}^{C} p_{+j} = 1.
+\end{align}
+
+Al tomar una muestra aleatoria de $n$ individuos de la población dada. Para $i = 1, \ldots, R$, y $j = 1, \ldots, C$, denotaremos $N_{ij}$ como el número de individuos que están clasificados en la $i$-ésima fila y la $j$-ésima columna de la tabla. Además, se denotará $N_{i+}$ como el número total de individuos clasificados en la $i$-ésima fila y $N_{+j}$ denotará el número total de individuos clasificados en la $j$-ésima columna.
+
+Así,
+
+\begin{align}
+N_{i+} = \sum_{j=1}^{C} N_{ij} \quad \text{y} \quad N_{+j} = \sum_{i=1}^{R} N_{ij}.
+\end{align}
+
+También,
+
+\begin{align}
+\sum_{i=1}^{R} \sum_{j=1}^{C} N_{ij} = \sum_{i=1}^{R} N_{i+} = \sum_{j=1}^{C} N_{+j} = n.
+\end{align}
+
+Sobre la base de estas observaciones, se deben probar las siguientes hipótesis:
+\begin{align}
+H_0&: \quad p_{ij} = p_{i+}p_{+j} \quad \text{para} \; i = 1, \ldots, R \; \text{y} \; j = 1, \ldots, C, \\
+H_1&: \quad \text{La hipótesis } H_0 \text{ no es verdadera.}
+\end{align}
+
+\paragraph*{La Prueba $\chi^2$ de Independencia}
+Para aplicar la prueba $\chi^2$, cada individuo en la población de la cual se toma la muestra debe pertenecer a una de las $RC$ celdas de la tabla de contingencia. Bajo la hipótesis nula $H_0$, las probabilidades desconocidas $p_{ij}$ de estas celdas se han expresado como funciones de los parámetros desconocidos $p_{i+}$ y $p_{+j}$. Dado que $\sum_{i=1}^{R} p_{i+} = 1$ y $\sum_{j=1}^{C} p_{+j} = 1$, el número real de parámetros desconocidos a estimar cuando $H_0$ es verdadera es $s = (R - 1) + (C - 1)$, o $s = R + C - 2$.
+
+Para $i = 1, \ldots, R$, y $j = 1, \ldots, C$, denote $\hat{E}_{ij}$ el E.M.V., cuando $H_0$ es verdadera, del número esperado de observaciones que serán clasificadas en la $i$-ésima fila y la $j$-ésima columna de la tabla, entonces
+
+\begin{align}
+Q = \sum_{i=1}^{R} \sum_{j=1}^{C} \frac{(N_{ij} - \hat{E}_{ij})^2}{\hat{E}_{ij}}.
+\end{align}
+
+Además, dado que la tabla de contingencia contiene $RC$ celdas, y dado que $s = R + C - 2$ parámetros deben ser estimados cuando $H_0$ es verdadera, se deduce que cuando $H_0$ es verdadera y $n \to \infty$, la función de distribución acumulada (f.d.a.) de $Q$ converge a la f.d.a. de la distribución $\chi^2$ para la cual el número de grados de libertad es $RC - 1 - s = (R - 1)(C - 1)$.
+
+A continuación, consideraremos la forma del estimador $\hat{E}_{ij}$. El número esperado de observaciones en la $i$-ésima fila y la $j$-ésima columna es simplemente $np_{ij}$. Cuando $H_0$ es verdadera, $p_{ij} = p_{i+}p_{+j}$. Por lo tanto, si $\hat{p}_{i+}$ y $\hat{p}_{+j}$ denotan los E.M.V. de $p_{i+}$ y $p_{+j}$, entonces se deduce que $\hat{E}_{ij} = n\hat{p}_{i+}\hat{p}_{+j}$. Además, como $p_{i+}$ es la probabilidad de que una observación sea clasificada en la $i$-ésima fila, $\hat{p}_{i+}$ es simplemente la proporción de observaciones en la muestra que están clasificadas en la $i$-ésima fila; es decir, $\hat{p}_{i+} = N_{i+}/n$. De manera similar, $\hat{p}_{+j} = N_{+j}/n$, y se deduce que
+
+\begin{align}
+\hat{E}_{ij} = n\left(\frac{N_{i+}}{n}\right)\left(\frac{N_{+j}}{n}\right) = \frac{N_{i+}N_{+j}}{n}.
+\end{align}
+
+Al sustituir este valor de $\hat{E}_{ij}$, se puede calcular el valor de $Q$ a partir de los valores observados de $N_{ij}$. La hipótesis nula $H_0$ debe ser rechazada si $Q > c$, donde $c$ es una constante apropiadamente elegida. Cuando $H_0$ es verdadera, y el tamaño de la muestra $n$ es grande, la distribución de $Q$ será aproximadamente la distribución $\chi^2$ con $(R - 1)(C - 1)$ grados de libertad.
+
+\subsection{Fichas de Resultados}
+
+\subsubsection{Ficha 1}
+
+\textbf{Nombre de su hallazgo:} Limitaciones de la correlación para variables categóricas
+
+\textbf{Resumen en una oración:} La correlación no es adecuada para analizar independencia entre variables categóricas sin un orden natural claro.
+
+\textbf{Principal característica:} El análisis de independencia entre variables categóricas debe realizarse con tablas de contingencia y pruebas como el chi-cuadrado.
+
+\textbf{Problemas o posibles desafíos:} La interpretación errónea de coeficientes de correlación en variables categóricas puede llevar a conclusiones engañosas si no se considera la naturaleza ordinal o nominal de las categorías.
+
+\textbf{Resumen en un párrafo:} Aunque puede calcularse la correlación entre variables categóricas codificadas numéricamente, esta medida no siempre refleja relaciones reales, especialmente si las categorías no tienen un orden natural y bien definido. Por ello, el análisis exploratorio mediante correlación debe tomarse con precaución. Para evaluar la independencia entre variables categóricas, es más apropiado utilizar herramientas diseñadas para este propósito, como las tablas de contingencia combinadas con pruebas estadísticas como el chi-cuadrado, que consideran explícitamente las frecuencias observadas y esperadas entre combinaciones de categorías.
+
+\subsubsection{Ficha 2}
+
+\textbf{Nombre de su hallazgo:} Relaciones lineales entre variables numéricas en accidentes de tránsito
+
+\textbf{Resumen en una oración:} La matriz de correlación revela una fuerte asociación entre velocidad recomendada y límite de velocidad, y una débil relación entre víctimas fatales y con lesiones graves.
+
+\textbf{Principal característica:} Se identifican patrones lineales entre variables cuantitativas mediante el coeficiente de Pearson, destacando asociaciones claras en medidas de velocidad y ambigüedad en indicadores de severidad.
+
+\textbf{Problemas o posibles desafíos:} Las bajas correlaciones entre indicadores de gravedad pueden dificultar el modelado conjunto de estos factores y reflejar la influencia de variables externas no observadas.
+
+\textbf{Resumen en un párrafo:} El análisis de la matriz de correlación para las variables numéricas revela información clave sobre las relaciones entre distintos aspectos de los accidentes de tránsito. Una fuerte correlación positiva entre la velocidad recomendada y el límite de velocidad sugiere una coherencia entre las condiciones del camino y la regulación vial. Por el contrario, la débil correlación entre el número de víctimas fatales y las lesiones graves pone de manifiesto que la severidad de un accidente no siempre se manifiesta de forma proporcional en distintos tipos de daño, lo que podría estar influido por factores como el tipo de accidente, la infraestructura o el tiempo de respuesta ante emergencias. Además, se anticipa la exploración gráfica de variables categóricas como la severidad del accidente, utilizando gráficos de barras para facilitar la comprensión visual de su distribución.
+
+\subsubsection{Ficha 3}
+
+\textbf{Nombre de su hallazgo:} Distribución de la severidad de accidentes
+
+\textbf{Resumen en una oración:} La mayoría de los accidentes en la base de datos son de severidad leve o sin heridos, siendo menos frecuentes los casos graves o fatales.
+
+\textbf{Principal característica:} El análisis gráfico muestra una alta frecuencia de accidentes menores frente a una baja pero significativa presencia de eventos severos.
+
+\textbf{Problemas o posibles desafíos:} La baja frecuencia de accidentes graves puede dificultar su análisis estadístico detallado y puede requerir enfoques específicos para estudiar eventos raros.
+
+\textbf{Resumen en un párrafo:} El gráfico de barras sobre la severidad de los accidentes permite observar que los incidentes más comunes en la base de datos son aquellos sin heridos o con consecuencias leves, mientras que los accidentes con víctimas graves o fatales son significativamente menos frecuentes. Esta asimetría en la distribución indica que, aunque los accidentes viales ocurren con regularidad, en la mayoría de los casos no resultan en consecuencias extremas. No obstante, la presencia de accidentes fatales, aunque baja, representa una preocupación crítica en términos de política pública y prevención, y justifica un análisis más profundo de los factores que los provocan.
+
+\subsubsection{Ficha 4}
+
+\textbf{Nombre del hallazgo:} Asociación entre clima y severidad de accidentes en términos relativos y absolutos
+
+\textbf{Resumen en una oración:} Las condiciones climáticas influyen tanto en la proporción como en la cantidad absoluta de accidentes, siendo el buen clima asociado con más accidentes severos en proporción y en número total.
+
+\textbf{Principal característica:} El análisis conjunto de gráficos de barras apiladas (proporcional y absoluto) permite identificar que, aunque en todas las condiciones climáticas predominan los accidentes sin lesiones, el buen clima concentra no solo más accidentes en total, sino también una mayor proporción de los más graves.
+
+\textbf{Problemas o posibles desafíos:} El análisis proporcional puede inducir a interpretaciones erróneas si no se complementa con datos absolutos, ya que no considera la magnitud total de los eventos por categoría climática.
+
+\textbf{Resumen en un párrafo:} El análisis de la severidad de los accidentes según el clima revela, en términos proporcionales, que los accidentes sin lesiones son los más frecuentes en todos los tipos de clima, mientras que el buen clima presenta una proporción relativamente mayor de accidentes graves y fatales. Esto puede deberse a una mayor confianza al conducir o mayor flujo vehicular. Al considerar los datos absolutos, se confirma que el buen clima también registra el mayor número total de accidentes, incluidos los severos, lo cual refuerza la hipótesis de una mayor exposición al riesgo en condiciones favorables. En contraste, condiciones adversas como nieve o niebla muestran tanto una menor proporción como una menor cantidad absoluta de accidentes severos. Este enfoque dual permite una comprensión más profunda del papel del clima en la ocurrencia y gravedad de los accidentes, alertando sobre la importancia de no subestimar el riesgo en días despejados.
+
+\subsubsection{Ficha 5}
+
+\textbf{Nombre del hallazgo:} Mayor proporción y concentración de accidentes severos durante festividades específicas
+
+\textbf{Resumen en una oración:} Los días festivos presentan una mayor proporción y, en ciertos casos, una alta concentración absoluta de accidentes graves y fatales, en comparación con los días no festivos.
+
+\textbf{Principal característica:} Al analizar tanto proporciones como volúmenes absolutos de accidentes por festividad, se identifican fechas específicas (como Navidad, Año Nuevo o el Fin de Semana del Trabajo) en las que aumenta significativamente el riesgo de siniestros severos.
+
+\textbf{Problemas o posibles desafíos:} La categoría “No festivo”, al representar la mayoría de días del año, puede ocultar tendencias importantes en las fechas especiales si no se analiza por separado o se ajusta la escala del gráfico.
+
+\textbf{Resumen en un párrafo:} El análisis facetado de la severidad de los accidentes por tipo de festividad revela que, si bien los accidentes sin lesiones predominan, las festividades tienden a mostrar una proporción mayor de casos graves y fatales respecto a los días no festivos. En particular, fechas como Navidad, Año Nuevo y el Fin de Semana del Trabajo concentran un volumen notable de accidentes severos, lo que sugiere un aumento del riesgo vial posiblemente relacionado con celebraciones, desplazamientos masivos o consumo de alcohol. La visualización de los datos absolutos y el posterior filtrado de los días no festivos permiten una comparación más clara entre festividades, destacando que ciertas fechas, aunque poco frecuentes, implican un riesgo desproporcionadamente alto. Este hallazgo resalta la necesidad de medidas de prevención focalizadas en fechas festivas de alto riesgo.
+
+
+
+
+
+\bibliographystyle{apalike}
+\bibliography{referencias}
+\nocite{*}
+
+\chapter{Bitácora 3}
+
+\section{Parte de planificación}
+
+\subsection{Análisis de modelación}
+\subsection{Construcción de fichas de resultados}
+\subsection{Ordenamiento de los elementos de reporte}
+\section{Parte de escritura}
+\section{Parte de reflexión}
+
+\end{document}
