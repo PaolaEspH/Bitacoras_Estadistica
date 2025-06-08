@@ -197,7 +197,6 @@ dim(df)
 
 # Para la Prueba T de Student
 
-# Agrupar la severidad
 df$severidad_binaria <- ifelse(df$severidad %in% c("Accidente fatal", "Accidente grave"),
                                "Alta", "Baja")
 
@@ -209,7 +208,6 @@ df$lesiones_graves <- as.numeric(as.character(df$limite_velocidad))
 
 summary(df)
 
-# Aplicar prueba t de Student para cada variable numérica
 num_vars <- c("fatales", "lesiones_menores", "lesiones_graves", "velocidad_recomendada", "limite_velocidad")
 
 df_resultados_t <- data.frame(
@@ -221,12 +219,10 @@ df_resultados_t <- data.frame(
   stringsAsFactors = FALSE
 )
 
-# Iterar sobre las variables numéricas
 for (var in num_vars) {
   grupo_alta <- df[df$severidad_binaria == "Alta", ][[var]]
   grupo_baja <- df[df$severidad_binaria == "Baja", ][[var]]
   
-  # Asegurarse de que sean numéricos
   if (is.numeric(grupo_alta) && is.numeric(grupo_baja)) {
     t_result <- t.test(grupo_alta, grupo_baja)
     
@@ -238,14 +234,12 @@ for (var in num_vars) {
       significativo = t_result$p.value < 0.05
     )
     
-    # Agregar la fila al dataframe
     df_resultados_t <- rbind(df_resultados_t, nueva_fila)
   }
 }
 
 
 
-# Ver resultado
 print(df_resultados_t)
 
 df_resultados_t$p_value <- format(df_resultados_t$p_value, scientific = TRUE)
@@ -262,3 +256,49 @@ for (var in num_vars) {
   print(table(df$severidad_binaria, is.na(df[[var]])))
 }
 
+# Prueba Q de Cochran
+library(DescTools)
+
+df$fatales_bin <- ifelse(df$fatales > 0, 1, 0)
+df$les_menores_bin <- ifelse(df$lesiones_menores > 0, 1, 0)
+df$les_graves_bin  <- ifelse(df$lesiones_graves > 0, 1, 0)
+
+df$severidad <- as.factor(df$severidad)
+
+niveles <- levels(df$severidad)
+
+resultados <- list()
+
+for (nivel in niveles) {
+  subdf <- subset(df, severidad == nivel)
+  mat <- as.matrix(subdf[, c("fatales_bin", "les_graves_bin", "les_menores_bin")])
+  qtest <- CochranQTest(mat)
+  
+  resultados[[nivel]] <- qtest
+  
+  cat(paste0("\nSeveridad: ", nivel, "\n"))
+  print(qtest)
+}
+
+cochran_df <- data.frame(
+  Severidad = character(),
+  Q = numeric(),
+  gl = integer(),
+  p_value = numeric(),
+  stringsAsFactors = FALSE
+)
+
+for (nivel in names(resultados)) {
+  test <- resultados[[nivel]]
+  cochran_df <- rbind(cochran_df, data.frame(
+    Severidad = nivel,
+    Q = as.numeric(test$statistic),
+    gl = as.integer(test$parameter),
+    p_value = as.numeric(test$p.value)
+  ))
+}
+cochran_df$p_value <- format(cochran_df$p_value, scientific = TRUE)
+
+# Exportar
+tabla_latex <- xtable(cochran_df, caption = "Resultados de la prueba de Cochran Q por nivel de severidad", label = "tab:cochran_q", digits = 4)
+print(tabla_latex, include.rownames = FALSE, type = "latex", file = "../tablas/cochran_q.tex")
