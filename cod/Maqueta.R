@@ -3,6 +3,7 @@ library(tidyverse)
 library(janitor)
 library(readr)
 library(xtable)
+library(rcompanion)
 
 # Cargar y limpiar el dataset
 df <- read_csv("../data/data_traducida.csv") %>% select(-colnames(df)[1])
@@ -179,6 +180,20 @@ df_resultados <- do.call(rbind, resultados)
 print(df_resultados)
 print(xtable(df_resultados), type = "latex", file = "../tablas/chi-cuadrado.tex")
 
+# V de Cramer
+resultado_cramer <- sapply(cat_vars, function(var) {
+  cramerV(table(df[[var]], df$severidad))
+})
+
+print(resultado_cramer)
+df_cramer <- data.frame(
+  Variable = cat_vars,
+  V_Cramer = as.numeric(resultado_cramer)
+)
+print(xtable(df_cramer, digits = c(0, 4, 4)), type = "latex", file = "../tablas/v_cramer.tex")
+
+dim(df)
+
 
 # Para la Prueba T de Student
 
@@ -246,3 +261,4 @@ for (var in num_vars) {
   cat("\nVariable:", var, "\n")
   print(table(df$severidad_binaria, is.na(df[[var]])))
 }
+
