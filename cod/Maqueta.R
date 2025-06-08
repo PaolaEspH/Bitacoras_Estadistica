@@ -239,7 +239,6 @@ for (var in num_vars) {
 }
 
 
-
 print(df_resultados_t)
 
 df_resultados_t$p_value <- format(df_resultados_t$p_value, scientific = TRUE)
@@ -255,6 +254,81 @@ for (var in num_vars) {
   cat("\nVariable:", var, "\n")
   print(table(df$severidad_binaria, is.na(df[[var]])))
 }
+
+# Wilcoxson
+df_resultados_wilcox <- data.frame()
+
+for (var in num_vars) {
+  grupo_alta <- df[df$severidad_binaria == "Alta", ][[var]]
+  grupo_baja <- df[df$severidad_binaria == "Baja", ][[var]]
+  
+  if (is.numeric(grupo_alta) && is.numeric(grupo_baja)) {
+    w_result <- wilcox.test(grupo_alta, grupo_baja)
+    
+    nueva_fila <- data.frame(
+      variable = var,
+      mediana_alta = median(grupo_alta, na.rm = TRUE),
+      mediana_baja = median(grupo_baja, na.rm = TRUE),
+      p_value = w_result$p.value,
+      significativo = w_result$p.value < 0.05
+    )
+    
+    df_resultados_wilcox <- rbind(df_resultados_wilcox, nueva_fila)
+  }
+}
+
+print(df_resultados_wilcox)
+
+# Kruskal-Wallis
+df$fatales <- as.numeric(as.character(df$fatales))
+df$lesiones_menores <- as.numeric(as.character(df$lesiones_menores))
+df$lesiones_graves <- as.numeric(as.character(df$lesiones_graves))
+df$velocidad_recomendada <- as.numeric(as.character(df$velocidad_recomendada))
+df$limite_velocidad <- as.numeric(as.character(df$limite_velocidad))
+
+num_vars <- c("fatales", "lesiones_menores", "lesiones_graves", "velocidad_recomendada", "limite_velocidad")
+
+df_resultados_kruskal <- data.frame(
+  variable = character(),
+  mediana_grupo1 = numeric(),
+  mediana_grupo2 = numeric(),
+  mediana_grupo3 = numeric(),
+  mediana_grupo4 = numeric(),
+  p_value = numeric(),
+  significativo = logical(),
+  stringsAsFactors = FALSE
+)
+
+niveles_severidad <- sort(unique(df$severidad)) 
+
+for (var in num_vars) {
+  medianas <- sapply(niveles_severidad, function(n) {
+    median(df[df$severidad == n, ][[var]], na.rm = TRUE)
+  })
+  
+  kruskal_res <- kruskal.test(df[[var]] ~ df$severidad)
+  
+  nueva_fila <- data.frame(
+    variable = var,
+    Fatal = medianas[1],
+    Grave = medianas[2],
+    Leve = medianas[3],
+    Sin_lesiones = medianas[4],
+    p_value = kruskal_res$p.value,
+    significativo = kruskal_res$p.value < 0.05
+  )
+  
+  df_resultados_kruskal <- rbind(df_resultados_kruskal, nueva_fila)
+}
+
+print(df_resultados_kruskal)
+
+df_resultados_kruskal$p_value <- format(df_resultados_kruskal$p_value, scientific = TRUE)
+
+
+print(xtable(df_resultados_t, caption = "Prueba de Kruskal-Wallis según severidad"),
+      include.rownames = FALSE, caption.placement = "top", type = "latex", file = "../tablas/kruskal-wallis.tex")
+
 
 # Prueba Q de Cochran
 library(DescTools)
