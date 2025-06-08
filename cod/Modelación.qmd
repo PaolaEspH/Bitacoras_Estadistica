@@ -1,0 +1,254 @@
+---
+title: "Análisis estadístico del dataset de accidentes"
+format: html
+execute:
+  echo: true
+  warning: false
+  error: false
+---
+
+# Carga y Limpieza de datos
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(readr)
+library(xtable)
+library(rcompanion)
+library(DescTools)
+```
+
+```{r}
+df <- read_csv("../data/data_traducida.csv") %>% select(-1)
+```
+```{r}
+df$severidad <- as.factor(df$severidad)
+df <- df %>% select(where(~ mean(is.na(.)) < 0.3))
+```
+# Variables Categóricas
+```{r}
+cat_vars <- c("iluminación", "carretera", "clima", "festivos")
+df <- df %>% mutate(across(all_of(cat_vars), as.factor))
+
+cat_vars <- setdiff(names(df)[sapply(df, is.factor)], "severidad")
+```
+
+## Tablas de Contingencia
+```{r}
+for (var in cat_vars) {
+  tabla <- table(df$severidad, df[[var]])
+  df_tabla <- as.data.frame(tabla)
+  colnames(df_tabla) <- c("Severidad", "Categoría", "Frecuencia")
+  
+  p <- ggplot(df_tabla, aes(x = Severidad, y = Categoría, fill = Frecuencia)) +
+    geom_tile() +
+    geom_text(aes(label = Frecuencia), color = "white", size = 6) +
+    scale_fill_gradient(low = "lightblue", high = "darkblue") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+    labs(title = paste("Tabla de Contingencia: Severidad vs", var), fill = "Frecuencia")
+  
+  print(p)
+}
+```
+### Filtrado
+```{r}
+df <- read_csv("../data/data_traducida.csv") %>% select(-1)
+df <- df[!(df$carretera == "Final del asfalto" |
+             df$iluminación == "Desconocido" |
+             df$clima == "Granizo" |
+             df$clima == "Nieve"), ]
+
+df <- df %>% mutate(across(all_of(cat_vars), as.factor),
+                    severidad = as.factor(severidad))
+
+cat_vars <- setdiff(names(df)[sapply(df, is.factor)], "severidad")
+```
+### Revisualización
+```{r}
+for (var in cat_vars) {
+  tabla <- table(df$severidad, df[[var]])
+  df_tabla <- as.data.frame(tabla)
+  colnames(df_tabla) <- c("Severidad", "Categoría", "Frecuencia")
+  
+  p <- ggplot(df_tabla, aes(x = Severidad, y = Categoría, fill = Frecuencia)) +
+    geom_tile() +
+    geom_text(aes(label = Frecuencia), color = "white", size = 6) +
+    scale_fill_gradient(low = "lightblue", high = "darkblue") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+    labs(title = paste("Tabla de Contingencia: Severidad vs", var), fill = "Frecuencia")
+  
+  print(p)
+}
+
+```
+## Chi-Cuadrado
+```{r}
+resultados <- list()
+
+for (var in cat_vars) {
+  tabla <- table(df$severidad, df[[var]])
+  if (nrow(tabla) > 1 && ncol(tabla) > 1) {
+    chi <- tryCatch(chisq.test(tabla), error = function(e) NULL)
+    
+    if (!is.null(chi)) {
+      min_esperado <- min(chi$expected)
+      if (min_esperado < 5) {
+        prueba <- "Fisher"
+        p_valor <- fisher.test(tabla, simulate.p.value = TRUE)$p.value
+        valido <- FALSE
+      } else {
+        prueba <- "Chi-cuadrado"
+        p_valor <- chi$p.value
+        valido <- TRUE
+      }
+    } else {
+      prueba <- "Fisher"
+      p_valor <- fisher.test(tabla, simulate.p.value = TRUE)$p.value
+      valido <- FALSE
+    }
+    
+    resultados[[length(resultados) + 1]] <- data.frame(
+      variable = var,
+      prueba = prueba,
+      p_value = signif(p_valor, 8),
+      valido_chi = valido
+    )
+  }
+}
+
+df_resultados <- do.call(rbind, resultados)
+print(df_resultados)
+```
+### Exportar
+```{r}
+print(xtable(df_resultados, digits = 4), type = "latex", file = "../tablas/chi-cuadrado.tex")
+```
+
+## V de Cramer
+```{r}
+resultado_cramer <- sapply(cat_vars, function(var) {
+  cramerV(table(df[[var]], df$severidad))
+})
+
+df_cramer <- data.frame(
+  Variable = cat_vars,
+  V_Cramer = as.numeric(resultado_cramer)
+)
+
+print(df_cramer)
+print(xtable(df_cramer, digits = c(0, 4, 4)), type = "latex", file = "../tablas/v_cramer.tex")
+```
+# Variables Numéricas
+## T de Student
+```{r}
+df <- df %>% mutate(severidad_binaria = ifelse(severidad %in% c("Accidente fatal", "Accidente grave"),
+                                              "Alta", "Baja"))
+
+num_vars <- c("fatales", "lesiones_menores", "lesiones_graves", "velocidad_recomendada", "limite_velocidad")
+
+df_resultados_t <- data.frame(
+  variable = character(),
+  media_alta = numeric(),
+  media_baja = numeric(),
+  p_value = numeric(),
+  significativo = logical(),
+  stringsAsFactors = FALSE
+)
+
+for (var in num_vars) {
+  grupo_alta <- df[df$severidad_binaria == "Alta", ][[var]]
+  grupo_baja <- df[df$severidad_binaria == "Baja", ][[var]]
+  
+  if (is.numeric(grupo_alta) && is.numeric(grupo_baja)) {
+    t_result <- t.test(grupo_alta, grupo_baja)
+    df_resultados_t <- rbind(df_resultados_t, data.frame(
+      variable = var,
+      media_alta = mean(grupo_alta, na.rm = TRUE),
+      media_baja = mean(grupo_baja, na.rm = TRUE),
+      p_value = t_result$p.value,
+      significativo = t_result$p.value < 0.05
+    ))
+  }
+}
+
+print(df_resultados_t)
+print(xtable(df_resultados_t, caption = "Prueba t de Student según severidad binaria", digits = c(0, 0, 4, 4, 10, 0)),
+      include.rownames = FALSE, caption.placement = "top", type = "latex", file = "../tablas/t-test.tex")
+```
+
+## Kruskal-Wallis
+```{r}
+niveles_severidad <- sort(unique(df$severidad))
+
+df_resultados_kruskal <- data.frame()
+
+for (var in num_vars) {
+  medianas <- sapply(niveles_severidad, function(n) median(df[df$severidad == n, ][[var]], na.rm = TRUE))
+  kruskal_res <- kruskal.test(df[[var]] ~ df$severidad)
+  
+  df_resultados_kruskal <- rbind(df_resultados_kruskal, data.frame(
+    variable = var,
+    Fatal = medianas[1],
+    Grave = medianas[2],
+    Leve = medianas[3],
+    Sin_lesiones = medianas[4],
+    p_value = kruskal_res$p.value,
+    significativo = kruskal_res$p.value < 0.05
+  ))
+}
+
+print(df_resultados_kruskal)
+print(xtable(df_resultados_kruskal, caption = "Prueba de Kruskal-Wallis según severidad"),
+      include.rownames = FALSE, caption.placement = "top", type = "latex", file = "../tablas/kruskal-wallis.tex")
+
+```
+
+# Prueba Q de Cochran
+```{r}
+df <- df %>%
+  mutate(
+    fatales_bin = ifelse(fatales > 0, 1, 0),
+    les_menores_bin = ifelse(lesiones_menores > 0, 1, 0),
+    les_graves_bin = ifelse(lesiones_graves > 0, 1, 0)
+  )
+
+niveles <- levels(df$severidad)
+
+resultados_cochran <- list()
+
+for (nivel in niveles) {
+  subdf <- subset(df, severidad == nivel)
+  mat <- as.matrix(subdf[, c("fatales_bin", "les_graves_bin", "les_menores_bin")])
+  qtest <- CochranQTest(mat)
+  
+  resultados_cochran[[nivel]] <- qtest
+  
+  cat(paste0("\nSeveridad: ", nivel, "\n"))
+  print(qtest)
+}
+
+cochran_df <- data.frame(
+  Severidad = character(),
+  Q = numeric(),
+  gl = integer(),
+  p_value = numeric(),
+  stringsAsFactors = FALSE
+)
+
+for (nivel in names(resultados_cochran)) {
+  test <- resultados_cochran[[nivel]]
+  cochran_df <- rbind(cochran_df, data.frame(
+    Severidad = nivel,
+    Q = as.numeric(test$statistic),
+    gl = as.integer(test$parameter),
+    p_value = as.numeric(test$p.value)
+  ))
+}
+
+print(cochran_df)
+print(xtable(cochran_df, caption = "Resultados de la prueba de Cochran Q por nivel de severidad", label = "tab:cochran_q", digits = 4),
+      include.rownames = FALSE, type = "latex", file = "../tablas/cochran_q.tex")
+```
+
