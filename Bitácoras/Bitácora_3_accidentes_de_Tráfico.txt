@@ -1339,6 +1339,30 @@ Se completaron las referencias y citas incluidas en la bitácora anterior, y se 
 
 
 
+
+\section*{Metodología}
+
+El presente proyecto busca profundizar el análisis de los factores que inciden en la severidad de los accidentes de tráfico en Nueva Zelanda, utilizando el dataset de la Agencia de Transporte (Waka Kotahi). Además de los métodos tradicionales aplicados en etapas anteriores (prueba Chi-cuadrado, t de Student, análisis exploratorio), en esta etapa se incorporan métricas y pruebas adicionales que permiten entender mejor la estructura de dependencia entre las variables categóricas y la posible influencia de terceras variables en estas relaciones.
+
+El análisis se basa en el Sistema de Análisis de Choques (CAS), que comprende registros de accidentes desde el año 2000 hasta enero de 2025. La unidad estadística es cada accidente reportado, y se trabaja con una muestra limpia de aproximadamente 33,700 registros.
+
+Las variables consideradas incluyen: severidad del accidente, condiciones climáticas, tipo de superficie de la carretera, presencia de peatones, velocidad recomendada, límite de velocidad, control de tráfico, iluminación, y otras.
+
+Como complemento a la prueba de Chi-cuadrado, se incorpora la distancia de Jaccard como una medida alternativa para evaluar la "similitud / disimilitud" entre variables categóricas binarias. Esta distancia es especialmente útil en situaciones donde la presencia conjunta (coincidencia de valores positivos) es más informativa que la coincidencia de valores negativos.
+
+Para evaluar situaciones en las que una tercera variable podría estar afectando la relación observada entre dos variables categóricas, se utilizará la prueba de Cochran-Mantel-Haenszel (prueba de Cochran). Esta prueba permite controlar por una tercera variable y analizar si la asociación entre las dos variables originales persiste o es explicada (parcial o totalmente) por la tercera.
+
+
+El V de Cramer es una medida estadística que cuantifica la fuerza de la asociación entre dos variables categóricas. Su valor oscila entre 0 (sin asociación) y 1 (asociación perfecta). Para interpretar su magnitud, se utilizan criterios generalmente aceptados en la literatura estadística: valores menores a 0.10 indican una asociación muy débil o inexistente; entre 0.10 y 0.30, una asociación débil; entre 0.30 y 0.50, una asociación moderada; y valores mayores a 0.50 indican una asociación fuerte 
+\citep{cohen1988power,field2013discovering}.
+
+Sin embargo, en el contexto de muestras muy grandes, como en el presente caso con más de 33,000 observaciones, es común que se detecten asociaciones estadísticamente significativas aunque la magnitud de la asociación sea prácticamente nula. Por esta razón, para muestras grandes se recomienda utilizar criterios más estrictos para considerar la relevancia práctica de la asociación: valores por debajo de 0.05 se consideran inapreciables o irrelevantes; entre 0.05 y 0.10 muy débil; entre 0.10 y 0.20 débil; entre 0.20 y 0.30 moderada; y mayores a 0.30 fuertes 
+\citep{rea1992designing}.
+
+Esta metodología permitirá una comprensión más avanzada de la estructura de dependencias en el fenómeno de los accidentes de tráfico, superando el análisis exploratorio descriptivo y avanzando hacia relaciones causales y de fuerza de asociación más robustas.
+
+
+
 \bibliographystyle{apalike}
 \bibliography{referencias}
 \nocite{*}
