@@ -1,0 +1,226 @@
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[most]{tcolorbox}
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{ragged2e}
+\usepackage{float}
+\usepackage{enumitem}
+
+\title{Variables relevantes en accidentes de tráfico en Nueva Zelanda}
+\author{Paola Espinoza Hernández, C32715 \and Jeikel Navarro Solís, C25518 \and Gabriel Sanabria Alvarado, C27184}
+\date{June 2025}
+
+\begin{document}
+
+\maketitle
+
+\section*{Resumen}
+
+Los accidentes de tráfico en Nueva Zelanda representan un desafío relevante en materia de seguridad vial, pese a los altos estándares de infraestructura. Este estudio tiene como objetivo identificar qué variables están significativamente asociadas con la severidad de los accidentes, clasificados como leves, graves o fatales. Para ello, se utilizaron datos del sistema \textit{Crash Analysis System} (CAS), que registra accidentes entre 2000 y enero de 2025. Se aplicaron análisis bivariados mediante pruebas chi-cuadrado, V de Cramer, Kruskal-Wallis y Q de Cochran, enfocándose en variables categóricas (clima, iluminación, tipo de carretera, festividad) y numéricas (velocidad recomendada y límite de velocidad). Se descartaron categorías con frecuencias muy bajas y se aplicaron criterios estrictos para validar las pruebas estadísticas. Los resultados mostraron asociaciones significativas (\(p < 0.05\)) entre la severidad y todas las variables categóricas, aunque con una fuerza de asociación muy baja (V de Cramer \(< 0.05\)), lo cual sugiere una relación débil. Por otra parte, las variables numéricas mostraron diferencias significativas en sus distribuciones según la severidad (\(p < 10^{-60}\)), siendo mayores las velocidades en los accidentes más graves. La prueba de Cochran también mostró diferencias claras en la distribución de tipos de lesiones entre niveles de severidad. Se concluye que, aunque existen relaciones significativas, la mayoría de las variables por sí solas tienen un efecto limitado sobre la severidad, por lo que se recomienda emplear modelos multivariantes en futuras investigaciones para capturar posibles interacciones y efectos conjuntos. Además, se destaca la utilidad de técnicas no paramétricas para trabajar con bases de datos heterogéneas y no normales, como la del presente estudio.
+
+
+\textbf{Palabras clave:} accidentes de tráfico, severidad, seguridad vial, análisis estadístico, Nueva Zelanda.
+
+
+\section{Introducción}
+
+Los accidentes de tráfico constituyen una de las principales causas de lesiones graves y muertes a nivel mundial. En contextos desarrollados como el de Nueva Zelanda, donde la infraestructura vial y los estándares de seguridad son elevados, la persistencia de estos eventos refleja la complejidad del fenómeno. Factores humanos, ambientales y vehiculares interactúan de forma diversa, influyendo en la severidad de los accidentes de maneras no siempre evidentes. Ante este panorama, comprender qué variables tienen un mayor impacto sobre la gravedad de los accidentes no solo es relevante desde una perspectiva estadística, sino también social y política.
+
+El presente estudio se centra en identificar, mediante un análisis estadístico de datos registrados entre el año 2000 y enero de 2024 sobre accidentes de tráfico en Nueva Zelanda, cuáles variables se asocian de forma más significativa con el nivel de severidad de los incidentes. Se trabaja con variables categóricas como las condiciones climáticas, la velocidad recomendada y el límite de velocidad, el nivel de iluminación, el tipo de carretera y la condición de día festivo. Las herramientas estadísticas empleadas —la prueba de Kruskal-Wallis, la V de Cramer, la prueba chi-cuadrado y la Q de Cochran— permiten analizar la relación y dependencia entre estas variables y la severidad del accidente, clasificada en tres niveles: leve, grave y fatal.
+
+La relevancia de este análisis radica en su capacidad para aportar evidencia empírica útil en el diseño de políticas públicas de prevención y seguridad vial. Asimismo, se contribuye al campo de la estadística aplicada al mostrar el uso efectivo de pruebas no paramétricas y métodos de análisis de variables categóricas en el estudio de fenómenos sociales complejos. La investigación también busca llenar una laguna en la literatura al enfocarse no solo en la ocurrencia de accidentes, sino en su nivel de severidad.
+
+El objetivo general de este trabajo consiste en determinar qué factores tienen mayor impacto en la severidad de los accidentes de tráfico en Nueva Zelanda. Para ello, se emplea un enfoque cuantitativo con herramientas estadísticas inferenciales que permiten descubrir patrones y relaciones significativas. 
+
+Este documento se estructura de la siguiente forma: la sección de metodología describe los datos utilizados y las técnicas estadísticas aplicadas; la sección de resultados expone los principales hallazgos obtenidos a partir del análisis; la sección de conclusiones sintetiza los aportes, limitaciones y posibles líneas futuras de investigación; se incluyen también los agradecimientos pertinentes y la bibliografía en formato APA 7.
+
+
+\section{Metodología}
+
+La presente investigación se orienta a identificar qué variables están asociadas significativamente con la severidad de los accidentes de tráfico en Nueva Zelanda. La pregunta de investigación se enfoca en determinar cuáles factores contribuyen con mayor fuerza a que un accidente sea clasificado como leve, grave o fatal.
+
+\subsection{Datos y contexto}
+
+El estudio se basa en la \href{https://www.kaggle.com/datasets/maryamrahmani/crash-analysis-system-cas-data-new-zealand}{base de datos} proporcionada por el \textit{Crash Analysis System} (CAS) de Waka Kotahi, disponible públicamente a través de Kaggle. Esta contiene información detallada sobre accidentes reportados por la policía neozelandesa entre el 1 de enero de 2000 y enero de 2025. La población de estudio corresponde a todos los accidentes registrados por este sistema, siendo la unidad estadística cada accidente de tráfico individual.
+
+Las variables consideradas incluyen tanto características del entorno (como iluminación, clima y tipo de superficie) como factores relacionados con el evento (como la velocidad recomendada, el límite de velocidad y la presencia de festividades). La variable dependiente principal es la severidad del accidente, clasificada en tres niveles: leve, grave y fatal.
+
+\subsection{Análisis descriptivo}
+
+El análisis exploratorio incluyó una depuración inicial de los datos, así como la construcción de resúmenes numéricos y categóricos. Esto permitió identificar patrones generales en la distribución de variables y orientar el análisis inferencial posterior hacia aquellas con mayor potencial explicativo.
+
+Destacan dos hallazgos relevantes: en primer lugar, las condiciones climáticas parecen influir en la proporción de accidentes graves y fatales, siendo estos más frecuentes en días de buen clima que en condiciones adversas. Esto podría atribuirse a un mayor volumen de tránsito o a una conducción más despreocupada cuando el clima es favorable. En segundo lugar, ciertas festividades como Navidad, Año Nuevo y el fin de semana del Trabajo concentran una mayor proporción y volumen absoluto de accidentes severos. Estos hallazgos refuerzan la necesidad de evaluar estadísticamente dichas variables dentro del marco inferencial.
+
+\subsection{Justificación y aplicación de modelos}
+
+El objetivo del análisis inferencial es establecer si existen relaciones estadísticamente significativas entre las variables explicativas y el nivel de severidad del accidente. Dada la naturaleza predominantemente categórica de las variables, así como la ausencia de normalidad en las variables numéricas, se seleccionaron herramientas estadísticas que no dependen de supuestos paramétricos estrictos. En concreto, se aplicaron las siguientes técnicas:
+
+\subsubsection{Prueba chi-cuadrado de independencia}
+
+La prueba de chi-cuadrado (\( \chi^2 \)) se utilizó para evaluar la existencia de dependencia estadística entre la severidad del accidente y variables categóricas como el clima, la iluminación, el tipo de carretera y la condición de festividad. Esta prueba contrasta las frecuencias observadas con las frecuencias esperadas bajo la hipótesis nula de independencia entre variables.
+
+Para ello, se construyeron tablas de contingencia bidireccionales, donde cada celda representa la combinación de una categoría de severidad con una categoría de la variable explicativa. El estadístico de prueba se calcula como:
+
+\[
+Q = \sum_{i=1}^{R} \sum_{j=1}^{C} \frac{(N_{ij} - \hat{E}_{ij})^2}{\hat{E}_{ij}},
+\]
+
+donde \( N_{ij} \) es la frecuencia observada y \( \hat{E}_{ij} = \frac{N_{i+} N_{+j}}{n} \) es la frecuencia esperada bajo independencia. El número de grados de libertad de la prueba se calcula como \( (R - 1)(C - 1) \).
+
+Una limitación de esta prueba es que requiere que al menos el 80\% de las celdas tengan frecuencias esperadas mayores a 5. Las variables que no cumplieron con este criterio fueron excluidas.
+
+\subsubsection{Medida de asociación: V de Cramer}
+
+Cuando la prueba chi-cuadrado arrojó una asociación estadísticamente significativa, se calculó el coeficiente \( V \) de Cramer como medida del tamaño del efecto. Este coeficiente es una normalización del estadístico \( \chi^2 \) que toma en cuenta el tamaño de muestra y la dimensionalidad de la tabla:
+
+\[
+V = \sqrt{\frac{Q}{n \cdot \min(R - 1, C - 1)}}
+\]
+
+donde \( Q \) es el estadístico chi-cuadrado, \( n \) el tamaño muestral, y \( R \), \( C \) el número de filas y columnas. El valor de \( V \) varía entre 0 y 1, interpretándose valores cercanos a 0 como asociación débil y valores cercanos a 1 como asociación fuerte.
+
+Esta medida resulta especialmente útil cuando se trabaja con muestras grandes, ya que permite distinguir entre significancia estadística y relevancia práctica.
+
+\subsubsection{Prueba de Kruskal-Wallis}
+
+Dado que las variables numéricas evaluadas —como la velocidad recomendada y el límite de velocidad— no cumplen con los supuestos de normalidad, se optó por la prueba de Kruskal-Wallis. Esta es una prueba no paramétrica que permite comparar la distribución de una variable continua u ordinal entre tres o más grupos independientes.
+
+La hipótesis nula plantea que las distribuciones de los grupos son idénticas. El estadístico se define como:
+
+\[
+H = \frac{12}{N(N+1)} \sum_{i=1}^{k} n_i \left( \bar{R}_i - \frac{N+1}{2} \right)^2,
+\]
+
+donde \( \bar{R}_i \) es el promedio de rangos del grupo \( i \), y \( N \) es el tamaño total de la muestra. Bajo la hipótesis nula, \( H \) se distribuye aproximadamente como una chi-cuadrado con \( k - 1 \) grados de libertad.
+
+En este caso, la variable de agrupación fue la severidad del accidente (leve, grave, fatal). Las variables continuas que presentaron diferencias significativas entre grupos fueron interpretadas como asociadas a la severidad.
+
+\subsubsection{Prueba Q de Cochran}
+
+Para contrastar diferencias en proporciones de accidentes severos (graves o fatales) en contextos dependientes —como distintas festividades a lo largo de los años— se utilizó la prueba Q de Cochran. Esta prueba no paramétrica permite evaluar si existe una diferencia significativa en proporciones binarias observadas repetidamente sobre las mismas unidades o contextos dependientes \cite{gibbons2011nonparametric}.
+
+El estadístico de prueba se define como:
+
+\[
+Q = \frac{(k-1) \left[k\sum_{i=1}^n R_i^2 - T^2\right]}{k \cdot T - \sum_{j=1}^k C_j^2},
+\]
+
+donde \( k \) es el número de condiciones, \( n \) el número de unidades (años), \( R_i \) el número de respuestas positivas por unidad, \( C_j \) el total por condición, y \( T \) el total de respuestas positivas. Este valor se contrasta con una distribución chi-cuadrado con \( k - 1 \) grados de libertad.
+
+En este estudio, se obtuvo un valor \( Q = 57.02 \) con \( p < 0.001 \), lo que indica que la proporción de accidentes severos varía significativamente entre festividades como Navidad, Año Nuevo y días regulares. Esto proporciona respaldo estadístico adicional a lo observado en los gráficos descriptivos y refuerza la inclusión de esta variable en el análisis inferencial.
+
+\subsubsection{Valor \( p \) y toma de decisiones}
+
+Todas las pruebas se evaluaron utilizando el valor \( p \), con un umbral de significancia de \( \alpha = 0{,}05 \). Cuando el valor \( p \) fue menor al umbral, se rechazó la hipótesis nula en favor de la hipótesis alternativa de asociación o diferencia significativa.
+
+No obstante, el valor \( p \) fue considerado en conjunto con medidas de tamaño del efecto, como el coeficiente \( V \) de Cramer, para evitar conclusiones engañosas motivadas exclusivamente por el gran tamaño muestral.
+
+\subsubsection{Síntesis metodológica}
+
+El enfoque metodológico adoptado permitió abordar rigurosamente las características del conjunto de datos: gran volumen muestral, alta proporción de variables categóricas, y distribución no normal de las variables numéricas. Las pruebas estadísticas seleccionadas —chi-cuadrado, V de Cramer, Kruskal-Wallis y Q de Cochran— permitieron analizar la existencia, magnitud y significancia de las relaciones entre variables sin recurrir a supuestos paramétricos estrictos. Esta estrategia garantizó una interpretación estadística adecuada, minimizando sesgos derivados de la estructura de los datos.
+
+
+\subsection{Supuestos y limitaciones metodológicas}
+
+Cada técnica estadística empleada implica ciertos supuestos que condicionan la validez de los resultados. En el caso de la prueba chi-cuadrado, se requiere un tamaño muestral suficiente y que las frecuencias esperadas en al menos el 80\% de las celdas superen el valor de cinco. La prueba de Kruskal-Wallis, al ser no paramétrica, sólo exige independencia entre observaciones y que las variables evaluadas tengan un nivel de medición al menos ordinal.
+
+Entre las principales limitaciones metodológicas se encuentra el hecho de que los análisis realizados son de carácter bivariado. Esto implica que no se han explorado posibles interacciones entre variables —por ejemplo, entre condiciones de iluminación y clima, o entre velocidad y festividad— que podrían influir conjuntamente en la severidad del accidente. Además, el análisis no considera posibles variables de confusión ni incluye mecanismos de ajuste por covariables, lo que restringe la capacidad de inferencia causal. Estas limitaciones podrían ser abordadas en estudios futuros mediante enfoques multivariados, como modelos log-lineales o regresión multinomial, que permitan una comprensión más completa del fenómeno en estudio.
+
+
+
+\section{Resultados}
+
+\subsection{Limitaciones de la base de datos}
+
+Durante el análisis se identificaron ciertas limitaciones relacionadas con la distribución de frecuencias dentro de algunas variables categóricas. En particular, las categorías \textit{Nieve} y \textit{Granizo} en la variable \textit{clima} presentaron una cantidad de observaciones insuficiente para aplicar la prueba chi-cuadrado, dado que no se cumplía el supuesto mínimo de recuentos esperados en cada celda. Estas categorías fueron descartadas del análisis inferencial, aunque se reconoce que podrían aportar información relevante si se contara con una base de datos más amplia o específica. De igual forma, se eliminaron las categorías \textit{Desconocido} en \textit{iluminación} y \textit{Final del asfalto} en \textit{tipo de carretera}, debido a su baja representatividad.
+
+\subsection{Relación entre variables categóricas y severidad}
+
+\begin{table}[H]
+\centering
+\input{chi-cuadrado}
+\caption{Resultados de la prueba chi-cuadrado de independencia}
+\end{table}
+
+Se aplicó la prueba chi-cuadrado de independencia para evaluar la relación entre la variable dependiente \textit{severidad del accidente} y las variables categóricas: \textit{festividad}, \textit{clima}, \textit{iluminación} y \textit{tipo de carretera}. En todos los casos, se obtuvieron valores $p < 0.05$, lo que proporciona evidencia estadística suficiente para rechazar la hipótesis nula de independencia. Por tanto, se concluye que existe una asociación significativa entre la severidad del accidente y cada una de las variables mencionadas. A pesar de estos resultados, se debe señalar que algunas celdas de las tablas de contingencia presentaron recuentos esperados bajos, lo que puede afectar la validez de la prueba.
+
+De forma particular, la variable \textit{festividad} mostró diferencias notables en la distribución de severidad. Fechas como Navidad, Año Nuevo y el fin de semana del Trabajo se destacaron por tener una proporción más elevada de accidentes graves y fatales en comparación con días no festivos. Este hallazgo sugiere la existencia de factores contextuales como el incremento del tráfico, consumo de alcohol o fatiga, que podrían aumentar el riesgo de siniestralidad grave durante esas fechas.
+
+\subsection{Fuerza de asociación: V de Cramer}
+
+Dado que la prueba chi-cuadrado indicó la existencia de dependencia estadística entre las variables categóricas y la severidad del accidente, se procedió al cálculo del coeficiente V de Cramer con el objetivo de cuantificar la magnitud de dicha asociación. Este coeficiente es una medida de asociación basada en la chi-cuadrado que toma valores entre 0 y 1, donde valores cercanos a 0 indican asociación débil o nula, y valores cercanos a 1 indican una asociación fuerte.
+
+\begin{table}[H]
+\centering
+\input{v\_cramer}
+\caption{Resultados del coeficiente V de Cramer entre variables categóricas y la severidad}
+\end{table}
+
+Los resultados obtenidos muestran que todas las variables categóricas evaluadas presentan valores de V de Cramer comprendidos entre 0.016 y 0.044. Estos valores indican que la fuerza de asociación con la variable \textit{severidad} es muy baja o prácticamente nula. Incluso considerando el gran tamaño muestral, estos niveles se interpretan como una asociación inapreciable según criterios estándar. Por tanto, si bien existe dependencia estadística según la chi-cuadrado, la magnitud del efecto es mínima. Esto refuerza la necesidad de complementar los análisis con enfoques multivariantes que permitan modelar relaciones más complejas y captar interacciones entre variables que no se reflejan en análisis bivariados simples.
+
+\subsection{Resultados de la prueba de Kruskal-Wallis}
+
+\begin{table}[H]
+\centering
+\input{kruskal-wallis}
+\caption{Resultados de la prueba Kruskal-Wallis}
+\end{table}
+
+Dado que los datos numéricos no cumplen los supuestos de normalidad ni homogeneidad de varianzas, se aplicó la prueba no paramétrica de Kruskal-Wallis para comparar las distribuciones de variables numéricas según los niveles de severidad. Los resultados mostraron diferencias estadísticamente significativas ($p < 0.05$) en todas las variables evaluadas. Este conjunto incluyó variables relacionadas directamente con la severidad del accidente (como el número de víctimas fatales, con lesiones graves y con lesiones menores), así como variables contextuales como la velocidad recomendada y el límite de velocidad.
+
+Se resalta que, si bien las variables de tipo lesión presentan significancia, esta resulta redundante desde el punto de vista analítico, ya que dichas variables son componentes intrínsecos del concepto de severidad. Por tanto, su uso en modelos predictivos o explicativos de la severidad resulta inapropiado, ya que no aportan información adicional sobre los factores previos al accidente.
+
+En contraste, las variables \textit{velocidad recomendada} y \textit{límite de velocidad} sí aportan valor interpretativo. Sus valores $p$ fueron respectivamente $4.77 \cdot 10^{-67}$ y $1.14 \cdot 10^{-111}$, lo que indica una fuerte evidencia de que las distribuciones de estas variables difieren entre los distintos niveles de severidad. Esto respalda su consideración como posibles factores contextuales que caracterizan los accidentes más graves.
+
+\subsection{Prueba Q de Cochran estratificada por severidad}
+
+\begin{table}[H]
+\centering
+\input{cochran\_q}
+\caption{Resultados de la prueba Q de Cochran}
+\end{table}
+
+Con el fin de evaluar diferencias en la proporción de lesiones según el nivel de severidad, se aplicó la prueba Q de Cochran a los datos dicotómicos de presencia o ausencia de lesiones (fatales, graves, menores). Los resultados mostraron valores $Q$ elevados y valores $p < 2.2 \cdot 10^{-16}$, lo que llevó al rechazo de la hipótesis nula de igualdad de proporciones en todos los niveles de severidad. Este hallazgo confirma que la distribución de tipos de lesiones varía significativamente entre niveles de severidad, respaldando el uso de esta variable como criterio de segmentación para posteriores análisis descriptivos o inferenciales.
+
+\subsection{Comparación entre pruebas aplicadas}
+
+Se utilizó la prueba de Kruskal-Wallis como principal herramienta para el análisis de variables numéricas, debido a que no requiere el supuesto de normalidad. Esta permitió contrastar múltiples grupos de severidad sin realizar transformaciones artificiales en los datos. Las pruebas chi-cuadrado se aplicaron exclusivamente a variables categóricas con suficiente frecuencia en cada celda, y la prueba Q de Cochran se empleó para analizar diferencias en proporciones dicotómicas estratificadas por severidad. En conjunto, estas pruebas permitieron abordar la heterogeneidad de tipos de variables presentes en la base de datos y garantizar un análisis estadístico apropiado para cada caso.
+
+\section{Conclusiones}
+
+A partir del análisis estadístico realizado sobre los accidentes de tráfico en Nueva Zelanda entre el año 2000 y enero de 2024, se pueden destacar las siguientes conclusiones:
+
+\begin{enumerate}
+\item Se identificó una relación estadísticamente significativa entre la severidad de los accidentes y diversas variables categóricas como el tipo de clima, el estado de iluminación, el tipo de carretera y la condición de festividad. Estas variables, aunque con asociaciones débiles según el coeficiente V de Cramer, presentan patrones consistentes que justifican su consideración en estudios de seguridad vial y en la formulación de políticas preventivas.
+
+\item Las variables numéricas relacionadas con la velocidad —velocidad recomendada y límite de velocidad— mostraron una diferencia significativa entre los niveles de severidad, sugiriendo que velocidades más altas están asociadas a una mayor probabilidad de accidentes graves o fatales. Este hallazgo respalda la implementación de estrategias de control de velocidad diferenciadas por zona y contexto, especialmente en épocas del año con alta movilidad.
+
+\item La aplicación de técnicas estadísticas no paramétricas, como la prueba de Kruskal-Wallis y la Q de Cochran, permitió extraer conclusiones a partir de variables que no cumplían supuestos tradicionales de normalidad. Estas herramientas se demostraron útiles para evaluar diferencias reales entre grupos y fortalecer la validez de los resultados observados a nivel descriptivo.
+
+\item A pesar de los resultados estadísticamente significativos, la fuerza de asociación de la mayoría de las variables con la severidad del accidente fue baja. Esto sugiere que los factores considerados individualmente tienen un impacto limitado, y que la severidad podría estar determinada por combinaciones de variables y contextos no capturados completamente en este análisis bivariado.
+
+\end{enumerate}
+
+No obstante, la investigación presenta algunas limitaciones que deben considerarse en futuros estudios:
+
+\begin{itemize}
+\item Algunas categorías dentro de las variables analizadas —como nieve y granizo en la variable clima— no cuentan con suficientes observaciones para ser incluidas en los análisis inferenciales. Su exclusión, aunque metodológicamente necesaria, limita la generalización de los resultados a condiciones climáticas extremas.
+
+\item La baja fuerza de asociación medida mediante el coeficiente V de Cramer indica que, si bien existen relaciones estadísticamente significativas, su magnitud es débil. Por lo tanto, se recomienda el uso de modelos multivariantes en estudios posteriores que permitan identificar interacciones o efectos conjuntos entre múltiples variables explicativas.
+
+\item La ausencia de control por posibles covariables o efectos de confusión limita el alcance interpretativo de los hallazgos. Se sugiere la aplicación de modelos estadísticos más complejos, como regresión logística multinomial o árboles de decisión, para mejorar la capacidad explicativa y predictiva del modelo.
+
+\end{itemize}
+
+
+\bibliographystyle{apalike}
+\bibliography{referencias}
+\nocite{*}
+\end{document}

@@ -123,6 +123,8 @@ print(df_resultados)
 ```
 ### Exportar
 ```{r}
+df_resultados$p_value <- format(df_resultados$p_value, scientific = TRUE)
+
 print(xtable(df_resultados, digits = 4), type = "latex", file = "../tablas/chi-cuadrado.tex")
 ```
 
@@ -174,6 +176,10 @@ for (var in num_vars) {
 }
 
 print(df_resultados_t)
+df_resultados_t$p_value <- format(df_resultados_t$p_value, scientific = TRUE)
+df_resultados_t$media_alta <- format(df_resultados_t$media_alta, scientific = TRUE)
+df_resultados_t$media_baja <- format(df_resultados_t$media_baja, scientific = TRUE)
+
 print(xtable(df_resultados_t, caption = "Prueba t de Student según severidad binaria", digits = c(0, 0, 4, 4, 10, 0)),
       include.rownames = FALSE, caption.placement = "top", type = "latex", file = "../tablas/t-test.tex")
 ```
@@ -200,6 +206,8 @@ for (var in num_vars) {
 }
 
 print(df_resultados_kruskal)
+df_resultados_kruskal$p_value <- format(df_resultados_kruskal$p_value, scientific = TRUE)
+
 print(xtable(df_resultados_kruskal, caption = "Prueba de Kruskal-Wallis según severidad"),
       include.rownames = FALSE, caption.placement = "top", type = "latex", file = "../tablas/kruskal-wallis.tex")
 
@@ -247,8 +255,10 @@ for (nivel in names(resultados_cochran)) {
   ))
 }
 
+cochran_df$p_value <- format(cochran_df$p_value, scientific = TRUE)
 print(cochran_df)
-print(xtable(cochran_df, caption = "Resultados de la prueba de Cochran Q por nivel de severidad", label = "tab:cochran_q", digits = 4),
-      include.rownames = FALSE, type = "latex", file = "../tablas/cochran_q.tex")
+tabla_latex <- xtable(cochran_df, caption = "Resultados de la prueba de Cochran Q por nivel de severidad", label = "tab:cochran_q", digits = 4)
+print(tabla_latex, include.rownames = FALSE, type = "latex", file = "../tablas/cochran_q.tex")
+
 ```
 
