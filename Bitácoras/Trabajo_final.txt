@@ -141,6 +141,8 @@ Entre las principales limitaciones metodológicas se encuentra el hecho de que l
 
 Durante el análisis se identificaron ciertas limitaciones relacionadas con la distribución de frecuencias dentro de algunas variables categóricas. En particular, las categorías \textit{Nieve} y \textit{Granizo} en la variable \textit{clima} presentaron una cantidad de observaciones insuficiente para aplicar la prueba chi-cuadrado, dado que no se cumplía el supuesto mínimo de recuentos esperados en cada celda. Estas categorías fueron descartadas del análisis inferencial, aunque se reconoce que podrían aportar información relevante si se contara con una base de datos más amplia o específica. De igual forma, se eliminaron las categorías \textit{Desconocido} en \textit{iluminación} y \textit{Final del asfalto} en \textit{tipo de carretera}, debido a su baja representatividad.
 
+Esta depuración de categorías no implica una pérdida sustantiva de información, sino que responde a la necesidad de garantizar la validez estadística de las pruebas aplicadas. Las pruebas inferenciales, en especial aquellas como chi-cuadrado o V de Cramer, requieren ciertos supuestos mínimos para producir resultados confiables. Por tanto, se priorizó la estabilidad de los resultados frente a la inclusión de categorías poco frecuentes, minimizando así posibles distorsiones en la interpretación de las asociaciones entre variables.
+
 \subsection{Relación entre variables categóricas y severidad}
 
 \begin{table}[H]
