@@ -220,7 +220,7 @@ No obstante, la investigación presenta algunas limitaciones que deben considera
     \item La ausencia de control por posibles covariables o efectos de confusión limita el alcance interpretativo de los hallazgos, dado que podrían existir variables no consideradas que influyan simultáneamente sobre las explicativas y la variable dependiente. Esta omisión puede introducir sesgos y reducir la precisión de las conclusiones. Se sugiere la aplicación de modelos estadísticos más complejos y robustos, como la regresión logística multinomial, los árboles de decisión o métodos basados en aprendizaje automático supervisado. Estas técnicas permitirían no solo controlar por múltiples variables al mismo tiempo, sino también explorar relaciones no lineales y jerárquicas que no son evidentes mediante análisis univariados o bivariados.
 \end{itemize}
 
-
+\newpage
 \bibliographystyle{apalike}
 \bibliography{referencias}
 \nocite{*}
