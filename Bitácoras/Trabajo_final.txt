@@ -60,7 +60,7 @@ Destacan dos hallazgos relevantes: en primer lugar, las condiciones climáticas 
 
 \subsection{Justificación y aplicación de modelos}
 
-El objetivo del análisis inferencial es establecer si existen relaciones estadísticamente significativas entre las variables explicativas y el nivel de severidad del accidente. Dada la naturaleza predominantemente categórica de las variables, así como la ausencia de normalidad en las variables numéricas, se seleccionaron herramientas estadísticas que no dependen de supuestos paramétricos estrictos. En concreto, se aplicaron las siguientes técnicas:
+El objetivo del análisis inferencial es establecer si existen relaciones estadísticamente significativas entre las variables explicativas y el nivel de severidad del accidente. Dada la naturaleza predominantemente categórica de las variables, así como la ausencia de normalidad en las variables numéricas, se seleccionaron herramientas estadísticas que no dependen de supuestos paramétricos estrictos. En concreto, se aplicaron las siguientes técnicas, las cuales permiten identificar asociaciones y diferencias entre grupos sin requerir homogeneidad de varianzas o distribución normal. Estas pruebas son especialmente adecuadas para datos observacionales, como los que componen esta investigación, en los que el control experimental no es posible y la robustez frente a violaciones de supuestos clásicos resulta esencial.
 
 \subsubsection{Prueba chi-cuadrado de independencia}
 
