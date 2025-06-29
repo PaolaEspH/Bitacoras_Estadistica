@@ -197,7 +197,7 @@ Se utilizó la prueba de Kruskal-Wallis como principal herramienta para el anál
 
 \section{Conclusiones}
 
-A partir del análisis estadístico realizado sobre los accidentes de tráfico en Nueva Zelanda entre el año 2000 y enero de 2024, se pueden destacar las siguientes conclusiones:
+A partir del análisis estadístico realizado sobre los accidentes de tráfico en Nueva Zelanda entre el año 2000 y enero de 2024, se pueden destacar las siguientes conclusiones. Los resultados obtenidos permiten identificar patrones relevantes en la ocurrencia y severidad de los accidentes, así como la influencia de distintos factores contextuales, ambientales y estructurales. Este conjunto de hallazgos proporciona una base empírica sólida para el diseño de estrategias orientadas a la prevención de siniestros viales, respaldadas por evidencia estadística y técnica.
 
 \begin{enumerate}
 \item Se identificó una relación estadísticamente significativa entre la severidad de los accidentes y diversas variables categóricas como el tipo de clima, el estado de iluminación, el tipo de carretera y la condición de festividad. Estas variables, aunque con asociaciones débiles según el coeficiente V de Cramer, presentan patrones consistentes que justifican su consideración en estudios de seguridad vial y en la formulación de políticas preventivas.
