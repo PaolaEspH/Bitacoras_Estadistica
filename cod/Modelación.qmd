@@ -14,7 +14,6 @@ library(tidyverse)
 library(janitor)
 library(readr)
 library(xtable)
-library(rcompanion)
 library(DescTools)
 ```
 
@@ -215,50 +214,64 @@ print(xtable(df_resultados_kruskal, caption = "Prueba de Kruskal-Wallis según s
 
 # Prueba Q de Cochran
 ```{r}
-df <- df %>%
-  mutate(
-    fatales_bin = ifelse(fatales > 0, 1, 0),
-    les_menores_bin = ifelse(lesiones_menores > 0, 1, 0),
-    les_graves_bin = ifelse(lesiones_graves > 0, 1, 0)
+library(tidyverse)
+library(DescTools)
+library(xtable)
+
+# Crear variable binaria: ¿accidente fatal?
+df_bin <- df %>%
+  filter(festivos != "No festivo", !is.na(severidad), !is.na(festivos), !is.na(clima)) %>%
+  mutate(fatal_bin = as.integer(severidad == "Accidente fatal"))
+
+# Elegir los 3 climas más frecuentes
+climas_top <- df_bin %>%
+  count(clima, sort = TRUE) %>%
+  slice_head(n = 3) %>%
+  pull(clima)
+
+# Elegir las 3 festividades más frecuentes
+festividades_top <- df_bin %>%
+  count(festivos, sort = TRUE) %>%
+  slice_head(n = 3) %>%
+  pull(festivos)
+
+# Subconjunto de datos reducido pero funcional
+df_top <- df_bin %>%
+  filter(clima %in% climas_top, festivos %in% festividades_top)
+
+# Tabla: ¿hubo accidente fatal por clima y festividad?
+tabla <- df_top %>%
+  group_by(clima, festivos) %>%
+  summarise(fatal = as.integer(any(fatal_bin == 1)), .groups = "drop") %>%
+  pivot_wider(names_from = festivos, values_from = fatal) %>%
+  drop_na()
+
+# Verifica que hay suficientes columnas y filas
+if (nrow(tabla) >= 2 && ncol(tabla) >= 3) {
+  matriz <- as.matrix(tabla[,-1])  # Quitamos clima
+
+  # Aplicar Cochran Q
+  resultado_q <- CochranQTest(matriz)
+  print(resultado_q)
+
+  # Exportar LaTeX
+  tabla_q <- data.frame(
+    Estadístico_Q = as.numeric(resultado_q$statistic),
+    Grados_libertad = as.integer(resultado_q$parameter),
+    Valor_p = format(resultado_q$p.value, scientific = TRUE)
   )
 
-niveles <- levels(df$severidad)
-
-resultados_cochran <- list()
-
-for (nivel in niveles) {
-  subdf <- subset(df, severidad == nivel)
-  mat <- as.matrix(subdf[, c("fatales_bin", "les_graves_bin", "les_menores_bin")])
-  qtest <- CochranQTest(mat)
-  
-  resultados_cochran[[nivel]] <- qtest
-  
-  cat(paste0("\nSeveridad: ", nivel, "\n"))
-  print(qtest)
+  print(xtable(tabla_q,
+               caption = "Prueba Q de Cochran para accidentes fatales en festividades seleccionadas (bloques: climas frecuentes)",
+               label = "tab:cochran_q_top_festivos_clima",
+               digits = 4),
+        include.rownames = FALSE,
+        type = "latex",
+        file = "../tablas/cochran_q_top_festivos_clima.tex")
+} else {
+  cat("No hay suficientes datos para ejecutar la prueba Q de Cochran.\n")
 }
-
-cochran_df <- data.frame(
-  Severidad = character(),
-  Q = numeric(),
-  gl = integer(),
-  p_value = numeric(),
-  stringsAsFactors = FALSE
-)
-
-for (nivel in names(resultados_cochran)) {
-  test <- resultados_cochran[[nivel]]
-  cochran_df <- rbind(cochran_df, data.frame(
-    Severidad = nivel,
-    Q = as.numeric(test$statistic),
-    gl = as.integer(test$parameter),
-    p_value = as.numeric(test$p.value)
-  ))
-}
-
-cochran_df$p_value <- format(cochran_df$p_value, scientific = TRUE)
-print(cochran_df)
-tabla_latex <- xtable(cochran_df, caption = "Resultados de la prueba de Cochran Q por nivel de severidad", label = "tab:cochran_q", digits = 4)
-print(tabla_latex, include.rownames = FALSE, type = "latex", file = "../tablas/cochran_q.tex")
 
 ```
+
 
