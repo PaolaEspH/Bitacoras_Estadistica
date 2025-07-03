@@ -13,6 +13,8 @@
 \usepackage{float}
 \usepackage{enumitem}
 
+
+
 \title{Variables relevantes en accidentes de tráfico en Nueva Zelanda}
 \author{Paola Espinoza Hernández, C32715 \and Jeikel Navarro Solís, C25518 \and Gabriel Sanabria Alvarado, C27184}
 \date{June 2025}
@@ -35,7 +37,8 @@ Este estudio analiza los factores asociados con la severidad de los accidentes d
 
 \section*{Introducción}
 
-Los accidentes de tráfico constituyen una de las principales causas de lesiones graves y muertes a nivel mundial. En contextos desarrollados como el de Nueva Zelanda, donde la infraestructura vial y los estándares de seguridad son elevados, la persistencia de estos eventos refleja la complejidad del fenómeno. Factores humanos, ambientales y vehiculares interactúan de forma diversa, influyendo en la severidad de los accidentes de maneras no siempre evidentes. Ante este panorama, comprender qué variables tienen un mayor impacto sobre la gravedad de los accidentes no solo es pertinente desde una perspectiva estadística, sino también desde la social y política.
+Los accidentes de tráfico constituyen una de las principales causas de lesiones graves y muertes a nivel mundial \cite{BuitragoRamírezFrancisco2019Vpdv, GUNJAN2005}. En contextos desarrollados como el de Nueva Zelanda, donde la infraestructura vial y los estándares de seguridad son elevados, la persistencia de estos eventos refleja la complejidad del fenómeno \cite{YANG2007119}. Factores humanos, ambientales y vehiculares interactúan de forma diversa, influyendo en la severidad de los accidentes de maneras no siempre evidentes \cite{AngelAlejandro2008Aotf, LAM2002411}. Ante este panorama, comprender qué variables tienen un mayor impacto sobre la gravedad de los accidentes no solo es pertinente desde una perspectiva estadística, sino también desde la social y política \cite{ZunigaGonzalezCristianNicolas2014EDPD, AMERATUNGA20041116}.
+
 
 El presente estudio se centra en identificar, mediante un análisis estadístico de datos registrados entre el año 2000 y enero de 2024 sobre accidentes de tráfico en Nueva Zelanda, cuáles variables se asocian de forma más significativa con el nivel de severidad de los incidentes. Se trabaja con variables categóricas como las condiciones climáticas, la velocidad recomendada y el límite de velocidad, el nivel de iluminación, el tipo de carretera y la condición de día festivo. Las herramientas estadísticas empleadas —la prueba de Kruskal-Wallis, la V de Cramer, la prueba chi-cuadrado y la Q de Cochran— permiten analizar la relación y dependencia entre estas variables y la severidad del accidente, clasificada en tres niveles: leve, grave y fatal.
 
@@ -191,6 +194,7 @@ Cada técnica estadística empleada implica ciertos supuestos que condicionan la
 Entre las principales limitaciones metodológicas se encuentra el hecho de que los análisis realizados son de carácter bivariado. Esto implica que no se han explorado posibles interacciones entre variables —por ejemplo, entre condiciones de iluminación y clima, o entre velocidad y festividad— que podrían influir conjuntamente en la severidad del accidente. Además, el análisis no considera posibles variables de confusión ni incluye mecanismos de ajuste por covariables, lo que restringe la capacidad de inferencia causal. Estas limitaciones podrían ser abordadas en estudios futuros mediante enfoques multivariados, como modelos log-lineales o regresión multinomial, que permitan una comprensión más completa del fenómeno en estudio.
 
 Durante el análisis se identificaron ciertas limitaciones relacionadas con la distribución de frecuencias dentro de algunas variables categóricas. En particular, las categorías \textit{Nieve} y \textit{Granizo} en la variable \textit{clima} presentaron una cantidad de observaciones insuficiente para aplicar la prueba chi-cuadrado, dado que no se cumplía el supuesto mínimo de recuentos esperados en cada celda. Estas categorías fueron descartadas del análisis inferencial, aunque se reconoce que podrían aportar información relevante si se contara con una base de datos más amplia o específica. De igual forma, se eliminaron las categorías \textit{Desconocido} en \textit{iluminación} y \textit{Final del asfalto} en \textit{tipo de carretera}, debido a su baja representatividad.
+
 \section*{Resultados}
 
 \subsection*{Relación entre variables categóricas y severidad}
@@ -289,11 +293,17 @@ Adicionalmente, se empleó la prueba Q de Cochran para comparar proporciones de 
 
 En conjunto, estas pruebas permitieron abordar la diversidad de escalas de medición presentes en la base de datos y ofrecer una interpretación estadística rigurosa y adecuada a las propiedades de las variables, preservando la validez de las inferencias sin depender de supuestos paramétricos estrictos.
 
-
 \section*{Conclusión}
 
-Con base en el análisis estadístico realizado, se concluye que las variables que mostraron mayor impacto sobre la severidad de los accidentes de tráfico en Nueva Zelanda son aquellas relacionadas con la velocidad: tanto el límite de velocidad como la velocidad recomendada presentaron diferencias significativas entre los niveles de severidad (\(p < 0.001\)) y se asocian con mayor frecuencia a accidentes graves o fatales. Si bien las variables categóricas como el clima, la iluminación, el tipo de carretera y la festividad también mostraron asociaciones estadísticamente significativas con la severidad (\(p < 0.001\)), la magnitud de dichas asociaciones fue muy baja según el coeficiente V de Cramer (valores entre 0.016 y 0.044), lo que indica un impacto individual limitado. Asimismo, la prueba Q de Cochran se aplicó para comparar la proporción de accidentes fatales entre distintos tipos de clima durante festividades, sin encontrar diferencias estadísticamente significativas entre estas condiciones (\(p = 0.3679\)). En conjunto, los resultados sugieren que, aunque múltiples factores se relacionan con la severidad de los accidentes, aquellos vinculados con el contexto vial —particularmente la velocidad— ejercen una influencia más relevante. No obstante, el impacto conjunto de las variables podría ser mayor que el observado de forma individual, por lo que se recomienda desarrollar futuros análisis multivariados que permitan captar relaciones más complejas y efectos combinados entre variables.
+El análisis estadístico mostró que las variables relacionadas con la velocidad —el límite de velocidad y la velocidad recomendada— presentan una asociación significativa con la severidad de los accidentes de tráfico en Nueva Zelanda. Estas variables exhibieron diferencias entre los distintos niveles de severidad (\(p < 0.001\)), lo que indica que contextos viales con mayores velocidades se vinculan con mayor frecuencia a accidentes clasificados como graves o fatales. En consecuencia, el control de la velocidad debe considerarse como un componente prioritario en las estrategias de seguridad vial.
 
+Otras variables categóricas, como el clima, la iluminación, el tipo de carretera y la festividad, también mostraron asociaciones estadísticas con la severidad (\(p < 0.001\)), pero con coeficientes V de Cramer entre 0.016 y 0.044, lo que señala una baja magnitud de asociación. Estos resultados sugieren que, aunque dichas variables se relacionan con la severidad, su efecto individual es limitado. La prueba Q de Cochran, aplicada al análisis de proporciones de accidentes fatales según clima durante festividades, no reportó diferencias significativas (\(p = 0.3679\)).
+
+Este estudio se centró en análisis bivariados, lo cual impide explorar interacciones entre variables o ajustar por posibles factores de confusión. Además, algunas categorías con baja frecuencia fueron excluidas, lo que redujo la cobertura del análisis. Se recomienda el uso de métodos multivariados en investigaciones posteriores, con el fin de identificar estructuras de dependencia más complejas y estimar efectos conjuntos sobre la severidad de los accidentes.
+
+
+\section*{Agradecimientos}
+Queremos expresar nuestro agradecimiento al profesor Maikol Solís y a Milena Castro por su valiosa orientación a lo largo de este proyecto. Su acompañamiento constante, sus sugerencias metodológicas y la recomendación de bibliografía pertinente fueron fundamentales para el desarrollo del trabajo. Asimismo, extendemos nuestro sincero agradecimiento al asistente Fabián Brenes Thomas, quien no solo nos brindó retroalimentación detallada que contribuyó significativamente a la mejora de nuestras bitácoras, sino que también nos proporcionó material de referencia de gran utilidad.
 
 
 \bibliographystyle{apalike}
