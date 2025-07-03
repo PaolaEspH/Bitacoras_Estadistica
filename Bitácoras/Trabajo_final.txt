@@ -50,6 +50,7 @@ Este documento se estructura de la siguiente forma: la sección de metodología 
 
 La presente investigación se orienta a identificar qué variables están asociadas significativamente con la severidad de los accidentes de tráfico en Nueva Zelanda. La pregunta de investigación se enfoca en determinar cuáles factores contribuyen con mayor fuerza a que un accidente sea clasificado como leve, grave o fatal.
 
+
 \subsection*{Datos y contexto}
 
 El estudio se basa en la \href{https://www.kaggle.com/datasets/maryamrahmani/crash-analysis-system-cas-data-new-zealand}{base de datos} proporcionada por el \textit{Crash Analysis System} (CAS) de Waka Kotahi, disponible públicamente a través de Kaggle. Esta contiene información detallada sobre accidentes reportados por la policía neozelandesa entre el 1 de enero de 2000 y enero de 2025. La población de estudio corresponde a todos los accidentes registrados por este sistema, siendo la unidad estadística cada accidente de tráfico individual.
@@ -68,17 +69,36 @@ El objetivo del análisis inferencial es establecer si existen relaciones estad�
 
 \subsubsection*{Prueba chi-cuadrado de independencia}
 
-La prueba de chi-cuadrado (\( \chi^2 \)) se utilizó para evaluar la existencia de dependencia estadística entre la severidad del accidente y variables categóricas como el clima, la iluminación, el tipo de carretera y la condición de festividad. Esta prueba contrasta las frecuencias observadas con las frecuencias esperadas bajo la hipótesis nula de independencia entre variables.
+La prueba de chi-cuadrado (\( \chi^2 \)) se utilizó para evaluar la existencia de dependencia estadística entre la severidad del accidente y variables categóricas como el clima, la iluminación, el tipo de carretera y la condición de festividad. Esta prueba contrasta las frecuencias observadas con las frecuencias esperadas bajo independencia.
 
-Para ello, se construyeron tablas de contingencia bidireccionales, donde cada celda representa la combinación de una categoría de severidad con una categoría de la variable explicativa. El estadístico de prueba se calcula como:
+\begin{itemize}
+\item \textbf{Hipótesis nula $(H_0)$:} Las dos variables son independientes. No hay asociación entre ellas.
+\item \textbf{Hipótesis alternativa $(H_1)$:} Las dos variables no son independientes. Es decir, existe asociación.
+\end{itemize}
 
+Para ello, se construyeron tablas de contingencia bidireccionales, donde cada celda representa la combinación de una categoría de severidad con una categoría de la variable explicativa. 
+
+\textbf{Estadístico:}
 \[
 Q = \sum_{i=1}^{R} \sum_{j=1}^{C} \frac{(N_{ij} - \hat{E}_{ij})^2}{\hat{E}_{ij}},
 \]
 
-donde \( N_{ij} \) es la frecuencia observada y \( \hat{E}_{ij} = \frac{N_{i+} N_{+j}}{n} \) es la frecuencia esperada bajo independencia. El número de grados de libertad de la prueba se calcula como \( (R - 1)(C - 1) \).
+\textbf{Donde}
+\begin{itemize}
+    \item \( N_{ij} \): es la frecuencia observada.
+    \item \( \hat{E}_{ij} = \frac{N_{i+} N_{+j}}{n} \): es la frecuencia esperada bajo independencia.
+    \item \( R \): el número de filas.
+    \item \( C \): el número columnas.
+\end{itemize}
 
-Una limitación de esta prueba es que requiere que al menos el 80\% de las celdas tengan frecuencias esperadas mayores a 5. Las variables que no cumplieron con este criterio fueron excluidas.
+El número de grados de libertad de la prueba se calcula como \( (R - 1)(C - 1) \).
+
+\textbf{Supuestos}
+\begin{itemize}
+    \item Ambas variables deben ser categóricas.
+    \item Cada observación debe pertenecer a una sola celda de la tabla de contingencia y ser independiente de las demás.
+    \item Se requiere que al menos el 80\% de las celdas tengan frecuencias esperadas mayores a 5.
+\end{itemize}
 
 \subsubsection*{Medida de asociación: V de Cramer}
 
@@ -88,37 +108,70 @@ Cuando la prueba chi-cuadrado arrojó una asociación estadísticamente signific
 V = \sqrt{\frac{Q}{n \cdot \min(R - 1, C - 1)}}
 \]
 
-donde \( Q \) es el estadístico chi-cuadrado, \( n \) el tamaño muestral, y \( R \), \( C \) el número de filas y columnas. El valor de \( V \) varía entre 0 y 1, interpretándose valores cercanos a 0 como asociación débil y valores cercanos a 1 como asociación fuerte.
+\textbf{Donde}
+\begin{itemize}
+    \item \( Q \): es el estadístico chi-cuadrado.
+    \item \( n \): el tamaño muestral.
+    \item \( R \): el número de filas.
+    \item \( C \): el número columnas.
+\end{itemize}  
 
-Esta medida resulta especialmente útil cuando se trabaja con muestras grandes, ya que permite distinguir entre significancia estadística y relevancia práctica.
+El valor de \( V \) varía entre 0 y 1, interpretándose valores cercanos a 0 como asociación débil y valores cercanos a 1 como asociación fuerte.
 
 \subsubsection*{Prueba de Kruskal-Wallis}
 
 Dado que las variables numéricas evaluadas —como la velocidad recomendada y el límite de velocidad— no cumplen con los supuestos de normalidad, se optó por la prueba de Kruskal-Wallis. Esta es una prueba no paramétrica que permite comparar la distribución de una variable continua u ordinal entre tres o más grupos independientes.
-
-La hipótesis nula plantea que las distribuciones de los grupos son idénticas. El estadístico se define como:
+\begin{itemize}
+    \item \textbf{Hipótesis nula \((H_0)\):} Las poblaciones tienen la misma distribución. Es decir, las medianas de los grupos son iguales.
+    \item \textbf{Hipótesis alternativa \((H_1)\):} Al menos una de las poblaciones tiene una mediana diferente.
+\end{itemize}
+ El estadístico se define como:
 
 \[
 H = \frac{12}{N(N+1)} \sum_{i=1}^{k} n_i \left( \bar{R}_i - \frac{N+1}{2} \right)^2,
 \]
 
-donde \( \bar{R}_i \) es el promedio de rangos del grupo \( i \), y \( N \) es el tamaño total de la muestra. Bajo la hipótesis nula, \( H \) se distribuye aproximadamente como una chi-cuadrado con \( k - 1 \) grados de libertad.
+\begin{itemize}
+    \item \(k\): Número de grupos independientes.
+    \item \( n_i \): Tamaño muestral del grupo \( i \).
+    \item \( \bar{R}_i \): Rango promedio de las observaciones del grupo \( i \).
+    \item \( N \): Número total de observaciones en todos los grupos.
+\end{itemize}
+
+Bajo la hipótesis nula, \( H \) se distribuye aproximadamente como una chi-cuadrado con \( k - 1 \) grados de libertad.
 
 En este caso, la variable de agrupación fue la severidad del accidente (leve, grave, fatal). Las variables continuas que presentaron diferencias significativas entre grupos fueron interpretadas como asociadas a la severidad.
 
 \subsubsection*{Prueba Q de Cochran}
 
-Para contrastar diferencias en proporciones de accidentes severos (graves o fatales) en contextos dependientes —como distintas festividades a lo largo de los años— se utilizó la prueba Q de Cochran. Esta prueba no paramétrica permite evaluar si existe una diferencia significativa en proporciones binarias observadas repetidamente sobre las mismas unidades o contextos dependientes \cite{gibbons2011nonparametric}.
+Para contrastar diferencias en proporciones de accidentes severos (graves o fatales) en contextos dependientes —como distintas festividades a lo largo de los años— se utilizó la prueba Q de Cochran. Esta prueba no paramétrica permite evaluar si existe una diferencia significativa en proporciones binarias observadas repetidamente sobre las mismas unidades o contextos dependientes. \cite{gibbons2011nonparametric}.
 
-El estadístico de prueba se define como:
+\begin{itemize}
+\item \textbf{Hipótesis nula $(H_0)$:} Todas las proporciones de respuestas positivas de las condiciones son iguales.
+\item \textbf{Hipótesis alternativa $(H_1)$:} Al menos una de las proporciones es diferente.
+\end{itemize}
+
+\textbf{Estadístico}
 
 \[
 Q = \frac{(k-1) \left[k\sum_{i=1}^n R_i^2 - T^2\right]}{k \cdot T - \sum_{j=1}^k C_j^2},
 \]
 
-donde \( k \) es el número de condiciones, \( n \) el número de unidades (años), \( R_i \) el número de respuestas positivas por unidad, \( C_j \) el total por condición, y \( T \) el total de respuestas positivas. Este valor se contrasta con una distribución chi-cuadrado con \( k - 1 \) grados de libertad.
+\textbf{Donde} 
+\begin{itemize}
+    \item \( k \): es el número de condiciones.
+    \item \( n \): el número de unidades (años).
+    \item \( R_i \): el número de respuestas positivas por unidad.
+    \item \( C_j \): el total por condición.
+    \item \( T \): el total de respuestas positivas.
+\end{itemize} 
 
-En este estudio, se obtuvo un valor \( Q = 57.02 \) con \( p < 0.001 \), lo que indica que la proporción de accidentes severos varía significativamente entre festividades como Navidad, Año Nuevo y días regulares. Esto proporciona respaldo estadístico adicional a lo observado en los gráficos descriptivos y refuerza la inclusión de esta variable en el análisis inferencial.
+Este valor se contrasta con una distribución chi-cuadrado con \( k - 1 \) grados de libertad.
+
+\textbf{Supuestos}
+\begin{itemize}
+    \item La variable de interés debe tener solo dos posibles resultados.
+\end{itemize}
 
 \subsubsection*{Valor \( p \) y toma de decisiones}
 
@@ -138,8 +191,6 @@ Cada técnica estadística empleada implica ciertos supuestos que condicionan la
 Entre las principales limitaciones metodológicas se encuentra el hecho de que los análisis realizados son de carácter bivariado. Esto implica que no se han explorado posibles interacciones entre variables —por ejemplo, entre condiciones de iluminación y clima, o entre velocidad y festividad— que podrían influir conjuntamente en la severidad del accidente. Además, el análisis no considera posibles variables de confusión ni incluye mecanismos de ajuste por covariables, lo que restringe la capacidad de inferencia causal. Estas limitaciones podrían ser abordadas en estudios futuros mediante enfoques multivariados, como modelos log-lineales o regresión multinomial, que permitan una comprensión más completa del fenómeno en estudio.
 
 Durante el análisis se identificaron ciertas limitaciones relacionadas con la distribución de frecuencias dentro de algunas variables categóricas. En particular, las categorías \textit{Nieve} y \textit{Granizo} en la variable \textit{clima} presentaron una cantidad de observaciones insuficiente para aplicar la prueba chi-cuadrado, dado que no se cumplía el supuesto mínimo de recuentos esperados en cada celda. Estas categorías fueron descartadas del análisis inferencial, aunque se reconoce que podrían aportar información relevante si se contara con una base de datos más amplia o específica. De igual forma, se eliminaron las categorías \textit{Desconocido} en \textit{iluminación} y \textit{Final del asfalto} en \textit{tipo de carretera}, debido a su baja representatividad.
-
-
 \section*{Resultados}
 
 \subsection*{Relación entre variables categóricas y severidad}
